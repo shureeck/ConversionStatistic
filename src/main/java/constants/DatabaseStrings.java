@@ -1,9 +1,9 @@
 package constants;
 
 public class DatabaseStrings {
-    public static final String BASE = "jdbc:mysql://sql11.freemysqlhosting.net/sql11225977";
-    public static final String BASE_LOGIN = "sql11225977";
-    public static final String BASE_PASSWORD = "bMB2hjsdAU";
+    public static final String BASE = "jdbc:mysql://localhost/testdb";
+    public static final String BASE_LOGIN = "gbuser";
+    public static final String BASE_PASSWORD = "gbuser";
 
     public static final String TABLE_APPLY_BY_CATEGORIES = " apply_by_categories ";
     public static final String TABLE_APPLY_GENERAL_STATISTIC = " apply_general_statistic ";
@@ -17,6 +17,7 @@ public class DatabaseStrings {
     public static final String FIELDS_ERRORS_BY_CATEGORIES = "(build, category, failed, pair)";
     public static final String FIELDS_STATISTIC_BY_SOURCE = "(build, category, count, pair)";
 
-    public static final String INSERT_INTO = "INSERT INTO " ;
+    public static final String REPLACE_INTO = "REPLACE INTO " ;
+   // public static final String INSERT_INTO = "INSERT INTO " ;
     public static final String VALUES=" VALUES ";
 }

@@ -1,3 +1,5 @@
+package Report;
+
 public class ObjectInfo {
     private int testListNumber;
     private String category;

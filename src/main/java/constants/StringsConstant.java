@@ -15,6 +15,13 @@ public class StringsConstant {
     public static final String PASSED = "Passed";
     public static final String FAILED = "Failed";
 
+    public static final String TITLE_MAINN_WINDOW = "CLI Tests GoldBug statistic";
+    public static final String FILE = "File";
+    public static final String CLOSE = "Close";
+    public static final String ANALYZE = "Analyze";
+    public static final String EXAMPLE = "Example";
+
+
     public static final String APPLY = "apply";
     public static final String CONVERSION = "conversion";
     public static final String ERROR = "error";

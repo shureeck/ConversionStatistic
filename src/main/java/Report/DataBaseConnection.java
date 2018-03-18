@@ -1,6 +1,6 @@
-import java.sql.*;
+package Report;
 
-import static constants.DatabaseStrings.*;
+import java.sql.*;
 
 public class DataBaseConnection {
     private String base;

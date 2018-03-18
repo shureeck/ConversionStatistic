@@ -1,3 +1,5 @@
+package Report;
+
 import java.util.ArrayList;
 
 import static constants.DatabaseStrings.*;
@@ -29,7 +31,7 @@ public class SQL_Query {
                 COMA+String.valueOf(report.getTotalPassed())+
                 COMA+String.valueOf(report.getTotalFailed())+
                 COMA+ QUOTE + report.getPair()  + QUOTE + BRACKET_C;
-        result.add(INSERT_INTO+TABLE_APPLY_GENERAL_STATISTIC+FIELDS_APPLY_GENERAL_STATISTIC+VALUES+valuesGeneralStatistic);
+        result.add(REPLACE_INTO +TABLE_APPLY_GENERAL_STATISTIC+FIELDS_APPLY_GENERAL_STATISTIC+VALUES+valuesGeneralStatistic);
 
         int i=0;
         int size=report.getStatisticByCategories().size();
@@ -39,7 +41,7 @@ public class SQL_Query {
                     COMA + String.valueOf(report.getStatisticByCategories().get(i).getPassed()) +
                     COMA + String.valueOf(report.getStatisticByCategories().get(i).getFailed()) +
                     COMA + QUOTE + report.getPair()  + QUOTE + BRACKET_C;
-            result.add(INSERT_INTO + TABLE_APPLY_BY_CATEGORIES + FIELDS_APPLY_BY_CATEGORIES + VALUES + valuesStatisticByCategories);
+            result.add(REPLACE_INTO + TABLE_APPLY_BY_CATEGORIES + FIELDS_APPLY_BY_CATEGORIES + VALUES + valuesStatisticByCategories);
             i++;
         }
         i=0;
@@ -49,7 +51,7 @@ public class SQL_Query {
                     COMA + QUOTE + report.getStatisticBySource().get(i).getName() + QUOTE +
                     COMA + String.valueOf(report.getStatisticBySource().get(i).getCount()) +
                     COMA + QUOTE + report.getPair() + QUOTE + BRACKET_C;
-            result.add(INSERT_INTO + TABLE_STATISTIC_BY_SOURCE +FIELDS_STATISTIC_BY_SOURCE+VALUES+valuesStatisticBySource);
+            result.add(REPLACE_INTO + TABLE_STATISTIC_BY_SOURCE +FIELDS_STATISTIC_BY_SOURCE+VALUES+valuesStatisticBySource);
             i++;
         }
         return result;
@@ -62,7 +64,7 @@ public class SQL_Query {
                 COMA+String.valueOf(report.getTotalPassed())+
                 COMA+String.valueOf(report.getTotalFailed())+
                 COMA+ QUOTE + report.getPair()  + QUOTE + BRACKET_C;
-        result.add(INSERT_INTO+TABLE_CONVERSION_GENERAL_STATISTIC+FIELDS_APPLY_GENERAL_STATISTIC+VALUES+valuesGeneralStatistic);
+        result.add(REPLACE_INTO +TABLE_CONVERSION_GENERAL_STATISTIC+FIELDS_APPLY_GENERAL_STATISTIC+VALUES+valuesGeneralStatistic);
 
         int i=0;
         int size=report.getStatisticByCategories().size();
@@ -72,7 +74,7 @@ public class SQL_Query {
                     COMA + String.valueOf(report.getStatisticByCategories().get(i).getPassed()) +
                     COMA + String.valueOf(report.getStatisticByCategories().get(i).getFailed()) +
                     COMA + QUOTE + report.getPair()  + QUOTE + BRACKET_C;
-            result.add(INSERT_INTO + TABLE_CONVERSION_BY_CATEGORIES + FIELDS_APPLY_BY_CATEGORIES + VALUES + valuesStatisticByCategories);
+            result.add(REPLACE_INTO + TABLE_CONVERSION_BY_CATEGORIES + FIELDS_APPLY_BY_CATEGORIES + VALUES + valuesStatisticByCategories);
             i++;
         }
         return result;
@@ -87,7 +89,7 @@ public class SQL_Query {
                     COMA + QUOTE + report.getStatisticByCategories().get(i).getName() + QUOTE +
                     COMA + String.valueOf(report.getStatisticByCategories().get(i).getFailed()) +
                     COMA + QUOTE + report.getPair()  + QUOTE + BRACKET_C;
-            result.add(INSERT_INTO + TABLE_ERRORS_BY_CATEGORIES + FIELDS_ERRORS_BY_CATEGORIES + VALUES + valuesStatisticByCategories);
+            result.add(REPLACE_INTO + TABLE_ERRORS_BY_CATEGORIES + FIELDS_ERRORS_BY_CATEGORIES + VALUES + valuesStatisticByCategories);
             i++;
         }
         return result;
@@ -100,7 +102,7 @@ public class SQL_Query {
                 COMA+String.valueOf(report.getTotalPassed())+
                 COMA+String.valueOf(report.getTotalFailed())+
                 COMA+ QUOTE + report.getPair()  + QUOTE + BRACKET_C;
-        result.add(INSERT_INTO+TABLE_ACTION_ITEMS_GENERAL_STATISTIC+FIELDS_APPLY_GENERAL_STATISTIC+VALUES+valuesGeneralStatistic);
+        result.add(REPLACE_INTO +TABLE_ACTION_ITEMS_GENERAL_STATISTIC+FIELDS_APPLY_GENERAL_STATISTIC+VALUES+valuesGeneralStatistic);
     return result;
     }
 
