@@ -1,4 +1,4 @@
-package Report;
+package report;
 
 import java.io.*;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package Report;
+package report;
 
 public class ObjectInfo {
     private int testListNumber;

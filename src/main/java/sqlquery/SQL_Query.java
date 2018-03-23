@@ -1,4 +1,6 @@
-package Report;
+package sqlquery;
+
+import report.Report;
 
 import java.util.ArrayList;
 

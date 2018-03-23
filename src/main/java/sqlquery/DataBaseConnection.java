@@ -1,4 +1,4 @@
-package Report;
+package sqlquery;
 
 import java.sql.*;
 

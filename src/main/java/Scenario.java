@@ -1,10 +1,10 @@
-package Report;
+import report.Report;
 
 public class Scenario {
     public Report scenary (){
         Report report = new Report("E:\\ReportExamples\\Reports\\Oracle-PostgreSQL\\Oracle_PostgreSQL__Transform.csv");
         int i =0;
-       /* SQL_Query query =new SQL_Query(report);
+     /*   SQL_Query query =new SQL_Query(report);
         int size = query.getSqlStatement().size();
 
         DataBaseConnection dbc = new DataBaseConnection(BASE, BASE_LOGIN, BASE_PASSWORD);
