@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import static constants.DatabaseStrings.*;
 import static constants.StringsConstant.*;
 
-public class SQL_Query {
+public class Update_SQL_Query {
     private ArrayList<String> sqlStatement = new ArrayList<>();
     private String type;
 
-    public SQL_Query(Report report){
+    public Update_SQL_Query(Report report){
         sqlStatement.addAll(buildStatement(report));
     }
 

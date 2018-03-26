@@ -12,6 +12,8 @@ import report.Table;
 
 import java.util.ArrayList;
 
+import static constants.DatabaseStrings.TABLE_CONVERSION_GENERAL_STATISTIC;
+
 
 public class Controller {
     private ObservableList<Table> usersData = FXCollections.observableArrayList();
@@ -32,41 +34,55 @@ public class Controller {
     @FXML
     public void onClickMethod(){
         Reload reload= new Reload();
-        ArrayList <Table> tables = new ArrayList<>(reload.reload());
-        initialize(tables);
+        ArrayList <String> buildsList = new ArrayList<>(reload. getBuilds(TABLE_CONVERSION_GENERAL_STATISTIC));
+
+        ArrayList<Table> tables =new ArrayList<>();
+        int i=0;
+        while (i<buildsList.size()) {
+            tables.addAll(reload.reload(buildsList.get(i)));
+            initialize(tables);
+            tables.clear();
+            i++;
+        }
 
     }
 
     private void initialize(ArrayList<Table> tables){
         initData(tables);
+        TableView<Table> temp = new TableView<>();
         category.setCellValueFactory(new PropertyValueFactory<Table, String>("category"));
      //   build.setCellValueFactory(new PropertyValueFactory<User, Integer>("age"));
+       // reportTable.getItems().setAll(usersData);
+        ArrayList<TableColumn> columnList = new ArrayList<>( reportTable.getColumns());
+        int i = 1;
+        while (i<columnList.size()){
+            columnList.get(i).setCellValueFactory(new PropertyValueFactory<Table,String>("close"));
+            i++;
+        }
 
-
-            int i=0;
-            while (usersData.size()>i) {
-                int j=i;
-                TableColumn tableColumn=null;
-                String currentBuild = usersData.get(i).getBuild();
+        TableColumn tableColumn=null;
+                    String currentBuild = usersData.get(i).getBuild();
+                //Add new column
                 if (!reportTable.getColumns().stream().anyMatch((p)->(p.getId().equalsIgnoreCase(currentBuild)))){
                     tableColumn = new TableColumn(currentBuild);
                     tableColumn.setId(currentBuild);
-                   // this.tableColumn=tableColumn;
                     tableColumn.setCellValueFactory(new PropertyValueFactory<Table,String>("value"));
-                    reportTable.getItems().setAll(usersData);
+                    temp.getColumns().add(tableColumn);
+                   // this.tableColumn=tableColumn;
+
                 }
-                i++;
+                temp.getItems().addAll(usersData);
 
-            }
+        reportTable.getColumns().add(temp.getColumns().get(0));
 
-
-
-
+                    reportTable.setItems(temp.getItems());
         }
+
+
+         //   tableColumn.setCellValueFactory(new PropertyValueFactory<Table,String>("close"));
 
     private void initData(ArrayList<Table> tables) {
         usersData.setAll(tables);
-
 
     }
 }

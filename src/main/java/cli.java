@@ -1,6 +1,6 @@
 import report.Report;
 import sqlquery.DataBaseConnection;
-import sqlquery.SQL_Query;
+import sqlquery.Update_SQL_Query;
 
 import java.sql.Connection;
 
@@ -11,7 +11,7 @@ public class cli {
     public static void main(String args[]){
             Report report = new Report("E:\\ReportExamples\\Reports\\Oracle-PostgreSQL\\Oracle_PostgreSQL__Transform.csv");
             int i =0;
-        SQL_Query query =new SQL_Query(report);
+        Update_SQL_Query query =new Update_SQL_Query(report);
         int size = query.getSqlStatement().size();
 
         DataBaseConnection dbc = new DataBaseConnection(BASE, BASE_LOGIN, BASE_PASSWORD);

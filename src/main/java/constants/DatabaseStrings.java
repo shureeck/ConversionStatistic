@@ -20,4 +20,5 @@ public class DatabaseStrings {
     public static final String REPLACE_INTO = "REPLACE INTO " ;
    // public static final String INSERT_INTO = "INSERT INTO " ;
     public static final String VALUES=" VALUES ";
+    public static final String SELECT_BUILDS = "SELECT DISTINCT build FROM ";
 }
