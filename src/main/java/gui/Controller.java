@@ -5,12 +5,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.MapValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.Callback;
+import javafx.util.StringConverter;
 import report.Table;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import static constants.DatabaseStrings.TABLE_CONVERSION_GENERAL_STATISTIC;
 
@@ -19,12 +25,9 @@ public class Controller {
     private ObservableList<Table> usersData = FXCollections.observableArrayList();
 
     @FXML
-    private TableView<Table> reportTable;
+    private TableView<Map> reportTable=new TableView<>();
     @FXML
-    private TableColumn<Table, String> category;
-
-    @FXML
-    private TableColumn<Table, String> tableColumn;
+    private TableColumn<Map, String> category=new TableColumn<>();
 
     @FXML
     private Button analyze;
@@ -36,53 +39,66 @@ public class Controller {
         Reload reload= new Reload();
         ArrayList <String> buildsList = new ArrayList<>(reload. getBuilds(TABLE_CONVERSION_GENERAL_STATISTIC));
 
-        ArrayList<Table> tables =new ArrayList<>();
+        HashMap<String,String> tables =new HashMap<>();
         int i=0;
         while (i<buildsList.size()) {
-            tables.addAll(reload.reload(buildsList.get(i)));
-            initialize(tables);
+            tables.putAll(reload.reload(buildsList.get(i)));
+            initialize(tables, buildsList);
             tables.clear();
             i++;
         }
 
     }
 
-    private void initialize(ArrayList<Table> tables){
-        initData(tables);
-        TableView<Table> temp = new TableView<>();
-        category.setCellValueFactory(new PropertyValueFactory<Table, String>("category"));
-     //   build.setCellValueFactory(new PropertyValueFactory<User, Integer>("age"));
-       // reportTable.getItems().setAll(usersData);
-        ArrayList<TableColumn> columnList = new ArrayList<>( reportTable.getColumns());
-        int i = 1;
-        while (i<columnList.size()){
-            columnList.get(i).setCellValueFactory(new PropertyValueFactory<Table,String>("close"));
+    private void  initialize(HashMap<String,String> tables, ArrayList <String> buildsList) {
+        reportTable.setItems(initData(tables));
+
+
+        //  initData(tables);
+        //  TableView<Table> temp = new TableView<>();
+
+        category.setCellValueFactory(new MapValueFactory("category"));
+        TableColumn<Map, String> tableColumn = null;
+        int i = 0;
+        while (i < buildsList.size()) {
+            String currentBuild = buildsList.get(i);
+            //Add new column
+            if (!reportTable.getColumns().stream().anyMatch((p) -> (p.getId().equalsIgnoreCase(currentBuild)))) {
+                tableColumn = new TableColumn<>(currentBuild);
+                tableColumn.setId(currentBuild);
+                tableColumn.setCellValueFactory(new MapValueFactory(currentBuild));
+                reportTable.getColumns().add(tableColumn);
+                // this.tableColumn=tableColumn;
+
+            }
             i++;
         }
-
-        TableColumn tableColumn=null;
-                    String currentBuild = usersData.get(i).getBuild();
-                //Add new column
-                if (!reportTable.getColumns().stream().anyMatch((p)->(p.getId().equalsIgnoreCase(currentBuild)))){
-                    tableColumn = new TableColumn(currentBuild);
-                    tableColumn.setId(currentBuild);
-                    tableColumn.setCellValueFactory(new PropertyValueFactory<Table,String>("value"));
-                    temp.getColumns().add(tableColumn);
-                   // this.tableColumn=tableColumn;
-
-                }
-                temp.getItems().addAll(usersData);
-
-        reportTable.getColumns().add(temp.getColumns().get(0));
-
-                    reportTable.setItems(temp.getItems());
+        Callback<TableColumn<Map, String>, TableCell<Map, String>>
+                cellFactoryForMap = (TableColumn<Map, String> p) ->
+                new TextFieldTableCell(new StringConverter() {
+                    @Override
+                    public String toString(Object t) {
+                        return t.toString();
+                    }
+                    @Override
+                    public Object fromString(String string) {
+                        return string;
+                    }
+                });
+         i=0;
+         ArrayList<TableColumn> columnsList = new ArrayList<>(reportTable.getColumns());
+       while (i<columnsList.size()) {
+           columnsList.get(i).setCellFactory(cellFactoryForMap);
+            i++;
+            reportTable.refresh();
         }
 
-
-         //   tableColumn.setCellValueFactory(new PropertyValueFactory<Table,String>("close"));
-
-    private void initData(ArrayList<Table> tables) {
-        usersData.setAll(tables);
+    }
+    private ObservableList<Map> initData(HashMap <String,String> tables) {
+        Map<String, String> rtemperay = new HashMap<>(tables);
+        ObservableList<Map> allData = FXCollections.observableArrayList();
+        allData.setAll(rtemperay);
+        return allData;
 
     }
 }
