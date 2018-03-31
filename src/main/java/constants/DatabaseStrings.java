@@ -22,4 +22,5 @@ public class DatabaseStrings {
     public static final String VALUES=" VALUES ";
     public static final String SELECT_BUILDS = "SELECT DISTINCT build FROM ";
     public static final String SELECT_CATEGOTIES = "SELECT DISTINCT category FROM ";
+
 }

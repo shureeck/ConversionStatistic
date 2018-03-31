@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static constants.DatabaseStrings.*;
+
 
 public class Controller {
     private ObservableList<Table> usersData = FXCollections.observableArrayList();
@@ -34,13 +36,15 @@ public class Controller {
 
     @FXML
     public void onClickMethod(){
+        reportTable.getItems().clear();
         Reload reload= new Reload();
-        ArrayList <String> buildsList = new ArrayList<>();
+        ArrayList<String> cagoriesList = new ArrayList<>(reload.getCategorites(TABLE_CONVERSION_GENERAL_STATISTIC));
+        ArrayList <String> buildsList = new ArrayList<>(reload.getBuilds(TABLE_CONVERSION_GENERAL_STATISTIC));
 
         HashMap<String,String> tables =new HashMap<>();
         int i=0;
-        while (i<buildsList.size()) {
-            tables.putAll(reload.reload(buildsList.get(i)));
+        while (i<cagoriesList.size()) {
+            tables.putAll(reload.reload(cagoriesList.get(i)));
             initialize(tables, buildsList);
             tables.clear();
             i++;
@@ -49,7 +53,7 @@ public class Controller {
     }
 
     private void  initialize(HashMap<String,String> tables, ArrayList <String> buildsList) {
-        reportTable.setItems(initData(tables));
+        reportTable.getItems().addAll(initData(tables));
 
 
         //  initData(tables);
