@@ -13,11 +13,12 @@ import static constants.DatabaseStrings.*;
 import static constants.StringsConstant.*;
 
 public class Reload {
-    public HashMap<String,String> reload(String category){
+    public HashMap<String,String> reload( String tableName, String category){
+        String statement = SELECT_ALL_WHERE + tableName + WHERE + category+QUOTE;
         DataBaseConnection dbc = new DataBaseConnection(BASE, BASE_LOGIN, BASE_PASSWORD);
         Connection connection = dbc.connectToDatabase();
 
-        ResultSet resultSet = dbc.executeStatement(connection, "SELECT * FROM conversion_general_statistic WHERE category = \""+category+"\";");
+        ResultSet resultSet = dbc.executeStatement(connection, statement);
        HashMap<String,String> result = new HashMap<>();
         result.put("category",category);
 
@@ -25,6 +26,25 @@ public class Reload {
 
             while (resultSet.next()) {
                 result.put(resultSet.getString("build"),resultSet.getString("count"));
+            }}
+        catch (java.sql.SQLException e){
+            e.printStackTrace();
+        }
+        return result;
+    }
+    public HashMap<String,String> reload( String tableName, String category, String targetColumn){
+        String statement = SELECT_ALL_WHERE + tableName + WHERE + category+QUOTE;
+        DataBaseConnection dbc = new DataBaseConnection(BASE, BASE_LOGIN, BASE_PASSWORD);
+        Connection connection = dbc.connectToDatabase();
+
+        ResultSet resultSet = dbc.executeStatement(connection, statement);
+        HashMap<String,String> result = new HashMap<>();
+        result.put("category",category);
+
+        try {
+
+            while (resultSet.next()) {
+                result.put(resultSet.getString("build"),resultSet.getString(targetColumn));
             }}
         catch (java.sql.SQLException e){
             e.printStackTrace();

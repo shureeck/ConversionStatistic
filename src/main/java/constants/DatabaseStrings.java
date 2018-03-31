@@ -22,5 +22,10 @@ public class DatabaseStrings {
     public static final String VALUES=" VALUES ";
     public static final String SELECT_BUILDS = "SELECT DISTINCT build FROM ";
     public static final String SELECT_CATEGOTIES = "SELECT DISTINCT category FROM ";
+    public static final String SELECT = "SELECT ";
+    public static final String FROM = " FROM ";
+    public static final String WHERE = " WHERE category=\"";
+    public static final String SELECT_ALL_WHERE = "SELECT * FROM " ;
+
 
 }
