@@ -35,7 +35,7 @@ public class Update_SQL_Query {
                     COMA + QUOTE + report.getGeneralStatistic().get(i).getName() + QUOTE +
                     COMA + String.valueOf(report.getGeneralStatistic().get(i).getCount()) +
                     COMA + QUOTE + report.getPair() + QUOTE + BRACKET_C;
-            result.add(REPLACE_INTO + TABLE_CONVERSION_GENERAL_STATISTIC +FIELDS_APPLY_GENERAL_STATISTIC+VALUES+valuesGeneralStatistic);
+            result.add(REPLACE_INTO + TABLE_APPLY_GENERAL_STATISTIC +FIELDS_APPLY_GENERAL_STATISTIC+VALUES+valuesGeneralStatistic);
             i++;
         }
        i=0;
@@ -113,10 +113,9 @@ public class Update_SQL_Query {
                     COMA + QUOTE + report.getGeneralStatistic().get(i).getName() + QUOTE +
                     COMA + String.valueOf(report.getGeneralStatistic().get(i).getCount()) +
                     COMA + QUOTE + report.getPair() + QUOTE + BRACKET_C;
-            result.add(REPLACE_INTO + TABLE_CONVERSION_GENERAL_STATISTIC +FIELDS_APPLY_GENERAL_STATISTIC+VALUES+valuesGeneralStatistic);
+            result.add(REPLACE_INTO + TABLE_ACTION_ITEMS_GENERAL_STATISTIC +FIELDS_APPLY_GENERAL_STATISTIC+VALUES+valuesGeneralStatistic);
             i++;
         }
-        result.add(REPLACE_INTO +TABLE_ACTION_ITEMS_GENERAL_STATISTIC+FIELDS_APPLY_GENERAL_STATISTIC+VALUES+valuesGeneralStatistic);
     return result;
     }
 

@@ -45,10 +45,14 @@ public class Reload {
 
             while (resultSet.next()) {
                 result.put(resultSet.getString("build"),resultSet.getString(targetColumn));
-            }}
+            }
+            connection.close();
+        }
         catch (java.sql.SQLException e){
             e.printStackTrace();
         }
+
+
         return result;
     }
 
@@ -62,7 +66,7 @@ public class Reload {
             while (rs.next()){
                 categories.add(rs.getString(CATEGORY));
             }
-            connection.close();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

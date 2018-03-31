@@ -9,7 +9,7 @@ import static constants.StringsConstant.SPACE;
 
 public class cli {
     public static void main(String args[]){
-            Report report = new Report("E:\\ReportExamples\\Reports\\Oracle-PostgreSQL\\Oracle_PostgreSQL__Transform.csv");
+            Report report = new Report("E:\\ReportExamples\\Reports\\Oracle-PostgreSQL\\Oracle_PostgreSQL__Errors.csv");
             int i =0;
         Update_SQL_Query query =new Update_SQL_Query(report);
         int size = query.getSqlStatement().size();
