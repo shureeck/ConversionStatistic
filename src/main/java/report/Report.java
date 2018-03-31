@@ -53,16 +53,9 @@ public class Report {
         return reportType;
     }
 
-    public int getTotalItems(){
-        return generalStatistic.getTotalItems();
-    }
-    public int getTotalPassed(){
-        return generalStatistic.getPassed();
-    }
-    public int getTotalFailed(){
-        return generalStatistic.getFailed();
-    }
+
     public int getBuildNumber(){return buildNumber;}
+    public ArrayList<Category> getGeneralStatistic() {return generalStatistic.getStatisticGeneral(); }
     public ArrayList<Category> getStatisticByCategories() {
         return statisticByCategories.getArrayStatistic();
     }

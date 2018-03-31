@@ -12,7 +12,7 @@ public class DatabaseStrings {
     public static final String TABLE_CONVERSION_GENERAL_STATISTIC = " conversion_general_statistic ";
     public static final String TABLE_CONVERSION_BY_CATEGORIES = " conversion_by_categories ";
     public static final String TABLE_ERRORS_BY_CATEGORIES =  " errors_by_categories ";
-    public static final String FIELDS_APPLY_GENERAL_STATISTIC = "(build, totalitem, passed, failed, pair)";
+    public static final String FIELDS_APPLY_GENERAL_STATISTIC = "(build, category, count, pair)";
     public static final String FIELDS_APPLY_BY_CATEGORIES = "(build, category, passed, failed, pair)";
     public static final String FIELDS_ERRORS_BY_CATEGORIES = "(build, category, failed, pair)";
     public static final String FIELDS_STATISTIC_BY_SOURCE = "(build, category, count, pair)";
@@ -21,4 +21,5 @@ public class DatabaseStrings {
    // public static final String INSERT_INTO = "INSERT INTO " ;
     public static final String VALUES=" VALUES ";
     public static final String SELECT_BUILDS = "SELECT DISTINCT build FROM ";
+    public static final String SELECT_CATEGOTIES = "SELECT DISTINCT category FROM ";
 }

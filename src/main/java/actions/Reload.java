@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import static constants.DatabaseStrings.*;
-import static constants.StringsConstant.BUILD;
+import static constants.StringsConstant.*;
 
 public class Reload {
     public HashMap<String,String> reload(String build){
@@ -59,22 +59,22 @@ public class Reload {
         return result;
     }
 
-    public ArrayList <String> getBuilds(String tableName){
-        SelectSQLQuery selectBuilds = new SelectSQLQuery();
+    public ArrayList <String> getCategorites(String tableName){
+        SelectSQLQuery selectQuery = new SelectSQLQuery();
         DataBaseConnection dbc = new DataBaseConnection(BASE, BASE_LOGIN, BASE_PASSWORD);
         Connection connection = dbc.connectToDatabase();
-        ResultSet rs = dbc.executeStatement(connection, selectBuilds.selectBuilds(tableName));
-        ArrayList<String> builds = new ArrayList<>();
+        ResultSet rs = dbc.executeStatement(connection, selectQuery.selectCategorites(tableName));
+        ArrayList<String> categories = new ArrayList<>();
         try {
             while (rs.next()){
-                builds.add(rs.getString(BUILD));
+                categories.add(rs.getString(CATEGORY));
             }
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return builds;
+        return categories;
     }
 
 }

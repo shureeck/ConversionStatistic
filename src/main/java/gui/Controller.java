@@ -18,8 +18,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import static constants.DatabaseStrings.TABLE_CONVERSION_GENERAL_STATISTIC;
-
 
 public class Controller {
     private ObservableList<Table> usersData = FXCollections.observableArrayList();
@@ -37,7 +35,7 @@ public class Controller {
     @FXML
     public void onClickMethod(){
         Reload reload= new Reload();
-        ArrayList <String> buildsList = new ArrayList<>(reload. getBuilds(TABLE_CONVERSION_GENERAL_STATISTIC));
+        ArrayList <String> buildsList = new ArrayList<>();
 
         HashMap<String,String> tables =new HashMap<>();
         int i=0;
