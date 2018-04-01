@@ -1,5 +1,6 @@
 package gui;
 
+import actions.AddReports;
 import actions.Reload;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,10 +10,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.MapValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 import report.Table;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -52,6 +56,15 @@ public class Controller {
     }
 
     @FXML
+    public void onAddReportsClick(){
+       DirectoryChooser direcoryChooser = new DirectoryChooser();
+        direcoryChooser.setTitle(CHOSE_REPORTS_FOLDER );
+        File reportsFolder = direcoryChooser.showDialog(new Stage());
+        AddReports addReports = new AddReports();
+        addReports.addReports(reportsFolder);
+    }
+
+    @FXML
     public void onRefreshClickMethod(){
         //Clear table data
         sorceStatistic.getItems().clear();
@@ -77,7 +90,7 @@ public class Controller {
         Reload reload= new Reload();
         ArrayList <String> buildsList = new ArrayList<>(reload.getBuilds(TABLE_CONVERSION_GENERAL_STATISTIC));
         // Add column into tables
-        addColumns(buildsList,sorceStatistic);
+        addColumns(buildsList, sorceStatistic);
         addColumns(buildsList, applyGenStatTable);
         addColumns(buildsList, applyFailedTable);
         addColumns(buildsList, applyPassTable);
@@ -197,4 +210,5 @@ public class Controller {
         }
 
     }
+
 }

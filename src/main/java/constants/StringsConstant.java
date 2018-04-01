@@ -16,6 +16,8 @@ public class StringsConstant {
     public static final String FAILED = "Failed";
     public static final String BUILD = "build";
     public static final String CATEGORY = "category";
+    public static final String CHOSE_REPORTS_FOLDER = "Chose reports folder";
+    public static final String CSV = ".csv";
 
     public static final String TITLE_MAINN_WINDOW = "CLI Tests GoldBug statistic";
     public static final String FILE = "File";
