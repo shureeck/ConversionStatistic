@@ -5,7 +5,7 @@ import static constants.DatabaseStrings.*;
 public class SelectSQLQuery {
 
     public String selectBuilds(String tableName){
-        return  SELECT_BUILDS+ tableName;
+        return  SELECT_BUILDS;
     }
 
     public String selectCategorites(String tableName){

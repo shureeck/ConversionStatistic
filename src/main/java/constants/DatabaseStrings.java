@@ -20,7 +20,10 @@ public class DatabaseStrings {
     public static final String REPLACE_INTO = "REPLACE INTO " ;
    // public static final String INSERT_INTO = "INSERT INTO " ;
     public static final String VALUES=" VALUES ";
-    public static final String SELECT_BUILDS = "SELECT DISTINCT build FROM ";
+    public static final String SELECT_BUILDS = "SELECT build FROM apply_general_statistic UNION \n" +
+            "SELECT build FROM conversion_general_statistic UNION\n" +
+            "SELECT build FROM errors_by_categories UNION\n" +
+            "SELECT build FROM action_items_general_statistic ";
     public static final String SELECT_CATEGOTIES = "SELECT DISTINCT category FROM ";
     public static final String SELECT = "SELECT ";
     public static final String FROM = " FROM ";

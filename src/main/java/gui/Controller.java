@@ -177,7 +177,10 @@ public class Controller {
                 new TextFieldTableCell(new StringConverter() {
                     @Override
                     public String toString(Object t) {
-                        return t.toString();
+                        if (t!=null) {
+                            return t.toString();
+                        }
+                        return "";
                     }
                     @Override
                     public Object fromString(String string) {
