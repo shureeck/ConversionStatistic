@@ -1,71 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.layout.GridPane?>
 
-<AnchorPane prefHeight="948.0" prefWidth="804.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller">
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller">
    <children>
-      <MenuBar prefHeight="20.0" AnchorPane.bottomAnchor="576.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="1.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-      <Button id="btnCancel" layoutX="700.0" layoutY="560.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onCancelClickMethod" prefHeight="30.0" prefWidth="90.0" text="Cancel" textAlignment="CENTER" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
-      <Button id="refresh" fx:id="refresh" layoutX="600.0" layoutY="560.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onRefreshClickMethod" prefHeight="30.0" prefWidth="90.0" text="Upload" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="110.0" />
-      <Separator layoutY="547.0" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="3.0" prefWidth="800.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="0.0" />
-      <TabPane fx:id="tabPane" layoutY="20.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="63.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
-        <tabs>
-          <Tab text="Oracle-PostgreSQL">
+      <TabPane fx:id="tabPane" layoutX="10.0" layoutY="30.0" tabClosingPolicy="UNAVAILABLE">
+         <tabs>
+            <Tab text="Oracle-PostgreSQL">
                <content>
                   <ScrollPane prefViewportHeight="490.0" prefViewportWidth="800.0">
                      <content>
                         <GridPane fx:id="gridPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity">
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints fillHeight="false" maxHeight="25.0" minHeight="25.0" percentHeight="0.0" prefHeight="25.0" valignment="CENTER" />
-                              <RowConstraints fillHeight="false" maxHeight="25.0" minHeight="25.0" percentHeight="0.0" prefHeight="30.0" valignment="CENTER" />
-                              <RowConstraints fillHeight="false" minHeight="25.0" percentHeight="0.0" valignment="CENTER" />
-                              <RowConstraints fillHeight="false" maxHeight="25.0" minHeight="25.0" percentHeight="0.0" prefHeight="25.0" valignment="CENTER" />
-                              <RowConstraints fillHeight="false" minHeight="25.0" percentHeight="0.0" valignment="CENTER" />
-                              <RowConstraints fillHeight="false" maxHeight="25.0" minHeight="25.0" percentHeight="0.0" prefHeight="25.0" valignment="CENTER" />
-                              <RowConstraints fillHeight="false" minHeight="25.0" percentHeight="0.0" valignment="CENTER" />
-                              <RowConstraints fillHeight="false" maxHeight="25.0" minHeight="25.0" percentHeight="0.0" prefHeight="25.0" valignment="CENTER" />
-                              <RowConstraints fillHeight="false" minHeight="25.0" percentHeight="0.0" valignment="CENTER" />
-                              <RowConstraints fillHeight="false" maxHeight="25.0" minHeight="25.0" percentHeight="0.0" prefHeight="25.0" valignment="CENTER" />
-                              <RowConstraints fillHeight="false" maxHeight="25.0" minHeight="25.0" percentHeight="0.0" prefHeight="25.0" valignment="CENTER" />
-                              <RowConstraints maxHeight="1.7976931348623157E308" valignment="TOP" vgrow="ALWAYS" />
-                              <RowConstraints fillHeight="false" maxHeight="25.0" minHeight="25.0" percentHeight="-0.0" prefHeight="25.0" valignment="TOP" vgrow="ALWAYS" />
-                              <RowConstraints maxHeight="1.7976931348623157E308" valignment="TOP" vgrow="ALWAYS" />
-                              <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="25.0" valignment="TOP" vgrow="ALWAYS" />
-                              <RowConstraints maxHeight="1.7976931348623157E308" valignment="TOP" vgrow="ALWAYS" />
-                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="ALWAYS" />
-                              <RowConstraints minHeight="10.0" valignment="TOP" vgrow="ALWAYS" />
-                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="ALWAYS" />
-                              <RowConstraints minHeight="10.0" valignment="TOP" vgrow="ALWAYS" />
-                              <RowConstraints vgrow="SOMETIMES" />
-                           </rowConstraints>
                            <children>
                               <TableView id="category" fx:id="convGenStatTable" minHeight="-Infinity" prefHeight="60.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="11" GridPane.vgrow="ALWAYS">
                                  <columns>
@@ -89,9 +41,9 @@
                                  </padding>
                               </Label>
                               <TableView fx:id="convFailedTable" minHeight="-Infinity" prefHeight="60.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="13" GridPane.vgrow="ALWAYS">
-                                <columns>
-                                  <TableColumn fx:id="categoryFailConv" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="100.0" text="Categories" />
-                                </columns>
+                                 <columns>
+                                    <TableColumn fx:id="categoryFailConv" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="100.0" text="Categories" />
+                                 </columns>
                               </TableView>
                               <Label maxHeight="25.0" maxWidth="25.0" minWidth="-Infinity" prefHeight="25.0" text="Passed objects" GridPane.rowIndex="14">
                                  <font>
@@ -102,9 +54,9 @@
                                  </padding>
                               </Label>
                               <TableView fx:id="convPassTable" minHeight="-Infinity" prefHeight="60.0" GridPane.rowIndex="15">
-                                <columns>
-                                  <TableColumn fx:id="categoryPassConv" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" text="Categories" />
-                                </columns>
+                                 <columns>
+                                    <TableColumn fx:id="categoryPassConv" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" text="Categories" />
+                                 </columns>
                               </TableView>
                               <Label maxHeight="25.0" maxWidth="25.0" minWidth="-Infinity" prefHeight="25.0" text="Apply statistic">
                                  <font>
@@ -201,30 +153,44 @@
                                  </columns>
                               </TableView>
                            </children>
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                           </columnConstraints>
                            <opaqueInsets>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </opaqueInsets>
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" />
                            </padding>
+                           <rowConstraints>
+                              <RowConstraints fillHeight="false" maxHeight="25.0" minHeight="25.0" percentHeight="0.0" prefHeight="25.0" valignment="CENTER" />
+                              <RowConstraints fillHeight="false" maxHeight="25.0" minHeight="25.0" percentHeight="0.0" prefHeight="30.0" valignment="CENTER" />
+                              <RowConstraints fillHeight="false" minHeight="25.0" percentHeight="0.0" valignment="CENTER" />
+                              <RowConstraints fillHeight="false" maxHeight="25.0" minHeight="25.0" percentHeight="0.0" prefHeight="25.0" valignment="CENTER" />
+                              <RowConstraints fillHeight="false" minHeight="25.0" percentHeight="0.0" valignment="CENTER" />
+                              <RowConstraints fillHeight="false" maxHeight="25.0" minHeight="25.0" percentHeight="0.0" prefHeight="25.0" valignment="CENTER" />
+                              <RowConstraints fillHeight="false" minHeight="25.0" percentHeight="0.0" valignment="CENTER" />
+                              <RowConstraints fillHeight="false" maxHeight="25.0" minHeight="25.0" percentHeight="0.0" prefHeight="25.0" valignment="CENTER" />
+                              <RowConstraints fillHeight="false" minHeight="25.0" percentHeight="0.0" valignment="CENTER" />
+                              <RowConstraints fillHeight="false" maxHeight="25.0" minHeight="25.0" percentHeight="0.0" prefHeight="25.0" valignment="CENTER" />
+                              <RowConstraints fillHeight="false" maxHeight="25.0" minHeight="25.0" percentHeight="0.0" prefHeight="25.0" valignment="CENTER" />
+                              <RowConstraints maxHeight="1.7976931348623157E308" valignment="TOP" vgrow="ALWAYS" />
+                              <RowConstraints fillHeight="false" maxHeight="25.0" minHeight="25.0" percentHeight="-0.0" prefHeight="25.0" valignment="TOP" vgrow="ALWAYS" />
+                              <RowConstraints maxHeight="1.7976931348623157E308" valignment="TOP" vgrow="ALWAYS" />
+                              <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="25.0" valignment="TOP" vgrow="ALWAYS" />
+                              <RowConstraints maxHeight="1.7976931348623157E308" valignment="TOP" vgrow="ALWAYS" />
+                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="ALWAYS" />
+                              <RowConstraints minHeight="10.0" valignment="TOP" vgrow="ALWAYS" />
+                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="ALWAYS" />
+                              <RowConstraints minHeight="10.0" valignment="TOP" vgrow="ALWAYS" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                           </rowConstraints>
                         </GridPane>
                      </content>
                   </ScrollPane>
                </content>
             </Tab>
-        </tabs>
+         </tabs>
       </TabPane>
-      <Button fx:id="addReports" layoutX="507.0" layoutY="906.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onAddReportsClick" prefHeight="30.0" prefWidth="90.0" text="Add Reports" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="210.0" />
-      <Button graphicTextGap="0.0" layoutX="20.0" layoutY="909.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onAddTabClick" prefHeight="30.0" prefWidth="30.0" text="+" textFill="#001eff" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0">
-         <font>
-            <Font name="Arial" size="14.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="DEFAULT" />
-         </cursor>
-      </Button>
    </children>
-   <padding>
-      <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-   </padding>
 </AnchorPane>
