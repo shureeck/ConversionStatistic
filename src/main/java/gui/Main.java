@@ -27,7 +27,7 @@ public class Main extends Application {
 
     }
 
-    public void addTabDialog(){
+    public void addTabDialog(TabModel tab){
         try {
             FXMLLoader addTabLoader =new FXMLLoader();
             addTabLoader.setLocation(getClass().getResource("addtab.fxml"));
@@ -40,7 +40,9 @@ public class Main extends Application {
             Scene scene = new Scene(pane);
            addTabStage.setScene(scene);
 
-           addTabStage.show();
+           AddTabController controller = addTabLoader.getController();
+           controller.setTabModel(tab);
+           addTabStage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
         }

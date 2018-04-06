@@ -9,10 +9,17 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 
 public class TabModel {
+    private String reportFolder;
+    private String tabId;
+    private String tabName;
+
     @FXML
     private Tab myTab = new Tab();
 
+    public TabModel (){}
     public TabModel (String name, String  id){
+        this.tabName = name;
+        this.tabId =id;
         try {
             AnchorPane anchorpane =  FXMLLoader.load(getClass().getResource("tabmodel.fxml"));
             TabPane tabPane = (TabPane) anchorpane.getChildren().get(0);
@@ -22,13 +29,16 @@ public class TabModel {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
        myTab.setText(name);
        myTab.setId(id);
     }
 
-    public Tab getTab(){
+    public Tab getTab(){return myTab;}
+    public String getTabName(){return tabName;}
+    public String getTabId(){return tabId;}
+    public String getReportFolder(){return reportFolder;}
 
-        return myTab;
-    }
+    public void setTabName(String tabName) {this.tabName = tabName;}
+    public void setTabId(String tabId) {this.tabId = tabId;}
+    public void setReportFolder(String reportFolder) {this.reportFolder = reportFolder;}
 }

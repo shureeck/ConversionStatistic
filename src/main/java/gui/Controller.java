@@ -69,13 +69,10 @@ public class Controller {
 
     @FXML
     public void onAddTabClick() {
+        TabModel tabModel = new TabModel();
         Main main = new Main();
-        main.addTabDialog();
-
-
-
-
-
+        main.addTabDialog(tabModel);
+        int i=0;
       //  addtab();
     }
 

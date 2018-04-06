@@ -22,13 +22,16 @@ public class AddTabController {
     @FXML
     Button buttonCancel = new Button();
 
-
+    private TabModel tabModel;
+    @FXML
     public void onOkClick(){
-      tabNameField.getText();
-      reportFolderField.getText();
-      TabName.replaceAll(REGEXP_SPLIT_GENERAL_STAT, "");
-        onCancelClickMethod();
+      TabName=tabNameField.getText();
+      tabModel.setTabName(TabName);
+      tabModel.setReportFolder(reportFolderField.getText());
+      tabModel.setTabId(TabName.replaceAll(REGEXP_SPLIT_GENERAL_STAT, ""));
+      onCancelClickMethod();
     }
+    @FXML
     public void onCancelClickMethod() {
         // get a handle to the stage
         Stage stage = (Stage) buttonCancel.getScene().getWindow();
@@ -36,4 +39,5 @@ public class AddTabController {
         stage.close();
     }
 
+    public void setTabModel(TabModel tabModel) {this.tabModel = tabModel;}
 }
