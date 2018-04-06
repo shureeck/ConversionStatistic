@@ -72,8 +72,7 @@ public class Controller {
         TabModel tabModel = new TabModel();
         Main main = new Main();
         main.addTabDialog(tabModel);
-        int i=0;
-      //  addtab();
+        addtab(tabModel);
     }
 
     @FXML
@@ -226,11 +225,12 @@ public class Controller {
 
     }
 
-    public void addtab() {
-        Tab tab1 = new Tab("ta1",  tabPane.getTabs().get(0).getContent());
-        tab1.getContent().setId("tab1");
-        TabModel tabModel = new TabModel("MSSQL-PostgreSQL", "MSSQL_PostgreSQL");
-        tabPane.getTabs().addAll(tabModel.getTab());
+    public void addtab(TabModel tabModel) {
+        Tab tab = new Tab(tabModel.getTabName());
+        tab.setContent(tabModel.getTabContent());
+        tab.setId(tabModel.getTabId());
+
+        tabPane.getTabs().addAll( tabModel.getTab());
 
 }
 
