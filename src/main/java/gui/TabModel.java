@@ -60,4 +60,16 @@ public class TabModel {
         myTab.setId(tabId);
     }
     public void setReportFolder(String reportFolder) {this.reportFolder = reportFolder;}
+
+    public tabModelController getController()
+    {
+            FXMLLoader addTabLoader =new FXMLLoader();
+        addTabLoader.setLocation(getClass().getResource("tabmodel.fxml"));
+        try {
+            addTabLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        tabModelController controller = addTabLoader.getController();
+    return controller;}
 }

@@ -1,43 +1,35 @@
 package gui;
 
-import actions.AddReports;
 import actions.Reload;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.MapValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.layout.GridPane;
-import javafx.stage.DirectoryChooser;
-import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
-import report.Table;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import static constants.DatabaseStrings.*;
-import static constants.StringsConstant.*;
+import static constants.StringsConstant.FAILED;
+import static constants.StringsConstant.PASSED;
 
-
-
-public class Controller {
-    private ObservableList<Table> usersData = FXCollections.observableArrayList();
-
+public class tabModelController {
     @FXML
     private TableView<Map> sorceStatistic = new TableView();
     @FXML
-    private TableView<Map> applyGenStatTable = new TableView();
+    private TableView<Map> applyGenStatTable = new TableView(); ;
     @FXML
     private TableView<Map> applyFailedTable = new TableView();
     @FXML
     private TableView<Map> applyPassTable = new TableView();
     @FXML
-    private TableView<Map> convGenStatTable = new TableView();
+    private TableView<Map> convGenStatTable = new TableView<>();
     @FXML
     private TableView<Map> convFailedTable = new TableView();
     @FXML
@@ -49,43 +41,13 @@ public class Controller {
     @FXML
     private TabPane tabPane = new TabPane();
     @FXML
-    private GridPane gridPane = new GridPane();
+    private Tab myTab = new Tab();
 
-    private int i = 0;
-    private int j = 1;
 
-    @FXML
-    public void onCancelClickMethod() {
-        System.exit(0);
-    }
 
-    @FXML
-    public void onAddReportsClick() {
-        DirectoryChooser direcoryChooser = new DirectoryChooser();
-        direcoryChooser.setTitle(CHOSE_REPORTS_FOLDER);
-        File reportsFolder = direcoryChooser.showDialog(new Stage());
-        AddReports addReports = new AddReports();
-        addReports.addReports(reportsFolder);
-    }
 
-    @FXML
-    public void onAddTabClick() {
-        TabModel tabModel = new TabModel();
-        Main main = new Main();
-        main.addTabDialog(tabModel);
-        addtab(tabModel);
-    }
+        public Node Refresh() {
 
-    @FXML
-    public void onTestAddData(){
-        TabModel tabModel = new TabModel();
-    //    tabModel.getController().Refresh();
-       // tabModelController tabModelController = new tabModelController();
-        tabPane.getTabs().get(j).setContent( tabModel.getController().Refresh());
-        j++;
-    }
-    @FXML
-    public void onRefreshClickMethod() {
         //Clear table data
         sorceStatistic.getItems().clear();
         applyFailedTable.getItems().clear();
@@ -100,12 +62,10 @@ public class Controller {
         sorceStatistic.getColumns().get(0).setCellValueFactory(new MapValueFactory<>("category"));
         applyFailedTable.getColumns().get(0).setCellValueFactory(new MapValueFactory<>("category"));
         applyPassTable.getColumns().get(0).setCellValueFactory(new MapValueFactory<>("category"));
-        applyGenStatTable.getColumns().get(0).setCellValueFactory(new MapValueFactory<>("category"));
         convGenStatTable.getColumns().get(0).setCellValueFactory(new MapValueFactory<>("category"));
         convFailedTable.getColumns().get(0).setCellValueFactory(new MapValueFactory<>("category"));
         convPassTable.getColumns().get(0).setCellValueFactory(new MapValueFactory<>("category"));
         errorTable.getColumns().get(0).setCellValueFactory(new MapValueFactory<>("category"));
-        actionItemsTable.getColumns().get(0).setCellValueFactory(new MapValueFactory<>("category"));
         //Get builds from database
         Reload reload = new Reload();
         ArrayList<String> buildsList = new ArrayList<>(reload.getBuilds(TABLE_CONVERSION_GENERAL_STATISTIC));
@@ -159,9 +119,11 @@ public class Controller {
         applyFailedTable.setPrefHeight(hight);
         applyPassTable.setPrefHeight(hight);
 
+        return tabPane.getTabs().get(0).getContent();
+
 
     }
-
+    @FXML
     private void initialize(HashMap<String, String> tables, TableView<Map> tableName) {
         tableName.getItems().addAll(initData(tables));
         fillData(tableName);
@@ -209,7 +171,7 @@ public class Controller {
                         return string;
                     }
                 });
-        i = 0;
+       int i = 0;
         ArrayList<TableColumn> columnsList = new ArrayList<>(tableName.getColumns());
         while (i < columnsList.size()) {
             columnsList.get(i).setCellFactory(cellFactoryForMap);
@@ -234,13 +196,4 @@ public class Controller {
         }
 
     }
-
-    public void addtab(TabModel tabModel) {
-        Tab tab = new Tab(tabModel.getTabName());
-        tab.setContent(tabModel.getTabContent());
-        tab.setId(tabModel.getTabId());
-
-        tabPane.getTabs().addAll( tabModel.getTab());
-}
-
 }
