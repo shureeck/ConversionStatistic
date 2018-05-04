@@ -19,6 +19,13 @@ public class StringsConstant {
     public static final String CHOSE_REPORTS_FOLDER = "Chose reports folder";
     public static final String ADD_NEW_TAB = "Add New Tab";
     public static final String CSV = ".csv";
+    public static final String TAB = "tab";
+    public static final String CONNECT = "connect";
+    public static final String ID = "id";
+    public static final String FOLDER = "folder";
+    public static final String NAME = "name";
+    public static final String PAIR = "pair";
+
 
     public static final String TITLE_MAINN_WINDOW = "CLI Tests GoldBug statistic";
     public static final String FILE = "File";

@@ -7,30 +7,47 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="330.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AddTabController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0" prefWidth="330.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AddTabController">
    <children>
       <Button fx:id="buttonCancel" cancelButton="true" layoutX="527.0" layoutY="348.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onCancelClickMethod" prefHeight="30.0" prefWidth="90.0" text="Cancel" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
       <Button fx:id="buttonOK" layoutX="460.0" layoutY="348.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onOkClick" prefHeight="30.0" prefWidth="90.0" text="Add Tab" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="110.0" />
       <Separator layoutX="220.0" layoutY="336.0" prefWidth="200.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-      <Label layoutX="54.0" layoutY="293.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="100.0" text="Report Folder" AnchorPane.bottomAnchor="70.0" AnchorPane.rightAnchor="220.0">
+      <Label layoutX="54.0" layoutY="293.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="100.0" text="Report Folder" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="220.0">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="64.0" layoutY="60.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="100.0" text="Tab Name" AnchorPane.bottomAnchor="110.0" AnchorPane.rightAnchor="220.0">
+      <Label layoutX="64.0" layoutY="60.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="100.0" text="Tab Name" AnchorPane.bottomAnchor="190.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="220.0">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="tabNameField" layoutX="416.0" layoutY="278.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" promptText="Tab Name" AnchorPane.bottomAnchor="110.0" AnchorPane.rightAnchor="10.0">
+      <TextField fx:id="tabNameField" layoutX="416.0" layoutY="278.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" promptText="Tab Name" AnchorPane.bottomAnchor="190.0" AnchorPane.rightAnchor="10.0">
          <font>
             <Font size="14.0" />
          </font>
       </TextField>
-      <TextField fx:id="reportFolderField" layoutX="226.0" layoutY="160.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" promptText="ReportFolder" AnchorPane.bottomAnchor="70.0" AnchorPane.rightAnchor="10.0">
+      <Group AnchorPane.bottomAnchor="150.0" AnchorPane.rightAnchor="10.0">
+         <children>
+            <TextField fx:id="reportFolderField" editable="false" layoutX="226.0" layoutY="160.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="167.0" promptText="ReportFolder" AnchorPane.bottomAnchor="70.0" AnchorPane.rightAnchor="10.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <Button fx:id="buttonBrowse" layoutX="390.0" layoutY="160.0" mnemonicParsing="false" onAction="#onBrowseClickMethod" prefHeight="30.0" prefWidth="35.0" text="..." />
+         </children>
+      </Group>
+      <Label layoutX="14.0" layoutY="240.0" prefHeight="30.0" text="Target" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="220.0">
          <font>
             <Font size="14.0" />
          </font>
-      </TextField>
+      </Label>
+      <Label layoutX="32.0" layoutY="223.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="30.0" prefWidth="60.0" text="Source" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="220.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cbTarget" layoutX="165.0" layoutY="213.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" AnchorPane.bottomAnchor="70.0" AnchorPane.rightAnchor="10.0" />
+      <ComboBox fx:id="cbSource" layoutX="90.0" layoutY="158.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" AnchorPane.bottomAnchor="110.0" AnchorPane.rightAnchor="10.0" />
    </children>
 </AnchorPane>

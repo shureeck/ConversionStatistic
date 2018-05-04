@@ -13,7 +13,10 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 import report.Table;
+import settings.XMLReader;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -162,9 +165,35 @@ public class Controller {
 
     }
 
-    private void initialize(HashMap<String, String> tables, TableView<Map> tableName) {
+    @FXML
+    private void initialize(){
+        XMLReader xmlReader  =  new XMLReader("E:\\IdeaProjects\\ConversionStatistic\\Project.xml");
+        NodeList tabs = xmlReader.getTabNode();
+
+        ArrayList <TabModel> tabModelsList = new ArrayList<>();
+
+        int i =0;
+        while (i<tabs.getLength()){
+            String id =((Element)tabs.item(i)).getAttribute(ID);
+            String folder =((Element)tabs.item(i)).getAttribute(FOLDER);
+            String name =((Element)tabs.item(i)).getAttribute(NAME);
+            String pair =((Element)tabs.item(i)).getAttribute(PAIR);
+            tabModelsList.add(new TabModel(name,id,folder,pair));
+            i++;
+        }
+        i=0;
+        while (i<tabModelsList.size()) {
+            tabPane.getTabs().add(tabModelsList.get(i).getTab());
+            i++;
+
+        }
+    }
+
+
+    private void initializeAS(HashMap<String, String> tables, TableView<Map> tableName) {
         tableName.getItems().addAll(initData(tables));
         fillData(tableName);
+
 
     }
 
@@ -228,7 +257,7 @@ public class Controller {
                 tables.putAll(temp.reload(dataBaseTable, cagoriesList.get(i), type));
             } else
                 tables.putAll(temp.reload(dataBaseTable, cagoriesList.get(i)));
-            initialize(tables, uiTable);
+            initializeAS(tables, uiTable);
             tables.clear();
             i++;
         }

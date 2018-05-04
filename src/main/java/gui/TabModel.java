@@ -13,6 +13,7 @@ public class TabModel {
     private String reportFolder;
     private String tabId;
     private String tabName;
+    private String pair;
 
     @FXML
     private Tab myTab = new Tab();
@@ -26,11 +27,16 @@ public class TabModel {
             e.printStackTrace();
         }
     }
-    public TabModel (String name, String  id){
+    public TabModel (String name, String  id, String folder, String pair){
         this.tabName = name;
         this.tabId =id;
+        this.reportFolder=folder;
+        this.pair=pair;
         try {
-            AnchorPane anchorpane =  FXMLLoader.load(getClass().getResource("tabmodel.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("tabmodel.fxml"));
+            fxmlLoader.load();
+            AnchorPane anchorpane =  fxmlLoader.getRoot();
             TabPane tabPane = (TabPane) anchorpane.getChildren().get(0);
 
             myTab=tabPane.getTabs().get(0);

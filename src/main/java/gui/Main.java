@@ -16,10 +16,14 @@ import static constants.StringsConstant.TITLE_MAINN_WINDOW;
 public class Main extends Application {
     private Stage primaryStage = new Stage();
 
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         this.primaryStage = primaryStage;
-            Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("sample.fxml"));
+        loader.load();
+        Parent root = loader.getRoot();
         primaryStage.setTitle(TITLE_MAINN_WINDOW);
         primaryStage.setScene(new Scene(root));
         primaryStage.setMaximized(true);
@@ -48,7 +52,7 @@ public class Main extends Application {
         }
     }
 
-    public static void main(String[] args) {
-        launch(args);
+    public static void main() {
+        launch();
     }
 }

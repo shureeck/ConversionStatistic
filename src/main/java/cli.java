@@ -1,28 +1,29 @@
-import report.Report;
-import sqlquery.DataBaseConnection;
-import sqlquery.Update_SQL_Query;
+import gui.TabModel;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import settings.XMLReader;
 
-import java.sql.Connection;
+import java.util.ArrayList;
 
-import static constants.DatabaseStrings.*;
-import static constants.StringsConstant.SPACE;
+import static constants.StringsConstant.*;
 
 public class cli {
     public static void main(String args[]){
-            Report report = new Report("E:\\ReportExamples\\Reports\\Oracle-PostgreSQL\\Oracle_PostgreSQL__Errors.csv");
-            int i =0;
-        Update_SQL_Query query =new Update_SQL_Query(report);
-        int size = query.getSqlStatement().size();
+        XMLReader xmlReader  =  new XMLReader("E:\\IdeaProjects\\ConversionStatistic\\Project.xml");
+       NodeList tabs = xmlReader.getTabNode();
 
-        DataBaseConnection dbc = new DataBaseConnection(BASE, BASE_LOGIN, BASE_PASSWORD);
-        Connection connection = dbc.connectToDatabase();
-  while (i<size) {
-            dbc.executeUpdateStatement(connection, query.getSqlStatement().get(i));
+
+
+        ArrayList <TabModel> tabModelsList = new ArrayList<>();
+
+        int i =0;
+        while (tabs!=null){
+            String id =((Element)tabs.item(i)).getAttribute(ID);
+            String folder =((Element)tabs.item(i)).getAttribute(FOLDER);
+            String name =((Element)tabs.item(i)).getAttribute(NAME);
+            String pair =((Element)tabs.item(i)).getAttribute(PAIR);
             i++;
         }
-        System.out.println(TABLE_STATISTIC_BY_SOURCE+SPACE+i);
-        //ResultSet resultSet = dbc.executeStatement(connection, "SELECT * FROM conversion_general_statistic ORDER BY build;");
-         
 
         }
 }
