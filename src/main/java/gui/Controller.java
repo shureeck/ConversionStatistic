@@ -13,10 +13,8 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
 import report.Table;
-import settings.XMLReader;
+import settings.Settings;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -167,26 +165,9 @@ public class Controller {
 
     @FXML
     private void initialize(){
-        XMLReader xmlReader  =  new XMLReader("E:\\IdeaProjects\\ConversionStatistic\\Project.xml");
-        NodeList tabs = xmlReader.getTabNode();
+        Settings settings = new Settings();
+        tabPane.getTabs().addAll(settings.getTabList());
 
-        ArrayList <TabModel> tabModelsList = new ArrayList<>();
-
-        int i =0;
-        while (i<tabs.getLength()){
-            String id =((Element)tabs.item(i)).getAttribute(ID);
-            String folder =((Element)tabs.item(i)).getAttribute(FOLDER);
-            String name =((Element)tabs.item(i)).getAttribute(NAME);
-            String pair =((Element)tabs.item(i)).getAttribute(PAIR);
-            tabModelsList.add(new TabModel(name,id,folder,pair));
-            i++;
-        }
-        i=0;
-        while (i<tabModelsList.size()) {
-            tabPane.getTabs().add(tabModelsList.get(i).getTab());
-            i++;
-
-        }
     }
 
 

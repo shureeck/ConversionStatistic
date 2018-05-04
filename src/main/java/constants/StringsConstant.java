@@ -26,6 +26,8 @@ public class StringsConstant {
     public static final String NAME = "name";
     public static final String PAIR = "pair";
 
+    public static final String PROJECT_PATH = "E:\\IdeaProjects\\ConversionStatistic\\Project.xml";
+
 
     public static final String TITLE_MAINN_WINDOW = "CLI Tests GoldBug statistic";
     public static final String FILE = "File";
