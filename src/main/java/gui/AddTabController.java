@@ -11,8 +11,8 @@ import javafx.stage.Stage;
 
 import java.io.File;
 
-import static constants.StringsConstant.CHOSE_REPORTS_FOLDER;
-import static constants.StringsConstant.REGEXP_SPLIT_GENERAL_STAT;
+import static constants.StringsConstant.*;
+import static constants.Vendors.*;
 
 public class AddTabController {
     private String TabName;
@@ -67,6 +67,8 @@ public class AddTabController {
     public void initialize (){
         if (tabNameField.getText().trim().equals("")||reportFolderField.getText().trim().equals("")){
             buttonOK.setDisable(true);
+            fillSourceComboBox();
+            fillTargetComboBox();
         }
 
         reportFolderField.textProperty().addListener(new ChangeListener<String>() {
@@ -88,6 +90,47 @@ public class AddTabController {
              else buttonOK.setDisable(false);
          }
      });
+    }
+
+    @FXML
+    public void setOnSelect(){
+        if (cbSource.getValue().equals(ORACLE)){
+            fillTargetComboBox();
+        }
+        else if (cbSource.getValue().equals(POSTGRESQL)){
+            cbTarget.getItems().setAll( MYSQL,AURORA_MYSQL, POSTGRESQL, AURORA_POSTGRESQL);
+            cbTarget.setValue(MYSQL);
+
+        }
+        else if (cbSource.getValue().equals(SQLSERVER)){
+            cbTarget.getItems().setAll( POSTGRESQL, AURORA_POSTGRESQL, MYSQL,AURORA_MYSQL, SQLSERVER);
+            cbTarget.setValue(POSTGRESQL);
+
+        }
+        else if (cbSource.getValue().equals(MYSQL)){
+            cbTarget.getItems().setAll( POSTGRESQL, AURORA_POSTGRESQL, MYSQL);
+            cbTarget.setValue(POSTGRESQL);
+
+        }
+        else if (cbSource.getValue().equals(DB2)){
+            cbTarget.getItems().setAll( POSTGRESQL, AURORA_POSTGRESQL, MYSQL,AURORA_MYSQL);
+            cbTarget.setValue(POSTGRESQL);
+
+        }
+        else { cbTarget.getItems().setAll( REDSHIFT);
+            cbTarget.setValue(REDSHIFT);
+        }
+    }
+
+    private void fillSourceComboBox(){
+        cbSource.getItems().addAll(
+                ORACLE, POSTGRESQL, SQLSERVER, MYSQL, DB2,
+                ORACLE_DWH, SQLSERVER_DWH, TERADATA, NETEZA, GREENPLUN, VERTICA, REDSHIFT );
+        cbSource.setValue(ORACLE);
+    }
+    private void fillTargetComboBox(){
+        cbTarget.getItems().setAll(POSTGRESQL, AURORA_POSTGRESQL, MYSQL,AURORA_MYSQL, ORACLE);
+        cbTarget.setValue(POSTGRESQL);
     }
 
 
