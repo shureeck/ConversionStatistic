@@ -7,5 +7,6 @@
 		<tab folder="" id="OraclePostgreSQL" name="Oracle-PostgreSQL" pair="Oracle-PostgreSQL"/>
     <tab folder="usr" id="MyFirstTab" name="MyFirstTab" pair="MySQL-MySQL"/>
     <tab folder="AutotTest" id="MySecondTAb" name="MySecondTAb" pair="Microsoft SQL Server-AuroraMySQL"/>
+    <tab folder="Oracle-PostgreSQL" id="PostgreMySQL" name="Postgre-MySQL" pair="PostgreSQL-MySQL"/>
     </category>
 </root>

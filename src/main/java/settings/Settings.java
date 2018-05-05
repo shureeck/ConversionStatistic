@@ -56,7 +56,8 @@ public class Settings {
         tabList.add(tabModel.getTab());
         XMLReader reader = new XMLReader(projectPath);
         reader.setTab(tabModel);
-
     }
+
+    public ArrayList<TabModel> getTabModelsList(){return tabModelsList;}
 
 }

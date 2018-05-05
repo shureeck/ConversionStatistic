@@ -72,7 +72,7 @@ public class Controller {
         DirectoryChooser direcoryChooser = new DirectoryChooser();
         direcoryChooser.setTitle(CHOSE_REPORTS_FOLDER);
         File reportsFolder = direcoryChooser.showDialog(new Stage());
-        AddReports addReports = new AddReports();
+        AddReports addReports = new AddReports(settings);
         addReports.addReports(reportsFolder);
     }
 

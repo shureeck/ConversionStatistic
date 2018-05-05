@@ -1,13 +1,18 @@
 package report;
 
+import gui.TabModel;
+import settings.Settings;
+
+import java.io.File;
 import java.util.ArrayList;
 
+import static constants.Messages.CAN_NOT_FIND_REPORT_TYPE;
 import static constants.StringsConstant.*;
-import static constants.Messages.*;
 
 
 public class Report {
-    public Report(String path){
+    public Report(String path, Settings settings){
+        this.settings = settings;
         stringsReport.addAll(FileReader.readFile(path));
         buildNumber=ananlyzeBuildNumber(stringsReport);
         reportType = ananlyzeReportType(stringsReport);
@@ -15,9 +20,10 @@ public class Report {
         statisticByCategories = new StatisticByCategories(stringsReport);
         failedObjects = new FailedObjects(stringsReport);
         statisticBySource = new StatisticBySource(stringsReport);
-        int i=0;
+        this.pair = analyzePair(path);
     }
 
+    private Settings settings;
     private ArrayList<String> stringsReport = new ArrayList<String>();
     private String reportType;
     private int buildNumber;
@@ -25,6 +31,7 @@ public class Report {
     private StatisticByCategories statisticByCategories;
     private FailedObjects failedObjects;
     private StatisticBySource statisticBySource;
+    private String pair;
 
     public int ananlyzeBuildNumber(ArrayList<String> reportStrings){
         int buildNumber=0;
@@ -33,6 +40,16 @@ public class Report {
         temp=temp.substring(temp.indexOf(COMA)+1).trim();
         buildNumber=Integer.parseInt(temp);
         return buildNumber;
+    }
+
+    public String analyzePair(String path){
+        String pair=null;
+        String reportFolder=new File(path).getParentFile().getName();
+        TabModel tempTabModel = settings.getTabModelsList().
+                stream().filter((p)->p.getReportFolder().equalsIgnoreCase(reportFolder))
+                .findFirst().get();
+        pair = tempTabModel.getPair();
+        return pair;
     }
 
     public String ananlyzeReportType(ArrayList<String> reportStrings){
@@ -53,13 +70,12 @@ public class Report {
         return reportType;
     }
 
-
     public int getBuildNumber(){return buildNumber;}
     public ArrayList<Category> getGeneralStatistic() {return generalStatistic.getStatisticGeneral(); }
     public ArrayList<Category> getStatisticByCategories() {
         return statisticByCategories.getArrayStatistic();
     }
     public ArrayList<Category> getStatisticBySource() {return statisticBySource.getStatisticBySource(); }
-    public String getPair(){return  "Oracle-PostgreSQL";}
+    public String getPair() {return pair; }
     public String getReportType(){return reportType;}
 }

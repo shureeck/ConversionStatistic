@@ -1,6 +1,7 @@
 package actions;
 
 import report.Report;
+import settings.Settings;
 import sqlquery.DataBaseConnection;
 import sqlquery.Update_SQL_Query;
 
@@ -10,9 +11,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import static constants.DatabaseStrings.*;
-import static constants.StringsConstant.*;
+import static constants.StringsConstant.CSV;
 
 public class AddReports {
+    private Settings settings;
+    public AddReports(Settings settings){
+        this.settings=settings;
+
+    }
     public void addReports(File file) {
         ArrayList<File> reportList = new ArrayList<>(getReportList(file));
 
@@ -21,7 +27,7 @@ public class AddReports {
 
         int i = 0;
         while (i < reportList.size()){
-            Report report = new Report(reportList.get(i).getPath());
+            Report report = new Report(reportList.get(i).getPath(), settings);
             Update_SQL_Query query = new Update_SQL_Query(report);
             int size = query.getSqlStatement().size();
             int j =0;
