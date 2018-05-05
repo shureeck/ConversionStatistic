@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<category name="Database">
+		<connect user="min_privs" password="min_privs" server="192.10.2.32" port="3306" schema = "test_schema"/>
+	</category >
+	<category name="Tabs">
+		<tab name ="Oracle-PostgreSQL" id="OraclePostgreSQL" pair="Oracle-PostgreSQL" folder=""/>
+		<tab name ="SQLServer-PostgreSQL" id="SQLServerPostgreSQL" pair="SQLServer-PostgreSQL" folder=""/>
+	</category>
+</root>

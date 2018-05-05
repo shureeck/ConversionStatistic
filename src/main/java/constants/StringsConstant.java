@@ -20,6 +20,7 @@ public class StringsConstant {
     public static final String ADD_NEW_TAB = "Add New Tab";
     public static final String CSV = ".csv";
     public static final String TAB = "tab";
+    public static final String TABS = "Tabs";
     public static final String CONNECT = "connect";
     public static final String ID = "id";
     public static final String FOLDER = "folder";

@@ -5,11 +5,15 @@ import actions.Reload;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.MapValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.DirectoryChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
@@ -17,6 +21,7 @@ import report.Table;
 import settings.Settings;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -52,6 +57,8 @@ public class Controller {
     @FXML
     private GridPane gridPane = new GridPane();
 
+    private  Settings settings = new Settings();
+
     private int i = 0;
     private int j = 1;
 
@@ -72,16 +79,15 @@ public class Controller {
     @FXML
     public void onAddTabClick() {
         TabModel tabModel = new TabModel();
-        Main main = new Main();
-        main.addTabDialog(tabModel);
-        addtab(tabModel);
+        if (addTabDialog(tabModel)) {
+            addtab(tabModel);
+            this.settings.addTabModel(tabModel);
+        }
     }
 
     @FXML
     public void onTestAddData(){
         TabModel tabModel = new TabModel();
-    //    tabModel.getController().Refresh();
-       // tabModelController tabModelController = new tabModelController();
         tabPane.getTabs().get(j).setContent( tabModel.getController().Refresh());
         j++;
     }
@@ -165,9 +171,7 @@ public class Controller {
 
     @FXML
     private void initialize(){
-        Settings settings = new Settings();
         tabPane.getTabs().addAll(settings.getTabList());
-
     }
 
 
@@ -249,8 +253,32 @@ public class Controller {
         Tab tab = new Tab(tabModel.getTabName());
         tab.setContent(tabModel.getTabContent());
         tab.setId(tabModel.getTabId());
-
         tabPane.getTabs().addAll( tabModel.getTab());
 }
+
+
+    public boolean addTabDialog(TabModel tab){
+        boolean ifOkPressed=false;
+        try {
+            FXMLLoader addTabLoader =new FXMLLoader();
+            addTabLoader.setLocation(getClass().getResource("addtab.fxml"));
+            AnchorPane pane =  addTabLoader.load();
+            Stage addTabStage = new Stage();
+            addTabStage.setResizable(false);
+            addTabStage.setTitle(ADD_NEW_TAB);
+            addTabStage.initModality(Modality.APPLICATION_MODAL);
+            Scene scene = new Scene(pane);
+            addTabStage.setScene(scene);
+
+            AddTabController controller = addTabLoader.getController();
+            controller.setTabModel(tab);
+            addTabStage.showAndWait();
+             ifOkPressed=controller.ifOkPressed();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return ifOkPressed;
+    }
 
 }

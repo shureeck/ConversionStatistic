@@ -78,4 +78,8 @@ public class TabModel {
         }
         tabModelController controller = addTabLoader.getController();
     return controller;}
+
+    public String getPair() { return pair;}
+
+    public void setPair(String pair) {this.pair = pair; }
 }

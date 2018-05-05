@@ -18,6 +18,7 @@ public class AddTabController {
     private String TabName;
     private String reportFolder;
     private String TabId;
+    private boolean ifOkPressed=false;
 
 
     @FXML
@@ -36,12 +37,15 @@ public class AddTabController {
     ComboBox<String>cbSource = new ComboBox<>();
 
     private TabModel tabModel;
+
     @FXML
     public void onOkClick(){
       TabName=tabNameField.getText();
       tabModel.setTabName(TabName);
       tabModel.setReportFolder(reportFolderField.getText());
       tabModel.setTabId(TabName.replaceAll(REGEXP_SPLIT_GENERAL_STAT, ""));
+      tabModel.setPair(cbSource.getValue()+"-"+cbTarget.getValue());
+      ifOkPressed=true;
       onCancelClickMethod();
     }
     @FXML
@@ -136,6 +140,8 @@ public class AddTabController {
 
 
     public void setTabModel(TabModel tabModel) {this.tabModel = tabModel;}
+
+    public boolean ifOkPressed(){return ifOkPressed; }
 
 
 }
