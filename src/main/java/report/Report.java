@@ -20,7 +20,11 @@ public class Report {
         statisticByCategories = new StatisticByCategories(stringsReport);
         failedObjects = new FailedObjects(stringsReport);
         statisticBySource = new StatisticBySource(stringsReport);
-        this.pair = analyzePair(path);
+        TabModel tabModel = analyzePair(path);
+        if (tabModel!=null){
+            this.pair = tabModel.getPair();
+            this.tab=tabModel.getTabId();
+        }
     }
 
     private Settings settings;
@@ -32,6 +36,7 @@ public class Report {
     private FailedObjects failedObjects;
     private StatisticBySource statisticBySource;
     private String pair;
+    private String tab;
 
     public int ananlyzeBuildNumber(ArrayList<String> reportStrings){
         int buildNumber=0;
@@ -42,14 +47,13 @@ public class Report {
         return buildNumber;
     }
 
-    public String analyzePair(String path){
+    public TabModel analyzePair(String path){
         String pair=null;
         String reportFolder=new File(path).getParentFile().getName();
         TabModel tempTabModel = settings.getTabModelsList().
                 stream().filter((p)->p.getReportFolder().equalsIgnoreCase(reportFolder))
-                .findFirst().get();
-        pair = tempTabModel.getPair();
-        return pair;
+                .findFirst().orElse(null);
+        return tempTabModel;
     }
 
     public String ananlyzeReportType(ArrayList<String> reportStrings){
@@ -78,4 +82,5 @@ public class Report {
     public ArrayList<Category> getStatisticBySource() {return statisticBySource.getStatisticBySource(); }
     public String getPair() {return pair; }
     public String getReportType(){return reportType;}
+    public String getTabId(){return tab;}
 }

@@ -34,7 +34,8 @@ public class Update_SQL_Query {
             String valuesGeneralStatistic = BRACKET_O + String.valueOf(report.getBuildNumber()) +
                     COMA + QUOTE + report.getGeneralStatistic().get(i).getName() + QUOTE +
                     COMA + String.valueOf(report.getGeneralStatistic().get(i).getCount()) +
-                    COMA + QUOTE + report.getPair() + QUOTE + BRACKET_C;
+                    COMA + QUOTE + report.getPair() + QUOTE +
+                    COMA + QUOTE + report.getTabId()+QUOTE + BRACKET_C;
             result.add(REPLACE_INTO + TABLE_APPLY_GENERAL_STATISTIC +FIELDS_APPLY_GENERAL_STATISTIC+VALUES+valuesGeneralStatistic);
             i++;
         }
@@ -45,7 +46,8 @@ public class Update_SQL_Query {
                     COMA + QUOTE + report.getStatisticByCategories().get(i).getName() + QUOTE +
                     COMA + String.valueOf(report.getStatisticByCategories().get(i).getPassed()) +
                     COMA + String.valueOf(report.getStatisticByCategories().get(i).getFailed()) +
-                    COMA + QUOTE + report.getPair()  + QUOTE + BRACKET_C;
+                    COMA + QUOTE + report.getPair() + QUOTE  +
+                    COMA + QUOTE + report.getTabId()+QUOTE + BRACKET_C;
             result.add(REPLACE_INTO + TABLE_APPLY_BY_CATEGORIES + FIELDS_APPLY_BY_CATEGORIES + VALUES + valuesStatisticByCategories);
             i++;
         }
@@ -55,7 +57,8 @@ public class Update_SQL_Query {
             String valuesStatisticBySource = BRACKET_O + String.valueOf(report.getBuildNumber()) +
                     COMA + QUOTE + report.getStatisticBySource().get(i).getName() + QUOTE +
                     COMA + String.valueOf(report.getStatisticBySource().get(i).getCount()) +
-                    COMA + QUOTE + report.getPair() + QUOTE + BRACKET_C;
+                    COMA + QUOTE + report.getPair() + QUOTE +
+                    COMA + QUOTE + report.getTabId()+ QUOTE + BRACKET_C;
             result.add(REPLACE_INTO + TABLE_STATISTIC_BY_SOURCE +FIELDS_STATISTIC_BY_SOURCE+VALUES+valuesStatisticBySource);
             i++;
         }
@@ -70,7 +73,8 @@ public class Update_SQL_Query {
             String valuesGeneralStatistic = BRACKET_O + String.valueOf(report.getBuildNumber()) +
                     COMA + QUOTE + report.getGeneralStatistic().get(i).getName() + QUOTE +
                     COMA + String.valueOf(report.getGeneralStatistic().get(i).getCount()) +
-                    COMA + QUOTE + report.getPair() + QUOTE + BRACKET_C;
+                    COMA + QUOTE + report.getPair() + QUOTE +
+                    COMA + QUOTE + report.getTabId()+QUOTE + BRACKET_C;
             result.add(REPLACE_INTO + TABLE_CONVERSION_GENERAL_STATISTIC +FIELDS_APPLY_GENERAL_STATISTIC+VALUES+valuesGeneralStatistic);
             i++;
         }
@@ -81,7 +85,8 @@ public class Update_SQL_Query {
                     COMA + QUOTE + report.getStatisticByCategories().get(i).getName() + QUOTE +
                     COMA + String.valueOf(report.getStatisticByCategories().get(i).getPassed()) +
                     COMA + String.valueOf(report.getStatisticByCategories().get(i).getFailed()) +
-                    COMA + QUOTE + report.getPair()  + QUOTE + BRACKET_C;
+                    COMA + QUOTE + report.getPair() + QUOTE  +
+                    COMA + QUOTE + report.getTabId()+QUOTE + BRACKET_C;
             result.add(REPLACE_INTO + TABLE_CONVERSION_BY_CATEGORIES + FIELDS_APPLY_BY_CATEGORIES + VALUES + valuesStatisticByCategories);
             i++;
         }
@@ -96,7 +101,8 @@ public class Update_SQL_Query {
             String valuesStatisticByCategories = BRACKET_O + String.valueOf(report.getBuildNumber()) +
                     COMA + QUOTE + report.getStatisticByCategories().get(i).getName() + QUOTE +
                     COMA + String.valueOf(report.getStatisticByCategories().get(i).getFailed()) +
-                    COMA + QUOTE + report.getPair()  + QUOTE + BRACKET_C;
+                    COMA + QUOTE + report.getPair() +QUOTE +
+                    COMA + QUOTE + report.getTabId()+QUOTE + BRACKET_C;
             result.add(REPLACE_INTO + TABLE_ERRORS_BY_CATEGORIES + FIELDS_ERRORS_BY_CATEGORIES + VALUES + valuesStatisticByCategories);
             i++;
         }
@@ -111,8 +117,9 @@ public class Update_SQL_Query {
         while (i<size) {
             valuesGeneralStatistic = BRACKET_O + String.valueOf(report.getBuildNumber()) +
                     COMA + QUOTE + report.getGeneralStatistic().get(i).getName() + QUOTE +
-                    COMA + String.valueOf(report.getGeneralStatistic().get(i).getCount()) +
-                    COMA + QUOTE + report.getPair() + QUOTE + BRACKET_C;
+                    COMA + String.valueOf(report.getGeneralStatistic().get(i).getCount())+
+                    COMA + QUOTE + report.getPair() + QUOTE +
+                    COMA + QUOTE + report.getTabId()+ QUOTE + BRACKET_C;
             result.add(REPLACE_INTO + TABLE_ACTION_ITEMS_GENERAL_STATISTIC +FIELDS_APPLY_GENERAL_STATISTIC+VALUES+valuesGeneralStatistic);
             i++;
         }

@@ -26,15 +26,18 @@ public class AddReports {
         Connection connection = dbc.connectToDatabase();
 
         int i = 0;
-        while (i < reportList.size()){
+        while (i < reportList.size()) {
             Report report = new Report(reportList.get(i).getPath(), settings);
-            Update_SQL_Query query = new Update_SQL_Query(report);
-            int size = query.getSqlStatement().size();
-            int j =0;
-            while (j<size) {
-                dbc.executeUpdateStatement(connection, query.getSqlStatement().get(j));
-                j++;
+            if (report.getTabId() != null) {
+                Update_SQL_Query query = new Update_SQL_Query(report);
+                int size = query.getSqlStatement().size();
+                int j = 0;
+                while (j < size) {
+                    dbc.executeUpdateStatement(connection, query.getSqlStatement().get(j));
+                    j++;
+                }
             }
+
             i++;
         }
         try {
