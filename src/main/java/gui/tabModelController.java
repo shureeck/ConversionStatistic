@@ -5,9 +5,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.*;
+import javafx.scene.control.TabPane;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.MapValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.layout.GridPane;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 
@@ -16,8 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static constants.DatabaseStrings.*;
-import static constants.StringsConstant.FAILED;
-import static constants.StringsConstant.PASSED;
+import static constants.StringsConstant.*;
 
 public class tabModelController {
     @FXML
@@ -41,88 +44,63 @@ public class tabModelController {
     @FXML
     private TabPane tabPane = new TabPane();
     @FXML
-    private Tab myTab = new Tab();
+    private GridPane gridPane =new GridPane();
 
 
+        public Node Refresh(String tabId) {
 
-
-        public Node Refresh() {
+         ArrayList<Node> tablesList = new ArrayList<>( gridPane.getChildren().filtered((p)->(p.getStyleClass().get(0).equalsIgnoreCase(TABLE_VIEW))));
 
         //Clear table data
-        sorceStatistic.getItems().clear();
-        applyFailedTable.getItems().clear();
-        applyPassTable.getItems().clear();
-        applyGenStatTable.getItems().clear();
-        convGenStatTable.getItems().clear();
-        convFailedTable.getItems().clear();
-        convPassTable.getItems().clear();
-        errorTable.getItems().clear();
-        actionItemsTable.getItems().clear();
+        int i=0;
+        while (i<tablesList.size()){
+            ((TableView)tablesList.get(i)).getItems().clear();
+            i++;
+        }
+
         //Stet key for firs column
-        sorceStatistic.getColumns().get(0).setCellValueFactory(new MapValueFactory<>("category"));
-        applyFailedTable.getColumns().get(0).setCellValueFactory(new MapValueFactory<>("category"));
-        applyPassTable.getColumns().get(0).setCellValueFactory(new MapValueFactory<>("category"));
-        convGenStatTable.getColumns().get(0).setCellValueFactory(new MapValueFactory<>("category"));
-        convFailedTable.getColumns().get(0).setCellValueFactory(new MapValueFactory<>("category"));
-        convPassTable.getColumns().get(0).setCellValueFactory(new MapValueFactory<>("category"));
-        errorTable.getColumns().get(0).setCellValueFactory(new MapValueFactory<>("category"));
+            i=0;
+            while (i<tablesList.size()){
+                ((TableView<Map>)tablesList.get(i)).getColumns().get(0).setCellValueFactory(new MapValueFactory<>("category"));
+                i++;
+            }
+
         //Get builds from database
         Reload reload = new Reload();
-        ArrayList<String> buildsList = new ArrayList<>(reload.getBuilds(TABLE_CONVERSION_GENERAL_STATISTIC));
-        // Add column into tables
-        addColumns(buildsList, sorceStatistic);
-        addColumns(buildsList, applyGenStatTable);
-        addColumns(buildsList, applyFailedTable);
-        addColumns(buildsList, applyPassTable);
-        addColumns(buildsList, convGenStatTable);
-        addColumns(buildsList, convFailedTable);
-        addColumns(buildsList, convPassTable);
-        addColumns(buildsList, errorTable);
-        addColumns(buildsList, actionItemsTable);
-        //Get data from DB and past into UI tables
-        getDataFormDB(TABLE_STATISTIC_BY_SOURCE, sorceStatistic, "");
-        getDataFormDB(TABLE_APPLY_GENERAL_STATISTIC, applyGenStatTable, "");
-        getDataFormDB(TABLE_APPLY_BY_CATEGORIES, applyFailedTable, FAILED);
-        getDataFormDB(TABLE_APPLY_BY_CATEGORIES, applyPassTable, PASSED);
+        ArrayList<String> buildsList = new ArrayList<>(reload.getBuilds(tabId));
 
-        getDataFormDB(TABLE_CONVERSION_GENERAL_STATISTIC, convGenStatTable, "");
-        getDataFormDB(TABLE_CONVERSION_BY_CATEGORIES, convFailedTable, FAILED);
-        getDataFormDB(TABLE_CONVERSION_BY_CATEGORIES, convPassTable, PASSED);
-        getDataFormDB(TABLE_ERRORS_BY_CATEGORIES, errorTable, FAILED);
-        getDataFormDB(TABLE_ACTION_ITEMS_GENERAL_STATISTIC, actionItemsTable, "");
+        // Add column into tables
+        i=0;
+        while (i<tablesList.size()){
+            addColumns(buildsList, (TableView<Map>)tablesList.get(i));
+            i++;
+        }
+
+        //Get data from DB and past into UI tables
+        getDataFormDB(TABLE_STATISTIC_BY_SOURCE, sorceStatistic, "", tabId);
+        getDataFormDB(TABLE_APPLY_GENERAL_STATISTIC, applyGenStatTable, "", tabId);
+        getDataFormDB(TABLE_APPLY_BY_CATEGORIES, applyFailedTable, FAILED, tabId);
+        getDataFormDB(TABLE_APPLY_BY_CATEGORIES, applyPassTable, PASSED, tabId);
+
+        getDataFormDB(TABLE_CONVERSION_GENERAL_STATISTIC, convGenStatTable, "", tabId);
+        getDataFormDB(TABLE_CONVERSION_BY_CATEGORIES, convFailedTable, FAILED, tabId);
+        getDataFormDB(TABLE_CONVERSION_BY_CATEGORIES, convPassTable, PASSED, tabId);
+        getDataFormDB(TABLE_ERRORS_BY_CATEGORIES, errorTable, FAILED, tabId);
+        getDataFormDB(TABLE_ACTION_ITEMS_GENERAL_STATISTIC, actionItemsTable, "", tabId);
 
         //Set height of table
         double hight;
-        sorceStatistic.setFixedCellSize(25);
-        applyFailedTable.setFixedCellSize(25);
-        applyPassTable.setFixedCellSize(25);
-        applyGenStatTable.setFixedCellSize(25);
-        convPassTable.setFixedCellSize(25);
-        convGenStatTable.setFixedCellSize(25);
-        convFailedTable.setFixedCellSize(25);
-        errorTable.setFixedCellSize(25);
-        actionItemsTable.setFixedCellSize(25);
-
-        hight = convGenStatTable.getItems().size() * convGenStatTable.getFixedCellSize() + 26;
-        convGenStatTable.setPrefHeight(hight);
-        applyGenStatTable.setPrefHeight(hight);
-        actionItemsTable.setPrefHeight(hight);
-        hight = convPassTable.getItems().size() * convPassTable.getFixedCellSize() + 26;
-        convPassTable.setPrefHeight(hight);
-        convFailedTable.setPrefHeight(hight);
-        convFailedTable.setPrefHeight(hight);
-        hight = errorTable.getItems().size() * convPassTable.getFixedCellSize() + 26;
-        errorTable.setPrefHeight(hight);
-        hight = sorceStatistic.getItems().size() * 25 + 26;
-        sorceStatistic.setPrefHeight(hight);
-        hight = applyFailedTable.getItems().size() * 25 + 26;
-        applyFailedTable.setPrefHeight(hight);
-        applyPassTable.setPrefHeight(hight);
+        i=0;
+        while (i<tablesList.size()){
+            ((TableView<Map>)tablesList.get(i)).setFixedCellSize(25);
+            hight = ((TableView<Map>)tablesList.get(i)).getItems().size()*25+26;
+            ((TableView<Map>)tablesList.get(i)).setPrefHeight(hight);
+            i++;
+        }
 
         return tabPane.getTabs().get(0).getContent();
-
-
     }
+
     @FXML
     private void initialize(HashMap<String, String> tables, TableView<Map> tableName) {
         tableName.getItems().addAll(initData(tables));
@@ -180,16 +158,16 @@ public class tabModelController {
         }
     }
 
-    public void getDataFormDB(String dataBaseTable, TableView<Map> uiTable, String type) {
+    public void getDataFormDB(String dataBaseTable, TableView<Map> uiTable, String type, String tabId) {
         Reload temp = new Reload();
-        ArrayList<String> cagoriesList = new ArrayList<>(temp.getCategorites(dataBaseTable));
+        ArrayList<String> cagoriesList = new ArrayList<>(temp.getCategories(dataBaseTable, tabId));
         HashMap<String, String> tables = new HashMap<>();
         int i = 0;
         while (i < cagoriesList.size()) {
             if (type.equalsIgnoreCase(PASSED) || type.equalsIgnoreCase(FAILED)) {
-                tables.putAll(temp.reload(dataBaseTable, cagoriesList.get(i), type));
+                tables.putAll(temp.reload(dataBaseTable, cagoriesList.get(i), tabId, type));
             } else
-                tables.putAll(temp.reload(dataBaseTable, cagoriesList.get(i)));
+                tables.putAll(temp.reload(dataBaseTable, cagoriesList.get(i), tabId));
             initialize(tables, uiTable);
             tables.clear();
             i++;

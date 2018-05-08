@@ -26,6 +26,7 @@ public class StringsConstant {
     public static final String FOLDER = "folder";
     public static final String NAME = "name";
     public static final String PAIR = "pair";
+    public static final String TABLE_VIEW = "table-view";
 
     public static final String PROJECT_PATH = "E:\\IdeaProjects\\ConversionStatistic\\Project.xml";
 

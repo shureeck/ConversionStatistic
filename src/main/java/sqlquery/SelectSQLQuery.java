@@ -4,11 +4,14 @@ import static constants.DatabaseStrings.*;
 
 public class SelectSQLQuery {
 
-    public String selectBuilds(String tableName){
-        return  SELECT_BUILDS;
+    public String selectBuilds(String tabId){
+        String args[]= {tabId, tabId, tabId, tabId};
+        String result = String.format(SELECT_BUILDS, args );
+        return  result;
     }
 
-    public String selectCategorites(String tableName){
-        return  SELECT_CATEGOTIES+ tableName;
+    public String selectCategories(String tableName, String tabId){
+        String args[]={tableName, tabId};
+        return  String.format(SELECT_CATEGORIES, args);
     }
 }

@@ -13,8 +13,9 @@ import static constants.DatabaseStrings.*;
 import static constants.StringsConstant.*;
 
 public class Reload {
-    public HashMap<String,String> reload( String tableName, String category){
-        String statement = SELECT_ALL_WHERE + tableName + WHERE + category+QUOTE;
+    public HashMap<String,String> reload( String tableName, String category, String tabID){
+        String args[] = {tableName, category, tabID};
+        String statement = String.format(SELECT_ALL_FROM_WHERE_AND, args);
         DataBaseConnection dbc = new DataBaseConnection(BASE, BASE_LOGIN, BASE_PASSWORD);
         Connection connection = dbc.connectToDatabase();
 
@@ -32,19 +33,20 @@ public class Reload {
         }
         return result;
     }
-    public HashMap<String,String> reload( String tableName, String category, String targetColumn){
-        String statement = SELECT_ALL_WHERE + tableName + WHERE + category+QUOTE;
+    public HashMap<String,String> reload( String tableName, String category,String tabID, String targetColumn){
+        String args[] ={tableName, category, tabID};
+        String statement =String.format( SELECT_ALL_FROM_WHERE_AND, args);
         DataBaseConnection dbc = new DataBaseConnection(BASE, BASE_LOGIN, BASE_PASSWORD);
         Connection connection = dbc.connectToDatabase();
 
         ResultSet resultSet = dbc.executeStatement(connection, statement);
         HashMap<String,String> result = new HashMap<>();
-        result.put("category",category);
+        result.put(CATEGORY,category);
 
         try {
 
             while (resultSet.next()) {
-                result.put(resultSet.getString("build"),resultSet.getString(targetColumn));
+                result.put(resultSet.getString(BUILD),resultSet.getString(targetColumn));
             }
             connection.close();
         }
@@ -56,11 +58,11 @@ public class Reload {
         return result;
     }
 
-    public ArrayList <String> getCategorites(String tableName){
+    public ArrayList <String> getCategories(String tableName, String tabId){
         SelectSQLQuery selectQuery = new SelectSQLQuery();
         DataBaseConnection dbc = new DataBaseConnection(BASE, BASE_LOGIN, BASE_PASSWORD);
         Connection connection = dbc.connectToDatabase();
-        ResultSet rs = dbc.executeStatement(connection, selectQuery.selectCategorites(tableName));
+        ResultSet rs = dbc.executeStatement(connection, selectQuery.selectCategories(tableName, tabId));
         ArrayList<String> categories = new ArrayList<>();
         try {
             while (rs.next()){
@@ -74,11 +76,11 @@ public class Reload {
         return categories;
     }
 
-    public ArrayList <String> getBuilds(String tableName){
+    public ArrayList <String> getBuilds(String tabID){
         SelectSQLQuery selectQuery = new SelectSQLQuery();
         DataBaseConnection dbc = new DataBaseConnection(BASE, BASE_LOGIN, BASE_PASSWORD);
         Connection connection = dbc.connectToDatabase();
-        ResultSet rs = dbc.executeStatement(connection, selectQuery. selectBuilds(tableName));
+        ResultSet rs = dbc.executeStatement(connection, selectQuery. selectBuilds(tabID));
         ArrayList<String> builds = new ArrayList<>();
         try {
             while (rs.next()){

@@ -31,7 +31,7 @@ public class Settings {
             String folder =((Element)tabs.item(i)).getAttribute(FOLDER);
             String name =((Element)tabs.item(i)).getAttribute(NAME);
             String pair =((Element)tabs.item(i)).getAttribute(PAIR);
-            tabModelsList.add(new TabModel(id, name, folder, pair));
+            tabModelsList.add(new TabModel(name, id, folder, pair));
             i++;
         }
         return this.tabModelsList=tabModelsList;

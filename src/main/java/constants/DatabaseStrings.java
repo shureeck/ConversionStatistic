@@ -21,15 +21,15 @@ public class DatabaseStrings {
     public static final String REPLACE_INTO = "REPLACE INTO " ;
    // public static final String INSERT_INTO = "INSERT INTO " ;
     public static final String VALUES=" VALUES ";
-    public static final String SELECT_BUILDS = "SELECT build FROM apply_general_statistic UNION \n" +
-            "SELECT build FROM conversion_general_statistic UNION\n" +
-            "SELECT build FROM errors_by_categories UNION\n" +
-            "SELECT build FROM action_items_general_statistic ";
-    public static final String SELECT_CATEGOTIES = "SELECT DISTINCT category FROM ";
+        public static final String SELECT_BUILDS = "SELECT build FROM apply_general_statistic WHERE tab =\"%s\" UNION \n" +
+                "SELECT build FROM conversion_general_statistic WHERE  tab =\"%s\" UNION\n" +
+                "SELECT build FROM errors_by_categories WHERE  tab =\"%s\" UNION\n" +
+                "SELECT build FROM action_items_general_statistic WHERE  tab =\"%s\" ";
+    public static final String SELECT_CATEGORIES = "SELECT DISTINCT category FROM %s WHERE tab = \"%s\"";
     public static final String SELECT = "SELECT ";
     public static final String FROM = " FROM ";
     public static final String WHERE = " WHERE category=\"";
-    public static final String SELECT_ALL_WHERE = "SELECT * FROM " ;
+    public static final String SELECT_ALL_FROM_WHERE_AND = "SELECT * FROM %s WHERE category =\"%s\" AND tab =\"%s\" " ;
 
 
 }
