@@ -31,35 +31,38 @@ public class Update_SQL_Query {
         int i=0;
         int size=report.getGeneralStatistic().size();
         while (i<size) {
-            String valuesGeneralStatistic = BRACKET_O + String.valueOf(report.getBuildNumber()) +
-                    COMA + QUOTE + report.getGeneralStatistic().get(i).getName() + QUOTE +
-                    COMA + String.valueOf(report.getGeneralStatistic().get(i).getCount()) +
-                    COMA + QUOTE + report.getPair() + QUOTE +
-                    COMA + QUOTE + report.getTabId()+QUOTE + BRACKET_C;
-            result.add(REPLACE_INTO + TABLE_APPLY_GENERAL_STATISTIC +FIELDS_APPLY_GENERAL_STATISTIC+VALUES+valuesGeneralStatistic);
+
+            String values[] ={String.valueOf(report.getBuildNumber()), report.getGeneralStatistic().get(i).getName(),
+                    String.valueOf(report.getGeneralStatistic().get(i).getCount()), report.getPair(), report.getTabId()};
+            String valuesGeneralStatistic = String.format(VALUES_STATISTIC, values);
+
+            String args []={TABLE_APPLY_GENERAL_STATISTIC, FIELDS_APPLY_GENERAL_STATISTIC, valuesGeneralStatistic};
+            result.add(String.format(REPLACE_INTO, args));
             i++;
         }
+
        i=0;
          size=report.getStatisticByCategories().size();
         while (i<size) {
-            String valuesStatisticByCategories = BRACKET_O + String.valueOf(report.getBuildNumber()) +
-                    COMA + QUOTE + report.getStatisticByCategories().get(i).getName() + QUOTE +
-                    COMA + String.valueOf(report.getStatisticByCategories().get(i).getPassed()) +
-                    COMA + String.valueOf(report.getStatisticByCategories().get(i).getFailed()) +
-                    COMA + QUOTE + report.getPair() + QUOTE  +
-                    COMA + QUOTE + report.getTabId()+QUOTE + BRACKET_C;
-            result.add(REPLACE_INTO + TABLE_APPLY_BY_CATEGORIES + FIELDS_APPLY_BY_CATEGORIES + VALUES + valuesStatisticByCategories);
+            String values[]={String.valueOf(report.getBuildNumber()), report.getStatisticByCategories().get(i).getName(),
+                    String.valueOf(report.getStatisticByCategories().get(i).getPassed()),
+                    String.valueOf(report.getStatisticByCategories().get(i).getFailed()), report.getPair(),report.getTabId()};
+            String valuesStatisticByCategories = String.format(VALUES_STATISTIC_BY_CATEGORIES, values);
+
+            String args[] = {TABLE_APPLY_BY_CATEGORIES, FIELDS_APPLY_BY_CATEGORIES, valuesStatisticByCategories};
+            result.add(String. format(REPLACE_INTO, args));
             i++;
         }
+
         i=0;
         size=report.getStatisticBySource().size();
         while (i<size) {
-            String valuesStatisticBySource = BRACKET_O + String.valueOf(report.getBuildNumber()) +
-                    COMA + QUOTE + report.getStatisticBySource().get(i).getName() + QUOTE +
-                    COMA + String.valueOf(report.getStatisticBySource().get(i).getCount()) +
-                    COMA + QUOTE + report.getPair() + QUOTE +
-                    COMA + QUOTE + report.getTabId()+ QUOTE + BRACKET_C;
-            result.add(REPLACE_INTO + TABLE_STATISTIC_BY_SOURCE +FIELDS_STATISTIC_BY_SOURCE+VALUES+valuesStatisticBySource);
+            String values[] ={String.valueOf(report.getBuildNumber()),report.getStatisticBySource().get(i).getName(),
+                    String.valueOf(report.getStatisticBySource().get(i).getCount()), report.getPair(), report.getTabId()};
+            String valuesStatisticBySource =String.format(VALUES_STATISTIC , values);
+
+            String arggs[]= {TABLE_STATISTIC_BY_SOURCE, FIELDS_STATISTIC_BY_SOURCE, valuesStatisticBySource};
+            result.add(String.format(REPLACE_INTO, arggs));
             i++;
         }
         return result;
@@ -70,24 +73,25 @@ public class Update_SQL_Query {
         int i=0;
         int size=report.getGeneralStatistic().size();
         while (i<size) {
-            String valuesGeneralStatistic = BRACKET_O + String.valueOf(report.getBuildNumber()) +
-                    COMA + QUOTE + report.getGeneralStatistic().get(i).getName() + QUOTE +
-                    COMA + String.valueOf(report.getGeneralStatistic().get(i).getCount()) +
-                    COMA + QUOTE + report.getPair() + QUOTE +
-                    COMA + QUOTE + report.getTabId()+QUOTE + BRACKET_C;
-            result.add(REPLACE_INTO + TABLE_CONVERSION_GENERAL_STATISTIC +FIELDS_APPLY_GENERAL_STATISTIC+VALUES+valuesGeneralStatistic);
+            String values[] = {String.valueOf(report.getBuildNumber()), report.getGeneralStatistic().get(i).getName(),
+                    String.valueOf(report.getGeneralStatistic().get(i).getCount()), report.getPair(), report.getTabId()};
+            String valuesGeneralStatistic =  String.format(VALUES_STATISTIC, values);
+
+            String args[] ={TABLE_CONVERSION_GENERAL_STATISTIC,FIELDS_APPLY_GENERAL_STATISTIC, valuesGeneralStatistic};
+            result.add(String.format(REPLACE_INTO, args));
             i++;
         }
+
         i=0;
         size=report.getStatisticByCategories().size();
         while (i<size) {
-            String valuesStatisticByCategories = BRACKET_O + String.valueOf(report.getBuildNumber()) +
-                    COMA + QUOTE + report.getStatisticByCategories().get(i).getName() + QUOTE +
-                    COMA + String.valueOf(report.getStatisticByCategories().get(i).getPassed()) +
-                    COMA + String.valueOf(report.getStatisticByCategories().get(i).getFailed()) +
-                    COMA + QUOTE + report.getPair() + QUOTE  +
-                    COMA + QUOTE + report.getTabId()+QUOTE + BRACKET_C;
-            result.add(REPLACE_INTO + TABLE_CONVERSION_BY_CATEGORIES + FIELDS_APPLY_BY_CATEGORIES + VALUES + valuesStatisticByCategories);
+            String values[] ={String.valueOf(report.getBuildNumber()), report.getStatisticByCategories().get(i).getName(),
+                    String.valueOf(report.getStatisticByCategories().get(i).getPassed()),
+                    String.valueOf(report.getStatisticByCategories().get(i).getFailed()), report.getPair(), report.getTabId()};
+            String valuesStatisticByCategories = String.format(VALUES_STATISTIC_BY_CATEGORIES, values);
+
+            String args[] = {TABLE_CONVERSION_BY_CATEGORIES, FIELDS_APPLY_BY_CATEGORIES, valuesStatisticByCategories};
+            result.add(String.format(REPLACE_INTO, args));
             i++;
         }
         return result;
@@ -98,12 +102,12 @@ public class Update_SQL_Query {
         int i=0;
         int size=report.getStatisticByCategories().size();
         while (i<size) {
-            String valuesStatisticByCategories = BRACKET_O + String.valueOf(report.getBuildNumber()) +
-                    COMA + QUOTE + report.getStatisticByCategories().get(i).getName() + QUOTE +
-                    COMA + String.valueOf(report.getStatisticByCategories().get(i).getFailed()) +
-                    COMA + QUOTE + report.getPair() +QUOTE +
-                    COMA + QUOTE + report.getTabId()+QUOTE + BRACKET_C;
-            result.add(REPLACE_INTO + TABLE_ERRORS_BY_CATEGORIES + FIELDS_ERRORS_BY_CATEGORIES + VALUES + valuesStatisticByCategories);
+            String values[] = { String.valueOf(report.getBuildNumber()), report.getStatisticByCategories().get(i).getName(),
+                    String.valueOf(report.getStatisticByCategories().get(i).getFailed()), report.getPair(), report.getTabId()};
+            String valuesStatisticByCategories = String.format(VALUES_STATISTIC, values);
+
+            String args[]= {TABLE_ERRORS_BY_CATEGORIES, FIELDS_ERRORS_BY_CATEGORIES, valuesStatisticByCategories};
+            result.add(String.format(REPLACE_INTO, args));
             i++;
         }
         return result;
@@ -115,12 +119,12 @@ public class Update_SQL_Query {
         int size=report.getGeneralStatistic().size();
         String valuesGeneralStatistic="";
         while (i<size) {
-            valuesGeneralStatistic = BRACKET_O + String.valueOf(report.getBuildNumber()) +
-                    COMA + QUOTE + report.getGeneralStatistic().get(i).getName() + QUOTE +
-                    COMA + String.valueOf(report.getGeneralStatistic().get(i).getCount())+
-                    COMA + QUOTE + report.getPair() + QUOTE +
-                    COMA + QUOTE + report.getTabId()+ QUOTE + BRACKET_C;
-            result.add(REPLACE_INTO + TABLE_ACTION_ITEMS_GENERAL_STATISTIC +FIELDS_APPLY_GENERAL_STATISTIC+VALUES+valuesGeneralStatistic);
+            String values[] ={String.valueOf(report.getBuildNumber()), report.getGeneralStatistic().get(i).getName(),
+                    String.valueOf(report.getGeneralStatistic().get(i).getCount()), report.getPair(), report.getTabId()};
+            valuesGeneralStatistic = String.format( VALUES_STATISTIC, values);
+
+            String args[] ={TABLE_ACTION_ITEMS_GENERAL_STATISTIC, FIELDS_APPLY_GENERAL_STATISTIC, valuesGeneralStatistic};
+            result.add(String.format(REPLACE_INTO, args));
             i++;
         }
     return result;
