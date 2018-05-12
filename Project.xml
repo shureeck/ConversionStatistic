@@ -5,6 +5,8 @@
 	</category>
 	<category name="Tabs">
 		<tab folder="Oracl" id="MyFirstTab" name="MySQL-MySQL" pair="MySQL-MySQL"/>
-    <tab folder="TetsTab" id="PostgreSQLMySQL" name="PostgreSQL-MySQL" pair="DB2-Aurora PostgreSQL"/>
+    	<tab folder="TetsTab" id="PostgreSQLMySQL" name="PostgreSQL-MySQL" pair="DB2-Aurora PostgreSQL"/>
+		<tab folder="Oracl" id="MyFirstTab" name="MySQL-MySQL" pair="MySQL-MySQL"/>
+		<tab folder="TetsTab" id="PostgreSQLMySQL" name="PostgreSQL-MySQL" pair="DB2-Aurora PostgreSQL"/>
     </category>
 </root>
