@@ -1,25 +1,21 @@
 package gui;
 
 import actions.AddReports;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import report.Table;
+import javafx.stage.StageStyle;
 import settings.Settings;
+import javafx.concurrent.Task;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Map;
 
 import static constants.StringsConstant.ADD_NEW_TAB;
 import static constants.StringsConstant.CHOSE_REPORTS_FOLDER;
@@ -27,34 +23,12 @@ import static constants.StringsConstant.CHOSE_REPORTS_FOLDER;
 
 
 public class Controller {
-    private ObservableList<Table> usersData = FXCollections.observableArrayList();
-
-    @FXML
-    private TableView<Map> sorceStatistic = new TableView();
-    @FXML
-    private TableView<Map> applyGenStatTable = new TableView();
-    @FXML
-    private TableView<Map> applyFailedTable = new TableView();
-    @FXML
-    private TableView<Map> applyPassTable = new TableView();
-    @FXML
-    private TableView<Map> convGenStatTable = new TableView();
-    @FXML
-    private TableView<Map> convFailedTable = new TableView();
-    @FXML
-    private TableView<Map> convPassTable = new TableView();
-    @FXML
-    private TableView<Map> errorTable = new TableView();
-    @FXML
-    private TableView<Map> actionItemsTable = new TableView();
     @FXML
     private TabPane tabPane = new TabPane();
-    @FXML
-    private GridPane gridPane = new GridPane();
 
     private  Settings settings = new Settings();
+    private  TabModel tabModel = new TabModel();
 
-    private int i = 0;
 
     @FXML
     public void onCancelClickMethod() {
@@ -65,10 +39,14 @@ public class Controller {
     public void onAddReportsClick() {
         DirectoryChooser direcoryChooser = new DirectoryChooser();
         direcoryChooser.setTitle(CHOSE_REPORTS_FOLDER);
-        File reportsFolder = direcoryChooser.showDialog(new Stage());
-        AddReports addReports = new AddReports(settings);
-        addReports.addReports(reportsFolder);
-    }
+
+       File reportsFolder = direcoryChooser.showDialog(new Stage());
+
+        AddReports addReports = new AddReports(settings, reportsFolder);
+        new Thread (addReports).start();
+        showProgressBarDialog(addReports);
+   //     addReports.addReports(reportsFolder);
+        }
 
     @FXML
     public void onAddTabClick() {
@@ -81,13 +59,14 @@ public class Controller {
 
     @FXML
     public void onRefreshClickMethod(){
-        TabModel tabModel = new TabModel();
         int i=0;
         while (i<tabPane.getTabs().size()){
             String tabId = tabPane.getTabs().get(i).getId();
             tabPane.getTabs().get(i).setContent(tabModel.getController().Refresh(tabId));
             i++;
         }
+
+        new Thread(getTask()).start();
     }
 
     @FXML
@@ -124,6 +103,40 @@ public class Controller {
             e.printStackTrace();
         }
         return ifOkPressed;
+    }
+
+    public void showProgressBarDialog(Task task ) {
+        try{
+        FXMLLoader showProgressBar = new FXMLLoader();
+        showProgressBar.setLocation(getClass().getResource("ProgressBar.fxml"));
+        AnchorPane pane = showProgressBar.load();
+        ProgressBarController progressBarController = showProgressBar.getController();
+        progressBarController.setTask(task);
+        Stage progressBarStage = new Stage();
+        progressBarStage.setResizable(false);
+        progressBarStage.initStyle(StageStyle.UNDECORATED);
+       // progressBarStage.setTitle("rogressBar");
+        progressBarStage.initModality(Modality.APPLICATION_MODAL);
+        Scene scene = new Scene(pane);
+        progressBarStage.setScene(scene);
+
+    //    AddTabController controller = showProgressBar.getController();
+        progressBarStage.showAndWait();
+
+    }
+     catch (IOException e) {
+        e.printStackTrace();
+    }
+    }
+
+    Task getTask(){
+        return new  Task(){
+            @Override
+            protected Object call() throws Exception {
+
+                return null;
+            }
+        };
     }
 
 }

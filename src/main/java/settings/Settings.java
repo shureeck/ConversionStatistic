@@ -59,5 +59,4 @@ public class Settings {
     }
 
     public ArrayList<TabModel> getTabModelsList(){return tabModelsList;}
-
 }

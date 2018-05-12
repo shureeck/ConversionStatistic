@@ -22,11 +22,12 @@ import java.util.Map;
 import static constants.DatabaseStrings.*;
 import static constants.StringsConstant.*;
 
-public class tabModelController {
+public class tabModelController{
     @FXML
     private TableView<Map> sorceStatistic = new TableView();
     @FXML
-    private TableView<Map> applyGenStatTable = new TableView(); ;
+    private TableView<Map> applyGenStatTable = new TableView();
+
     @FXML
     private TableView<Map> applyFailedTable = new TableView();
     @FXML
@@ -44,35 +45,34 @@ public class tabModelController {
     @FXML
     private TabPane tabPane = new TabPane();
     @FXML
-    private GridPane gridPane =new GridPane();
+    private GridPane gridPane = new GridPane();
 
+    public Node Refresh(String tabId) {
 
-        public Node Refresh(String tabId) {
-
-         ArrayList<Node> tablesList = new ArrayList<>( gridPane.getChildren().filtered((p)->(p.getStyleClass().get(0).equalsIgnoreCase(TABLE_VIEW))));
+        ArrayList<Node> tablesList = new ArrayList<>(gridPane.getChildren().filtered((p) -> (p.getStyleClass().get(0).equalsIgnoreCase(TABLE_VIEW))));
 
         //Clear table data
-        int i=0;
-        while (i<tablesList.size()){
-            ((TableView)tablesList.get(i)).getItems().clear();
+        int i = 0;
+        while (i < tablesList.size()) {
+            ((TableView) tablesList.get(i)).getItems().clear();
             i++;
         }
 
         //Stet key for firs column
-            i=0;
-            while (i<tablesList.size()){
-                ((TableView<Map>)tablesList.get(i)).getColumns().get(0).setCellValueFactory(new MapValueFactory<>("category"));
-                i++;
-            }
+        i = 0;
+        while (i < tablesList.size()) {
+            ((TableView<Map>) tablesList.get(i)).getColumns().get(0).setCellValueFactory(new MapValueFactory<>("category"));
+            i++;
+        }
 
         //Get builds from database
         Reload reload = new Reload();
         ArrayList<String> buildsList = new ArrayList<>(reload.getBuilds(tabId));
 
         // Add column into tables
-        i=0;
-        while (i<tablesList.size()){
-            addColumns(buildsList, (TableView<Map>)tablesList.get(i));
+        i = 0;
+        while (i < tablesList.size()) {
+            addColumns(buildsList, (TableView<Map>) tablesList.get(i));
             i++;
         }
 
@@ -90,11 +90,11 @@ public class tabModelController {
 
         //Set height of table
         double hight;
-        i=0;
-        while (i<tablesList.size()){
-            ((TableView<Map>)tablesList.get(i)).setFixedCellSize(25);
-            hight = ((TableView<Map>)tablesList.get(i)).getItems().size()*25+26;
-            ((TableView<Map>)tablesList.get(i)).setPrefHeight(hight);
+        i = 0;
+        while (i < tablesList.size()) {
+            ((TableView<Map>) tablesList.get(i)).setFixedCellSize(25);
+            hight = ((TableView<Map>) tablesList.get(i)).getItems().size() * 25 + 26;
+            ((TableView<Map>) tablesList.get(i)).setPrefHeight(hight);
             i++;
         }
 
@@ -149,7 +149,7 @@ public class tabModelController {
                         return string;
                     }
                 });
-       int i = 0;
+        int i = 0;
         ArrayList<TableColumn> columnsList = new ArrayList<>(tableName.getColumns());
         while (i < columnsList.size()) {
             columnsList.get(i).setCellFactory(cellFactoryForMap);
@@ -174,4 +174,5 @@ public class tabModelController {
         }
 
     }
+
 }
