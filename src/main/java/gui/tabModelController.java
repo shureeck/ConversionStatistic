@@ -116,7 +116,6 @@ public class tabModelController{
         ObservableList<Map> allData = FXCollections.observableArrayList();
         allData.setAll(rtemperay);
         return allData;
-
     }
 
     private void addColumns(ArrayList<String> buildsList, TableView<Map> tableName) {
@@ -219,7 +218,6 @@ public class tabModelController{
             i++;
         }
         return redIdSList;
-
     }
 
 }
