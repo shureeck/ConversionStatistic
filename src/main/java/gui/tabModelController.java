@@ -27,7 +27,6 @@ public class tabModelController{
     private TableView<Map> sorceStatistic = new TableView();
     @FXML
     private TableView<Map> applyGenStatTable = new TableView();
-
     @FXML
     private TableView<Map> applyFailedTable = new TableView();
     @FXML
@@ -97,9 +96,12 @@ public class tabModelController{
             ((TableView<Map>) tablesList.get(i)).setPrefHeight(hight);
             i++;
         }
-
-        decorateTable(sorceStatistic);
-
+        decorateTable(applyGenStatTable);
+        decorateTable(applyFailedTable);
+        decorateTable(convGenStatTable);
+        decorateTable(convFailedTable);
+        decorateTable(errorTable);
+        decorateTable(actionItemsTable);
 
         return tabPane.getTabs().get(0).getContent();
     }
@@ -177,24 +179,28 @@ public class tabModelController{
     }
 
     public void decorateTable(TableView table) {
-        TableColumn first = (TableColumn) table.getColumns().get(1);
 
-        first.setCellFactory((column) -> new TableCell<Map, String>() {
-            @Override
-            protected void updateItem(String item, boolean empty) {
-                super.updateItem(item, empty);
-                ArrayList<Integer> redId = new ArrayList<>(checkStyle(table));
-                if (redId.size()!=0) {
-                    if (redId.contains(getIndex())) {
-                        setStyle("-fx-background-color: F78686;");
-                        setText(item);
+        if (table.getItems().size()>0) {
+            TableColumn first = (TableColumn) table.getColumns().get(1);
+
+            first.setCellFactory((column) -> new TableCell<Map, String>() {
+                @Override
+                protected void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    ArrayList<Integer> redId = new ArrayList<>(checkStyle(table));
+                    if (redId.size() != 0) {
+                        if (redId.contains(getIndex())) {
+                            setStyle("-fx-background-color: F78686;");
+                            setText(item);
+                        } else {
+                            setText(item);
+                        }
                     } else {
                         setText(item);
                     }
                 }
-                else {setText(item);}
-            }
-        });
+            });
+        }
     }
 
     private ArrayList<Integer> checkStyle(TableView table){

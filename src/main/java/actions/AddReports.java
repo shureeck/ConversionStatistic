@@ -48,8 +48,7 @@ public class AddReports extends Task {
                 }
             }
             updateProgress(i + 1, size);
-            updateMessage(String.valueOf(numberFiles--)+" left files");
-
+            updateMessage("Uploaded " + i + " reports of " + numberFiles);
             i++;
         }
         try {

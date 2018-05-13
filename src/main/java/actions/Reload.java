@@ -64,6 +64,7 @@ public class Reload {
         Connection connection = dbc.connectToDatabase();
         ResultSet rs = dbc.executeStatement(connection, selectQuery.selectCategories(tableName, tabId));
         ArrayList<String> categories = new ArrayList<>();
+        categories.add("Release Build");
         try {
             while (rs.next()){
                 categories.add(rs.getString(CATEGORY));

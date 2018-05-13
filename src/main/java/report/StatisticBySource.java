@@ -35,8 +35,17 @@ public class StatisticBySource {
     public ArrayList<Category> parseStatisticBycategory(String[] statisticByCategory){
         ArrayList<Category> result = new ArrayList<>();
         int i=0;
-        while (i<statisticByCategory.length){
-            String temp[]=statisticByCategory[i].split(COMA);
+        while (i<statisticByCategory.length) {
+            String temp[] =new String[2];
+            if (statisticByCategory[i].matches("^\\w+[,][ ]?\\d+$")){
+               temp[0] = statisticByCategory[i].split(COMA)[0];
+               temp[1] = statisticByCategory[i].split(COMA)[1];
+        }
+        else
+           {
+                temp[0]=statisticByCategory[i].split(COMA)[0];
+                temp[1] ="0";
+            }
             Category category = new Category(temp[0].trim(), Integer.parseInt(temp[1].trim()));
             result.add(category);
             i++;

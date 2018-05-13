@@ -43,6 +43,7 @@
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </Button>
+      <Button fx:id="setReleseBuild" layoutX="404.0" layoutY="908.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onSetReleseBuils" prefHeight="30.0" prefWidth="90.0" text="Relese Build" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="310.0" />
    </children>
    <padding>
       <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />

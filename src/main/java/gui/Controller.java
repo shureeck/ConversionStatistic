@@ -71,6 +71,11 @@ public class Controller {
        showProgressBarDialog(task);
        }
 
+       @FXML
+       public void onSetReleseBuils(){
+
+       }
+
     @FXML
     private void initialize(){
         tabPane.getTabs().addAll(settings.getTabList());
@@ -162,16 +167,4 @@ public class Controller {
         });
 
     }
-/*
-    public void onRefreshClickMethod(){
-        int i=0;
-        while (i<tabPane.getTabs().size()){
-            String tabId = tabPane.getTabs().get(i).getId();
-            tabPane.getTabs().get(i).setContent(tabModel.getController().Refresh(tabId));
-            i++;
-        }
-
-        new Thread(getTask()).start();
-    }*/
-
 }

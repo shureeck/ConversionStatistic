@@ -28,7 +28,7 @@ public class DatabaseStrings {
         public static final String SELECT_BUILDS = "SELECT build FROM apply_general_statistic WHERE tab =\"%s\" UNION \n" +
                 "SELECT build FROM conversion_general_statistic WHERE  tab =\"%s\" UNION\n" +
                 "SELECT build FROM errors_by_categories WHERE  tab =\"%s\" UNION\n" +
-                "SELECT build FROM action_items_general_statistic WHERE  tab =\"%s\" ";
+                "SELECT build FROM action_items_general_statistic WHERE  tab =\"%s\" ORDER BY build DESC";
     public static final String SELECT_CATEGORIES = "SELECT DISTINCT category FROM %s WHERE tab = \"%s\"";
     public static final String SELECT_ALL_FROM_WHERE_AND = "SELECT * FROM %s WHERE category =\"%s\" AND tab =\"%s\" ";
 
