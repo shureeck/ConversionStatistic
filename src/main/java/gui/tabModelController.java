@@ -98,6 +98,9 @@ public class tabModelController{
             i++;
         }
 
+        decorateTable(sorceStatistic);
+
+
         return tabPane.getTabs().get(0).getContent();
     }
 
@@ -172,6 +175,50 @@ public class tabModelController{
             tables.clear();
             i++;
         }
+    }
+
+    public void decorateTable(TableView table) {
+        TableColumn first = (TableColumn) table.getColumns().get(1);
+
+        first.setCellFactory((column) -> new TableCell<Map, String>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                ArrayList<Integer> redId = new ArrayList<>(checkStyle(table));
+                if (redId.size()!=0) {
+                    if (redId.contains(getIndex())) {
+                        setStyle("-fx-background-color: F78686;");
+                        setText(item);
+                    } else {
+                        setText(item);
+                    }
+                }
+                else {setText(item);}
+            }
+        });
+    }
+
+    private ArrayList<Integer> checkStyle(TableView table){
+        boolean result=false;
+        ArrayList<Integer> redIdSList=new ArrayList<>();
+        if (table.getColumns().size()<3){
+            return redIdSList;
+        }
+
+        TableColumn first = (TableColumn) table.getColumns().get(1);
+        TableColumn second = (TableColumn) table.getColumns().get(2);
+        int i =0;
+        while (first.getCellObservableValue(i)!=null){
+            String valueFirst = (String) first.getCellObservableValue(i).getValue();
+            String valueSecond =(String) second.getCellObservableValue(i).getValue();
+            if (valueFirst!=null && valueSecond!=null) {
+                if (valueFirst.compareTo(valueSecond)>0){
+                    redIdSList.add(i);
+                }
+            }
+            i++;
+        }
+        return redIdSList;
 
     }
 
