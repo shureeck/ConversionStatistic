@@ -22,7 +22,7 @@ public class GeneralStatistic {
         while (i<report.size()){
             if (report.get(i).toLowerCase().trim().contains(GENERAL_STATISTIC)){
                 i=i+1;
-                while (!report.get(i).trim().equalsIgnoreCase("")){
+                while ( i<report.size() && !report.get(i).trim().equalsIgnoreCase("")){
                     stringsStatisticByCategory.add(report.get(i));
                     i++;
                 }
@@ -37,11 +37,13 @@ public class GeneralStatistic {
     public ArrayList<Category> parseGeneralStatistic(String[] statisticByCategory){
         ArrayList<Category> result = new ArrayList<>();
         int i=0;
-        while (i<statisticByCategory.length){
-            String temp[]=statisticByCategory[i].split(COMA);
-            Category category = new Category(temp[0].trim(),
-                            Integer.parseInt(temp[1].replace(";","").trim()));
-            result.add(category);
+        while (statisticByCategory!=null && i<statisticByCategory.length){
+            if(statisticByCategory[i].matches(REGEXP_GENERAL_STATISTIC)) {
+                String temp[] = statisticByCategory[i].split(COMA);
+                Category category = new Category(temp[0].trim(),
+                        Integer.parseInt(temp[1].replace(";", "").trim()));
+                result.add(category);
+            }
             i++;
         }
         return result;

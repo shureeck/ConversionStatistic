@@ -180,7 +180,7 @@ public class tabModelController{
 
     public void decorateTable(TableView table) {
 
-        if (table.getItems().size()>0) {
+        if (table.getItems().size()>1) {
             TableColumn first = (TableColumn) table.getColumns().get(1);
 
             first.setCellFactory((column) -> new TableCell<Map, String>() {

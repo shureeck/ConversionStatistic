@@ -19,7 +19,7 @@ public class FailedObjects {
         while (i<report.size()){
             if (report.get(i).toLowerCase().trim().contains(OBJECT_LIST)){
               i++;
-              while (!report.get(i).equalsIgnoreCase("")){
+              while (report.size()>i && !report.get(i).equalsIgnoreCase("" )){
                   if (report.get(i).toLowerCase().contains(FAILED.toLowerCase())){
                       result.add(report.get(i));
                   }
@@ -35,9 +35,8 @@ public class FailedObjects {
     public ArrayList<ObjectInfo> parseObjectinfo(String[] failedObjects){
         ArrayList<ObjectInfo> result = new ArrayList<>();
         int i=0;
-        while (i<failedObjects.length){
+        while (failedObjects!=null && i<failedObjects.length){
             String[] temp = failedObjects[i].split(COMA,6);
-
             int testListNumber;
             if(temp[0].matches(REGEXP_NUMBERS)){
                 testListNumber=Integer.parseInt(temp[0].trim());

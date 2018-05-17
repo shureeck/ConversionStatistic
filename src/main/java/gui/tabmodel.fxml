@@ -22,9 +22,6 @@
                                  <columns>
                                     <TableColumn fx:id="categoryGenStat" editable="false" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" resizable="false" sortable="false" text="Categoories" />
                                  </columns>
-                                 <columnResizePolicy>
-                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                 </columnResizePolicy>
                               </TableView>
                               <Label maxHeight="25.0" maxWidth="25.0" minWidth="-Infinity" prefHeight="25.0" text="General statistic" GridPane.rowIndex="10">
                                  <font>
@@ -46,9 +43,6 @@
                                  <columns>
                                     <TableColumn fx:id="categoryFailConv" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="100.0" text="Categories" />
                                  </columns>
-                                 <columnResizePolicy>
-                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                 </columnResizePolicy>
                               </TableView>
                               <Label maxHeight="25.0" maxWidth="25.0" minWidth="-Infinity" prefHeight="25.0" text="Passed objects" GridPane.rowIndex="14">
                                  <font>
@@ -62,9 +56,6 @@
                                  <columns>
                                     <TableColumn fx:id="categoryPassConv" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" text="Categories" />
                                  </columns>
-                                 <columnResizePolicy>
-                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                 </columnResizePolicy>
                               </TableView>
                               <Label maxHeight="25.0" maxWidth="25.0" minWidth="-Infinity" prefHeight="25.0" text="Apply statistic">
                                  <font>
@@ -110,25 +101,16 @@
                                  <columns>
                                     <TableColumn fx:id="categoryGenStat1" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="100.0" resizable="false" text="Categoories" />
                                  </columns>
-                                 <columnResizePolicy>
-                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                 </columnResizePolicy>
                               </TableView>
                               <TableView fx:id="applyFailedTable" minHeight="-Infinity" prefHeight="60.0" GridPane.rowIndex="6">
                                  <columns>
                                     <TableColumn fx:id="categoryFailConv1" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="100.0" text="Categories" />
                                  </columns>
-                                 <columnResizePolicy>
-                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                 </columnResizePolicy>
                               </TableView>
                               <TableView fx:id="applyPassTable" minHeight="-Infinity" prefHeight="60.0" GridPane.rowIndex="8">
                                  <columns>
                                     <TableColumn fx:id="categoryPassConv1" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" text="Categories" />
                                  </columns>
-                                 <columnResizePolicy>
-                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                 </columnResizePolicy>
                               </TableView>
                               <Label maxHeight="25.0" maxWidth="25.0" minWidth="-Infinity" prefHeight="25.0" text="Statistic by source" GridPane.rowIndex="1">
                                  <font>
@@ -142,9 +124,6 @@
                                  <columns>
                                     <TableColumn fx:id="categoryGenStat11" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" resizable="false" text="Categoories" />
                                  </columns>
-                                 <columnResizePolicy>
-                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                 </columnResizePolicy>
                               </TableView>
                               <Label maxHeight="25.0" maxWidth="25.0" minWidth="-Infinity" prefHeight="25.0" text="Error statistic" GridPane.rowIndex="16">
                                  <font>
@@ -158,9 +137,6 @@
                                  <columns>
                                     <TableColumn fx:id="categoryFailConv11" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="100.0" text="Categories" />
                                  </columns>
-                                 <columnResizePolicy>
-                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                 </columnResizePolicy>
                               </TableView>
                               <Label maxHeight="25.0" maxWidth="25.0" minWidth="-Infinity" prefHeight="25.0" text="Action Items statistic" GridPane.rowIndex="18">
                                  <font>
@@ -174,9 +150,6 @@
                                  <columns>
                                     <TableColumn fx:id="categoryFailConv111" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="100.0" text="Categories" />
                                  </columns>
-                                 <columnResizePolicy>
-                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                 </columnResizePolicy>
                               </TableView>
                            </children>
                            <columnConstraints>

@@ -20,7 +20,7 @@ public class StatisticByCategories {
         while (i<report.size()){
             if (report.get(i).toLowerCase().trim().contains(STATISTIC_BY_CATEGORIES)){
                 i++;
-                while (!report.get(i).trim().equalsIgnoreCase("")){
+                while (report.size()>i && !report.get(i).trim().equalsIgnoreCase("")){
                     arrayStatisiticByCategories.add(report.get(i));
                     i++;
                 }
@@ -35,11 +35,12 @@ public class StatisticByCategories {
     public ArrayList parseStatisticByCategories(String[]statisticArray){
         int i=0;
         ArrayList<Category> result = new ArrayList<>();
-
-        while (i<statisticArray.length){
-            String[] temp = statisticArray[i].split(COMA);
-            Category category = new Category(temp[0],Integer.parseInt(temp[1]),Integer.parseInt(temp[2]));
-            result.add(category);
+        while (statisticArray!=null && i<statisticArray.length){
+            if(statisticArray[i].matches(REGEXP_STATISTIC_CATEGORIES)){
+                String[] temp = statisticArray[i].split(COMA);
+                Category category = new Category(temp[0], Integer.parseInt(temp[1]), Integer.parseInt(temp[2]));
+                result.add(category);
+            }
             i++;
         }
         return result;

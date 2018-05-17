@@ -14,17 +14,20 @@ public class Report {
     public Report(String path, Settings settings){
         this.settings = settings;
         stringsReport.addAll(FileReader.readFile(path));
-        buildNumber=ananlyzeBuildNumber(stringsReport);
         reportType = ananlyzeReportType(stringsReport);
-        generalStatistic = new GeneralStatistic(stringsReport);
-        statisticByCategories = new StatisticByCategories(stringsReport);
-        failedObjects = new FailedObjects(stringsReport);
-        statisticBySource = new StatisticBySource(stringsReport);
-        TabModel tabModel = analyzePair(path);
-        if (tabModel!=null){
-            this.pair = tabModel.getPair();
-            this.tab=tabModel.getTabId();
+        if(reportType!=UNKNOWN) {
+            buildNumber = ananlyzeBuildNumber(stringsReport);
+            generalStatistic = new GeneralStatistic(stringsReport);
+            statisticByCategories = new StatisticByCategories(stringsReport);
+            failedObjects = new FailedObjects(stringsReport);
+            statisticBySource = new StatisticBySource(stringsReport);
+            TabModel tabModel = analyzePair(path);
+            if (tabModel != null) {
+                this.pair = tabModel.getPair();
+                this.tab = tabModel.getTabId();
+            }
         }
+
     }
 
     private Settings settings;
@@ -42,8 +45,10 @@ public class Report {
         int buildNumber=0;
         String temp;
         temp=reportStrings.stream().filter((p)->(p.contains(BUILD_NUMBER))).findFirst().get();
-        temp=temp.substring(temp.indexOf(COMA)+1).trim();
-        buildNumber=Integer.parseInt(temp);
+        temp=temp.split(COMA)[1].trim();
+        if (temp.matches(REGEXP_NUMBERS)) {
+            buildNumber = Integer.parseInt(temp);
+        }
         return buildNumber;
     }
 

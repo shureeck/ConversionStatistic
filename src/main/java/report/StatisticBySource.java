@@ -20,7 +20,7 @@ public class StatisticBySource {
         while (i<report.size()){
             if (report.get(i).toLowerCase().trim().contains(STATISTIC_BY_SOURCE)){
                 i=i+2;
-                while (!report.get(i).trim().equalsIgnoreCase("")){
+                while (report.size()>i && !report.get(i).trim().equalsIgnoreCase("") ){
                     stringsStatisticBySource.add(report.get(i));
                     i++;
                 }
@@ -35,19 +35,17 @@ public class StatisticBySource {
     public ArrayList<Category> parseStatisticBycategory(String[] statisticByCategory){
         ArrayList<Category> result = new ArrayList<>();
         int i=0;
-        while (i<statisticByCategory.length) {
+        while ( statisticByCategory!=null && i<statisticByCategory.length) {
             String temp[] =new String[2];
-            if (statisticByCategory[i].matches("^\\w+[,][ ]?\\d+$")){
+            if (statisticByCategory[i].matches(REGEXP_STATISTIC_SOURCE)){
                temp[0] = statisticByCategory[i].split(COMA)[0];
                temp[1] = statisticByCategory[i].split(COMA)[1];
+
+                Category category = new Category(temp[0].trim(), Integer.parseInt(temp[1].trim()));
+                result.add(category);
         }
-        else
-           {
-                temp[0]=statisticByCategory[i].split(COMA)[0];
-                temp[1] ="0";
-            }
-            Category category = new Category(temp[0].trim(), Integer.parseInt(temp[1].trim()));
-            result.add(category);
+
+
             i++;
         }
         return result;
