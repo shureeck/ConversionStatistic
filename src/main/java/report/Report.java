@@ -21,6 +21,7 @@ public class Report {
             statisticByCategories = new StatisticByCategories(stringsReport);
             failedObjects = new FailedObjects(stringsReport);
             statisticBySource = new StatisticBySource(stringsReport);
+            folder = new File(path).getParentFile().getName();
             TabModel tabModel = analyzePair(path);
             if (tabModel != null) {
                 this.pair = tabModel.getPair();
@@ -40,6 +41,7 @@ public class Report {
     private StatisticBySource statisticBySource;
     private String pair;
     private String tab;
+    private String folder;
 
     public int ananlyzeBuildNumber(ArrayList<String> reportStrings){
         int buildNumber=0;
@@ -88,4 +90,5 @@ public class Report {
     public String getPair() {return pair; }
     public String getReportType(){return reportType;}
     public String getTabId(){return tab;}
+    public String getFolder(){return folder;}
 }

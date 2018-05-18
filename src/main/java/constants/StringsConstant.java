@@ -54,7 +54,7 @@ public class StringsConstant {
     public static final String REGEXP_KEY_STATISITC ="^[A-Za-z]+ ?[A-Za-z]*$";
     public static final String REGEXP_NUMBERS ="^\\d*$";
     public static final String REGEXP_STATISTIC_CATEGORIES ="^\\w+,\\d+,\\d+$";
-    public static final String REGEXP_GENERAL_STATISTIC = "^\\w+[:]?[ ] ?,\\d+[;]$";
+    public static final String REGEXP_GENERAL_STATISTIC = "^\\w+[ ]?\\w+[:]?[ ]?,\\d+[;]$";
     public static final String REGEXP_STATISTIC_SOURCE ="^\\w+[,][ ]?\\d+$";
 
 

@@ -27,9 +27,9 @@ public class TabModel {
             e.printStackTrace();
         }
     }
-    public TabModel (String name, String  id, String folder, String pair){
+    public TabModel(String name, String folder, String pair){
         this.tabName = name;
-        this.tabId =id;
+        this.tabId =folder;
         this.reportFolder=folder;
         this.pair=pair;
         try {
@@ -45,7 +45,7 @@ public class TabModel {
             e.printStackTrace();
         }
        myTab.setText(name);
-       myTab.setId(id);
+       myTab.setId(tabId);
     }
 
     public Tab getTab(){return myTab;}

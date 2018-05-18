@@ -4,8 +4,8 @@
 		<connect password="min_privs" port="3306" schema="test_schema" server="192.10.2.32" user="min_privs"/>
 	</category>
 	<category name="Tabs">
-    	<tab folder="PostgreSQL_MySQL" id="PostgreSQLMySQL" name="PostgreSQL_MySQL" pair="DB2-Aurora PostgreSQL"/>
-    <tab folder="Oracle-PostgreSQL" id="OraclepostgreSQL" name="Oracle-postgreSQL" pair="Oracle-PostgreSQL"/>
-    <tab folder="MYSQL_POSTGRE" id="MSSQLPOSTGRE" name="MSSQL-POSTGRE" pair="Microsoft SQL Server-PostgreSQL"/>
+    	<tab folder="PostgreSQL_MySQL" id="PostgreSQL_MySQL" name="PostgreSQL_MySQL" pair="DB2-Aurora PostgreSQL"/>
+    <tab folder="Oracle-PostgreSQL" id="Oracle-PostgreSQL" name="Oracle-postgreSQL" pair="Oracle-PostgreSQL"/>
+    <tab folder="MYSQL_POSTGRE" id="MYSQL_POSTGRE" name="MSSQL-POSTGRE" pair="Microsoft SQL Server-PostgreSQL"/>
     </category>
 </root>

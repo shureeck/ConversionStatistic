@@ -33,7 +33,7 @@ public class Update_SQL_Query {
         while (i<size) {
 
             String values[] ={String.valueOf(report.getBuildNumber()), report.getGeneralStatistic().get(i).getName(),
-                    String.valueOf(report.getGeneralStatistic().get(i).getCount()), report.getPair(), report.getTabId()};
+                    String.valueOf(report.getGeneralStatistic().get(i).getCount()), report.getPair(), report.getFolder()};
             String valuesGeneralStatistic = String.format(VALUES_STATISTIC, values);
 
             String args []={TABLE_APPLY_GENERAL_STATISTIC, FIELDS_APPLY_GENERAL_STATISTIC, valuesGeneralStatistic};
@@ -46,7 +46,7 @@ public class Update_SQL_Query {
         while (i<size) {
             String values[]={String.valueOf(report.getBuildNumber()), report.getStatisticByCategories().get(i).getName(),
                     String.valueOf(report.getStatisticByCategories().get(i).getPassed()),
-                    String.valueOf(report.getStatisticByCategories().get(i).getFailed()), report.getPair(),report.getTabId()};
+                    String.valueOf(report.getStatisticByCategories().get(i).getFailed()), report.getPair(),report.getFolder()};
             String valuesStatisticByCategories = String.format(VALUES_STATISTIC_BY_CATEGORIES, values);
 
             String args[] = {TABLE_APPLY_BY_CATEGORIES, FIELDS_APPLY_BY_CATEGORIES, valuesStatisticByCategories};
@@ -58,7 +58,7 @@ public class Update_SQL_Query {
         size=report.getStatisticBySource().size();
         while (i<size) {
             String values[] ={String.valueOf(report.getBuildNumber()),report.getStatisticBySource().get(i).getName(),
-                    String.valueOf(report.getStatisticBySource().get(i).getCount()), report.getPair(), report.getTabId()};
+                    String.valueOf(report.getStatisticBySource().get(i).getCount()), report.getPair(), report.getFolder()};
             String valuesStatisticBySource =String.format(VALUES_STATISTIC , values);
 
             String arggs[]= {TABLE_STATISTIC_BY_SOURCE, FIELDS_STATISTIC_BY_SOURCE, valuesStatisticBySource};
@@ -74,7 +74,7 @@ public class Update_SQL_Query {
         int size=report.getGeneralStatistic().size();
         while (i<size) {
             String values[] = {String.valueOf(report.getBuildNumber()), report.getGeneralStatistic().get(i).getName(),
-                    String.valueOf(report.getGeneralStatistic().get(i).getCount()), report.getPair(), report.getTabId()};
+                    String.valueOf(report.getGeneralStatistic().get(i).getCount()), report.getPair(), report.getFolder()};
             String valuesGeneralStatistic =  String.format(VALUES_STATISTIC, values);
 
             String args[] ={TABLE_CONVERSION_GENERAL_STATISTIC,FIELDS_APPLY_GENERAL_STATISTIC, valuesGeneralStatistic};
@@ -87,7 +87,7 @@ public class Update_SQL_Query {
         while (i<size) {
             String values[] ={String.valueOf(report.getBuildNumber()), report.getStatisticByCategories().get(i).getName(),
                     String.valueOf(report.getStatisticByCategories().get(i).getPassed()),
-                    String.valueOf(report.getStatisticByCategories().get(i).getFailed()), report.getPair(), report.getTabId()};
+                    String.valueOf(report.getStatisticByCategories().get(i).getFailed()), report.getPair(), report.getFolder()};
             String valuesStatisticByCategories = String.format(VALUES_STATISTIC_BY_CATEGORIES, values);
 
             String args[] = {TABLE_CONVERSION_BY_CATEGORIES, FIELDS_APPLY_BY_CATEGORIES, valuesStatisticByCategories};
@@ -103,7 +103,7 @@ public class Update_SQL_Query {
         int size=report.getStatisticByCategories().size();
         while (i<size) {
             String values[] = { String.valueOf(report.getBuildNumber()), report.getStatisticByCategories().get(i).getName(),
-                    String.valueOf(report.getStatisticByCategories().get(i).getFailed()), report.getPair(), report.getTabId()};
+                    String.valueOf(report.getStatisticByCategories().get(i).getFailed()), report.getPair(), report.getFolder()};
             String valuesStatisticByCategories = String.format(VALUES_STATISTIC, values);
 
             String args[]= {TABLE_ERRORS_BY_CATEGORIES, FIELDS_ERRORS_BY_CATEGORIES, valuesStatisticByCategories};
@@ -120,7 +120,7 @@ public class Update_SQL_Query {
         String valuesGeneralStatistic="";
         while (i<size) {
             String values[] ={String.valueOf(report.getBuildNumber()), report.getGeneralStatistic().get(i).getName(),
-                    String.valueOf(report.getGeneralStatistic().get(i).getCount()), report.getPair(), report.getTabId()};
+                    String.valueOf(report.getGeneralStatistic().get(i).getCount()), report.getPair(), report.getFolder()};
             valuesGeneralStatistic = String.format( VALUES_STATISTIC, values);
 
             String args[] ={TABLE_ACTION_ITEMS_GENERAL_STATISTIC, FIELDS_APPLY_GENERAL_STATISTIC, valuesGeneralStatistic};

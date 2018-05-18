@@ -43,7 +43,7 @@ public class AddTabController {
       TabName=tabNameField.getText();
       tabModel.setTabName(TabName);
       tabModel.setReportFolder(reportFolderField.getText());
-      tabModel.setTabId(TabName.replaceAll(REGEXP_SPLIT_GENERAL_STAT, ""));
+      tabModel.setTabId(reportFolderField.getText());
       tabModel.setPair(cbSource.getValue()+"-"+cbTarget.getValue());
       ifOkPressed=true;
       onCancelClickMethod();
