@@ -36,6 +36,8 @@ public class StringsConstant {
     public static final String CLOSE = "Close";
     public static final String ANALYZE = "Analyze";
     public static final String EXAMPLE = "Example";
+    public static final String FALSE = "false";
+
 
 
     public static final String APPLY = "apply";

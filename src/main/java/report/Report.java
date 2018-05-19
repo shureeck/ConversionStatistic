@@ -91,4 +91,7 @@ public class Report {
     public String getReportType(){return reportType;}
     public String getTabId(){return tab;}
     public String getFolder(){return folder;}
+    public ArrayList<ObjectInfo> getFailedObjects() {
+        return failedObjects.getFailedObjects();
+    }
 }

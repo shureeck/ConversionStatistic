@@ -65,6 +65,21 @@ public class Update_SQL_Query {
             result.add(String.format(REPLACE_INTO, arggs));
             i++;
         }
+
+        i =0;
+        size = report.getFailedObjects().size();
+        while (size>i){
+            String category = report.getFailedObjects().get(i).getCategory();
+            String objectName = report.getFailedObjects().get(i).getName();
+            String testlistNumber =String.valueOf(report.getFailedObjects().get(i).getTestListNumber());
+            String errorReport = report.getFailedObjects().get(i).getReport();
+            String [] values ={testlistNumber, category, objectName, String.valueOf(report.getBuildNumber()), report.getFolder(), report.getPair(), FALSE, errorReport};
+            String valuesFaileObjects = String.format(VALUES_FAILED_OBJECTS, values);
+
+            String[] args ={APPLY_FAILED_OBJECTS, FIELDS_APPLY_FAILED_OBJECTS, valuesFaileObjects};
+            result.add(String.format(REPLACE_INTO, args));
+            i++;
+        }
         return result;
     }
 
@@ -128,6 +143,12 @@ public class Update_SQL_Query {
             i++;
         }
     return result;
+    }
+
+    public String getCallStatement(Report report){
+        String callStetment = String.format(CALL_CHANGE_TO_TRUE, APPLY_FAILED_OBJECTS, report.getFolder() );
+        return callStetment;
+
     }
 
     public ArrayList<String> getSqlStatement() {

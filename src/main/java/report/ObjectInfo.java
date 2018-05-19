@@ -6,10 +6,11 @@ public class ObjectInfo {
     private String name;
     private String report;
 
-    public ObjectInfo(int testListNumber, String category, String name){
+    public ObjectInfo(int testListNumber, String category, String name, String report){
         this.testListNumber=testListNumber;
         this.category=category;
         this.name=name;
+        this.report=report;
     }
 
     public int getTestListNumber() {
@@ -19,6 +20,8 @@ public class ObjectInfo {
     public void setTestListNumber(int testListNumber) {
         this.testListNumber = testListNumber;
     }
+
+    public String getReport() {return report;}
 
     public String getCategory() {
         return category;

@@ -41,6 +41,7 @@ public class AddReports extends Task {
                 Update_SQL_Query query = new Update_SQL_Query(report);
                 int size = query.getSqlStatement().size();
                 int j = 0;
+                dbc.executeStatement(connection, query.getCallStatement(report));
                 while (j < size) {
                     dbc.executeUpdateStatement(connection, query.getSqlStatement().get(j));
                     j++;

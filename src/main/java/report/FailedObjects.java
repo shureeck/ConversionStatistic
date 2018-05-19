@@ -43,7 +43,7 @@ public class FailedObjects {
             }
             else testListNumber=0;
 
-            ObjectInfo object = new ObjectInfo(testListNumber,temp[1],temp[2]);
+            ObjectInfo object = new ObjectInfo(testListNumber,temp[1],temp[2], temp[5]);
             result.add(object);
             i++;
         }

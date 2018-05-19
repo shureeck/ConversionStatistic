@@ -14,177 +14,248 @@
          <tabs>
             <Tab text="Oracle-PostgreSQL">
                <content>
-                  <ScrollPane prefViewportHeight="490.0" prefViewportWidth="800.0">
+                  <ScrollPane prefHeight="1446.0" prefViewportHeight="490.0" prefViewportWidth="800.0" prefWidth="1670.0">
                      <content>
-                        <GridPane fx:id="gridPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity">
+                        <VBox>
                            <children>
-                              <TableView id="category" fx:id="convGenStatTable" minHeight="-Infinity" prefHeight="60.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="11" GridPane.vgrow="ALWAYS">
-                                 <columns>
-                                    <TableColumn fx:id="categoryGenStat" editable="false" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" resizable="false" sortable="false" text="Categoories" />
-                                 </columns>
-                              </TableView>
-                              <Label maxHeight="25.0" maxWidth="25.0" minWidth="-Infinity" prefHeight="25.0" text="General statistic" GridPane.rowIndex="10">
-                                 <font>
-                                    <Font name="Arial" size="12.0" />
-                                 </font>
+                              <GridPane fx:id="gridPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity">
+                                 <children>
+                                    <TableView id="category" fx:id="convGenStatTable" minHeight="-Infinity" prefHeight="60.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="11" GridPane.vgrow="ALWAYS">
+                                       <columns>
+                                          <TableColumn fx:id="categoryGenStat" editable="false" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" resizable="false" sortable="false" text="Categoories" />
+                                       </columns>
+                                    </TableView>
+                                    <Label maxHeight="25.0" maxWidth="25.0" minWidth="-Infinity" prefHeight="25.0" text="General statistic" GridPane.rowIndex="10">
+                                       <font>
+                                          <Font name="Arial" size="12.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="12.0" right="12.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label maxHeight="25.0" maxWidth="25.0" minWidth="-Infinity" prefHeight="25.0" text="Failed objects" GridPane.rowIndex="12">
+                                       <font>
+                                          <Font name="Arial" size="12.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="12.0" right="12.0" />
+                                       </padding>
+                                    </Label>
+                                    <TableView fx:id="convFailedTable" minHeight="-Infinity" prefHeight="60.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="13" GridPane.vgrow="ALWAYS">
+                                       <columns>
+                                          <TableColumn fx:id="categoryFailConv" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="100.0" text="Categories" />
+                                       </columns>
+                                    </TableView>
+                                    <Label maxHeight="25.0" maxWidth="25.0" minWidth="-Infinity" prefHeight="25.0" text="Passed objects" GridPane.rowIndex="14">
+                                       <font>
+                                          <Font name="Arial" size="12.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="12.0" right="12.0" />
+                                       </padding>
+                                    </Label>
+                                    <TableView fx:id="convPassTable" minHeight="-Infinity" prefHeight="60.0" GridPane.rowIndex="15">
+                                       <columns>
+                                          <TableColumn fx:id="categoryPassConv" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" text="Categories" />
+                                       </columns>
+                                    </TableView>
+                                    <Label maxHeight="25.0" maxWidth="25.0" minWidth="-Infinity" prefHeight="25.0" text="Apply statistic">
+                                       <font>
+                                          <Font name="Arial Bold" size="14.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="12.0" right="12.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label maxHeight="25.0" maxWidth="25.0" minWidth="-Infinity" prefHeight="25.0" text="General statistic" GridPane.rowIndex="3">
+                                       <font>
+                                          <Font name="Arial" size="12.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="12.0" right="12.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label maxHeight="25.0" maxWidth="25.0" minWidth="-Infinity" prefHeight="25.0" text="Failed objects" GridPane.rowIndex="5">
+                                       <font>
+                                          <Font name="Arial" size="12.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="12.0" right="12.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label maxHeight="25.0" maxWidth="25.0" minWidth="-Infinity" prefHeight="25.0" text="Passed objects" GridPane.rowIndex="7">
+                                       <font>
+                                          <Font name="Arial" size="12.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="12.0" right="12.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label maxHeight="25.0" maxWidth="25.0" minWidth="-Infinity" prefHeight="25.0" text="Conversion statistic" GridPane.rowIndex="9">
+                                       <font>
+                                          <Font name="Arial Bold" size="14.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="12.0" right="12.0" />
+                                       </padding>
+                                    </Label>
+                                    <TableView id="category" fx:id="applyGenStatTable" minHeight="-Infinity" prefHeight="60.0" GridPane.rowIndex="4">
+                                       <columns>
+                                          <TableColumn fx:id="categoryGenStat1" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="100.0" resizable="false" text="Categoories" />
+                                       </columns>
+                                    </TableView>
+                                    <TableView fx:id="applyFailedTable" minHeight="-Infinity" prefHeight="60.0" GridPane.rowIndex="6">
+                                       <columns>
+                                          <TableColumn fx:id="categoryFailConv1" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="100.0" text="Categories" />
+                                       </columns>
+                                    </TableView>
+                                    <TableView fx:id="applyPassTable" minHeight="-Infinity" prefHeight="60.0" GridPane.rowIndex="8">
+                                       <columns>
+                                          <TableColumn fx:id="categoryPassConv1" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" text="Categories" />
+                                       </columns>
+                                    </TableView>
+                                    <Label maxHeight="25.0" maxWidth="25.0" minWidth="-Infinity" prefHeight="25.0" text="Statistic by source" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="Arial" size="12.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="12.0" right="12.0" />
+                                       </padding>
+                                    </Label>
+                                    <TableView id="category" fx:id="sorceStatistic" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="60.0" GridPane.rowIndex="2">
+                                       <columns>
+                                          <TableColumn fx:id="categoryGenStat11" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" resizable="false" text="Categoories" />
+                                       </columns>
+                                    </TableView>
+                                    <Label maxHeight="25.0" maxWidth="25.0" minWidth="-Infinity" prefHeight="25.0" text="Error statistic" GridPane.rowIndex="16">
+                                       <font>
+                                          <Font name="Arial Bold" size="14.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="12.0" right="12.0" />
+                                       </padding>
+                                    </Label>
+                                    <TableView fx:id="errorTable" minHeight="-Infinity" prefHeight="60.0" GridPane.rowIndex="17">
+                                       <columns>
+                                          <TableColumn fx:id="categoryFailConv11" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="100.0" text="Categories" />
+                                       </columns>
+                                    </TableView>
+                                    <Label maxHeight="25.0" maxWidth="25.0" minWidth="-Infinity" prefHeight="25.0" text="Action Items statistic" GridPane.rowIndex="18">
+                                       <font>
+                                          <Font name="Arial Bold" size="14.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="12.0" right="12.0" />
+                                       </padding>
+                                    </Label>
+                                    <TableView fx:id="actionItemsTable" minHeight="-Infinity" prefHeight="60.0" GridPane.rowIndex="19">
+                                       <columns>
+                                          <TableColumn fx:id="categoryFailConv111" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="100.0" text="Categories" />
+                                       </columns>
+                                    </TableView>
+                                 </children>
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                 </columnConstraints>
+                                 <opaqueInsets>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </opaqueInsets>
                                  <padding>
-                                    <Insets left="12.0" right="12.0" />
+                                    <Insets bottom="5.0" left="5.0" right="5.0" />
                                  </padding>
-                              </Label>
-                              <Label maxHeight="25.0" maxWidth="25.0" minWidth="-Infinity" prefHeight="25.0" text="Failed objects" GridPane.rowIndex="12">
-                                 <font>
-                                    <Font name="Arial" size="12.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets left="12.0" right="12.0" />
-                                 </padding>
-                              </Label>
-                              <TableView fx:id="convFailedTable" minHeight="-Infinity" prefHeight="60.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="13" GridPane.vgrow="ALWAYS">
-                                 <columns>
-                                    <TableColumn fx:id="categoryFailConv" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="100.0" text="Categories" />
-                                 </columns>
-                              </TableView>
-                              <Label maxHeight="25.0" maxWidth="25.0" minWidth="-Infinity" prefHeight="25.0" text="Passed objects" GridPane.rowIndex="14">
-                                 <font>
-                                    <Font name="Arial" size="12.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets left="12.0" right="12.0" />
-                                 </padding>
-                              </Label>
-                              <TableView fx:id="convPassTable" minHeight="-Infinity" prefHeight="60.0" GridPane.rowIndex="15">
-                                 <columns>
-                                    <TableColumn fx:id="categoryPassConv" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" text="Categories" />
-                                 </columns>
-                              </TableView>
-                              <Label maxHeight="25.0" maxWidth="25.0" minWidth="-Infinity" prefHeight="25.0" text="Apply statistic">
-                                 <font>
-                                    <Font name="Arial Bold" size="14.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets left="12.0" right="12.0" />
-                                 </padding>
-                              </Label>
-                              <Label maxHeight="25.0" maxWidth="25.0" minWidth="-Infinity" prefHeight="25.0" text="General statistic" GridPane.rowIndex="3">
-                                 <font>
-                                    <Font name="Arial" size="12.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets left="12.0" right="12.0" />
-                                 </padding>
-                              </Label>
-                              <Label maxHeight="25.0" maxWidth="25.0" minWidth="-Infinity" prefHeight="25.0" text="Failed objects" GridPane.rowIndex="5">
-                                 <font>
-                                    <Font name="Arial" size="12.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets left="12.0" right="12.0" />
-                                 </padding>
-                              </Label>
-                              <Label maxHeight="25.0" maxWidth="25.0" minWidth="-Infinity" prefHeight="25.0" text="Passed objects" GridPane.rowIndex="7">
-                                 <font>
-                                    <Font name="Arial" size="12.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets left="12.0" right="12.0" />
-                                 </padding>
-                              </Label>
-                              <Label maxHeight="25.0" maxWidth="25.0" minWidth="-Infinity" prefHeight="25.0" text="Conversion statistic" GridPane.rowIndex="9">
-                                 <font>
-                                    <Font name="Arial Bold" size="14.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets left="12.0" right="12.0" />
-                                 </padding>
-                              </Label>
-                              <TableView id="category" fx:id="applyGenStatTable" minHeight="-Infinity" prefHeight="60.0" GridPane.rowIndex="4">
-                                 <columns>
-                                    <TableColumn fx:id="categoryGenStat1" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="100.0" resizable="false" text="Categoories" />
-                                 </columns>
-                              </TableView>
-                              <TableView fx:id="applyFailedTable" minHeight="-Infinity" prefHeight="60.0" GridPane.rowIndex="6">
-                                 <columns>
-                                    <TableColumn fx:id="categoryFailConv1" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="100.0" text="Categories" />
-                                 </columns>
-                              </TableView>
-                              <TableView fx:id="applyPassTable" minHeight="-Infinity" prefHeight="60.0" GridPane.rowIndex="8">
-                                 <columns>
-                                    <TableColumn fx:id="categoryPassConv1" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" text="Categories" />
-                                 </columns>
-                              </TableView>
-                              <Label maxHeight="25.0" maxWidth="25.0" minWidth="-Infinity" prefHeight="25.0" text="Statistic by source" GridPane.rowIndex="1">
-                                 <font>
-                                    <Font name="Arial" size="12.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets left="12.0" right="12.0" />
-                                 </padding>
-                              </Label>
-                              <TableView id="category" fx:id="sorceStatistic" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="60.0" GridPane.rowIndex="2">
-                                 <columns>
-                                    <TableColumn fx:id="categoryGenStat11" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" resizable="false" text="Categoories" />
-                                 </columns>
-                              </TableView>
-                              <Label maxHeight="25.0" maxWidth="25.0" minWidth="-Infinity" prefHeight="25.0" text="Error statistic" GridPane.rowIndex="16">
-                                 <font>
-                                    <Font name="Arial Bold" size="14.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets left="12.0" right="12.0" />
-                                 </padding>
-                              </Label>
-                              <TableView fx:id="errorTable" minHeight="-Infinity" prefHeight="60.0" GridPane.rowIndex="17">
-                                 <columns>
-                                    <TableColumn fx:id="categoryFailConv11" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="100.0" text="Categories" />
-                                 </columns>
-                              </TableView>
-                              <Label maxHeight="25.0" maxWidth="25.0" minWidth="-Infinity" prefHeight="25.0" text="Action Items statistic" GridPane.rowIndex="18">
-                                 <font>
-                                    <Font name="Arial Bold" size="14.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets left="12.0" right="12.0" />
-                                 </padding>
-                              </Label>
-                              <TableView fx:id="actionItemsTable" minHeight="-Infinity" prefHeight="60.0" GridPane.rowIndex="19">
-                                 <columns>
-                                    <TableColumn fx:id="categoryFailConv111" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="100.0" text="Categories" />
-                                 </columns>
-                              </TableView>
+                                 <rowConstraints>
+                                    <RowConstraints fillHeight="false" maxHeight="25.0" minHeight="25.0" percentHeight="0.0" prefHeight="25.0" valignment="CENTER" />
+                                    <RowConstraints fillHeight="false" maxHeight="25.0" minHeight="25.0" percentHeight="0.0" prefHeight="30.0" valignment="CENTER" />
+                                    <RowConstraints fillHeight="false" minHeight="25.0" percentHeight="0.0" valignment="CENTER" />
+                                    <RowConstraints fillHeight="false" maxHeight="25.0" minHeight="25.0" percentHeight="0.0" prefHeight="25.0" valignment="CENTER" />
+                                    <RowConstraints fillHeight="false" minHeight="25.0" percentHeight="0.0" valignment="CENTER" />
+                                    <RowConstraints fillHeight="false" maxHeight="25.0" minHeight="25.0" percentHeight="0.0" prefHeight="25.0" valignment="CENTER" />
+                                    <RowConstraints fillHeight="false" minHeight="25.0" percentHeight="0.0" valignment="CENTER" />
+                                    <RowConstraints fillHeight="false" maxHeight="25.0" minHeight="25.0" percentHeight="0.0" prefHeight="25.0" valignment="CENTER" />
+                                    <RowConstraints fillHeight="false" minHeight="25.0" percentHeight="0.0" valignment="CENTER" />
+                                    <RowConstraints fillHeight="false" maxHeight="25.0" minHeight="25.0" percentHeight="0.0" prefHeight="25.0" valignment="CENTER" />
+                                    <RowConstraints fillHeight="false" maxHeight="25.0" minHeight="25.0" percentHeight="0.0" prefHeight="25.0" valignment="CENTER" />
+                                    <RowConstraints maxHeight="1.7976931348623157E308" valignment="TOP" vgrow="ALWAYS" />
+                                    <RowConstraints fillHeight="false" maxHeight="25.0" minHeight="25.0" percentHeight="-0.0" prefHeight="25.0" valignment="TOP" vgrow="ALWAYS" />
+                                    <RowConstraints maxHeight="1.7976931348623157E308" valignment="TOP" vgrow="ALWAYS" />
+                                    <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="25.0" valignment="TOP" vgrow="ALWAYS" />
+                                    <RowConstraints maxHeight="1.7976931348623157E308" valignment="TOP" vgrow="ALWAYS" />
+                                    <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="ALWAYS" />
+                                    <RowConstraints minHeight="10.0" valignment="TOP" vgrow="ALWAYS" />
+                                    <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="ALWAYS" />
+                                    <RowConstraints minHeight="10.0" valignment="TOP" vgrow="ALWAYS" />
+                                    <RowConstraints vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity" valignment="TOP" vgrow="ALWAYS" />
+                                 </rowConstraints>
+                              </GridPane>
+                              <GridPane minHeight="-Infinity" minWidth="-Infinity">
+                                <columnConstraints>
+                                    <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="-Infinity" />
+                                    <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="-Infinity" />
+                                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="-Infinity" />
+                                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="-Infinity" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="1.7976931348623157E308" valignment="TOP" vgrow="ALWAYS" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" text="Apply failed objects" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" text="Conversion failed objects" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" text="Error-test failed objects" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" text="AI failed objects" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TableView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+                                      <columns>
+                                        <TableColumn editable="false" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="150.0" sortable="false" text="Object type" />
+                                        <TableColumn editable="false" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="200.0" resizable="false" sortable="false" text="Object name" />
+                                          <TableColumn editable="false" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="70.0" sortable="false" text="Build" />
+                                          <TableColumn maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" resizable="false" text="Comment" />
+                                      </columns>
+                                    </TableView>
+                                    <TableView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <columns>
+                                          <TableColumn editable="false" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="150.0" sortable="false" text="Object type" />
+                                          <TableColumn editable="false" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="200.0" resizable="false" sortable="false" text="Object name" />
+                                          <TableColumn editable="false" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="70.0" sortable="false" text="Build" />
+                                          <TableColumn maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" resizable="false" text="Comment" />
+                                       </columns>
+                                    </TableView>
+                                    <TableView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                       <columns>
+                                          <TableColumn editable="false" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="150.0" sortable="false" text="Object type" />
+                                          <TableColumn editable="false" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="200.0" resizable="false" sortable="false" text="Object name" />
+                                          <TableColumn editable="false" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="70.0" sortable="false" text="Build" />
+                                          <TableColumn maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" resizable="false" text="Comment" />
+                                       </columns>
+                                    </TableView>
+                                    <TableView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                       <columns>
+                                          <TableColumn editable="false" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="150.0" sortable="false" text="Object type" />
+                                          <TableColumn editable="false" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="200.0" resizable="false" sortable="false" text="Object name" />
+                                          <TableColumn editable="false" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="70.0" sortable="false" text="Build" />
+                                          <TableColumn maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" resizable="false" text="Comment" />
+                                       </columns>
+                                    </TableView>
+                                 </children>
+                              </GridPane>
                            </children>
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                           </columnConstraints>
-                           <opaqueInsets>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </opaqueInsets>
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" />
-                           </padding>
-                           <rowConstraints>
-                              <RowConstraints fillHeight="false" maxHeight="25.0" minHeight="25.0" percentHeight="0.0" prefHeight="25.0" valignment="CENTER" />
-                              <RowConstraints fillHeight="false" maxHeight="25.0" minHeight="25.0" percentHeight="0.0" prefHeight="30.0" valignment="CENTER" />
-                              <RowConstraints fillHeight="false" minHeight="25.0" percentHeight="0.0" valignment="CENTER" />
-                              <RowConstraints fillHeight="false" maxHeight="25.0" minHeight="25.0" percentHeight="0.0" prefHeight="25.0" valignment="CENTER" />
-                              <RowConstraints fillHeight="false" minHeight="25.0" percentHeight="0.0" valignment="CENTER" />
-                              <RowConstraints fillHeight="false" maxHeight="25.0" minHeight="25.0" percentHeight="0.0" prefHeight="25.0" valignment="CENTER" />
-                              <RowConstraints fillHeight="false" minHeight="25.0" percentHeight="0.0" valignment="CENTER" />
-                              <RowConstraints fillHeight="false" maxHeight="25.0" minHeight="25.0" percentHeight="0.0" prefHeight="25.0" valignment="CENTER" />
-                              <RowConstraints fillHeight="false" minHeight="25.0" percentHeight="0.0" valignment="CENTER" />
-                              <RowConstraints fillHeight="false" maxHeight="25.0" minHeight="25.0" percentHeight="0.0" prefHeight="25.0" valignment="CENTER" />
-                              <RowConstraints fillHeight="false" maxHeight="25.0" minHeight="25.0" percentHeight="0.0" prefHeight="25.0" valignment="CENTER" />
-                              <RowConstraints maxHeight="1.7976931348623157E308" valignment="TOP" vgrow="ALWAYS" />
-                              <RowConstraints fillHeight="false" maxHeight="25.0" minHeight="25.0" percentHeight="-0.0" prefHeight="25.0" valignment="TOP" vgrow="ALWAYS" />
-                              <RowConstraints maxHeight="1.7976931348623157E308" valignment="TOP" vgrow="ALWAYS" />
-                              <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="25.0" valignment="TOP" vgrow="ALWAYS" />
-                              <RowConstraints maxHeight="1.7976931348623157E308" valignment="TOP" vgrow="ALWAYS" />
-                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="ALWAYS" />
-                              <RowConstraints minHeight="10.0" valignment="TOP" vgrow="ALWAYS" />
-                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="ALWAYS" />
-                              <RowConstraints minHeight="10.0" valignment="TOP" vgrow="ALWAYS" />
-                              <RowConstraints vgrow="SOMETIMES" />
-                           </rowConstraints>
-                        </GridPane>
+                        </VBox>
                      </content>
                   </ScrollPane>
                </content>
