@@ -14,6 +14,7 @@ public class StringsConstant {
     public static final String TOTAL_ITEMS = "Total items";
     public static final String PASSED = "Passed";
     public static final String FAILED = "Failed";
+    public static final String FAILED_OBJECTS = "Failed_Objects";
     public static final String BUILD = "build";
     public static final String CATEGORY = "category";
     public static final String CHOSE_REPORTS_FOLDER = "Chose reports folder";

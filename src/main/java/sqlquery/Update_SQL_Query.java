@@ -31,7 +31,7 @@ public class Update_SQL_Query {
        result.addAll(getGeneralStatisticQuery(report, TABLE_APPLY_GENERAL_STATISTIC));
        result.addAll(getStatisticByCategoriesQuery(report, TABLE_APPLY_BY_CATEGORIES));
        result.addAll(getStatisticBySourceQuery(report, TABLE_STATISTIC_BY_SOURCE));
-       result.addAll(getFailedObjectQuery(report, APPLY_FAILED_OBJECTS));
+       result.addAll(getFailedObjectQuery(report, TABLE_APPLY_FAILED_OBJECTS));
        return result;
     }
 
@@ -39,6 +39,7 @@ public class Update_SQL_Query {
         ArrayList<String> result = new ArrayList<>();
         result.addAll(getGeneralStatisticQuery(report,TABLE_CONVERSION_GENERAL_STATISTIC));
         result.addAll(getStatisticByCategoriesQuery(report, TABLE_CONVERSION_BY_CATEGORIES));
+        result.addAll(getFailedObjectQuery(report, TABLE_CONVERSION_FAILED_OBJECTS));
         return result;
     }
 
@@ -55,17 +56,19 @@ public class Update_SQL_Query {
             result.add(String.format(REPLACE_INTO, args));
             i++;
         }
+        result.addAll(getFailedObjectQuery(report, TABLE_ERRORS_FAILED_OBJECTS));
         return result;
     }
 
     private ArrayList<String> buildActionItemsStatement(Report report){
         ArrayList<String> result = new ArrayList<>();
         result.addAll(getGeneralStatisticQuery(report, TABLE_ACTION_ITEMS_GENERAL_STATISTIC ));
+        result.addAll(getFailedObjectQuery(report, TABLE_ACTION_ITEMS_FAILED_OBJECTS));
     return result;
     }
 
     public String getCallStatement(Report report){
-        String callStetment = String.format(CALL_CHANGE_TO_TRUE, APPLY_FAILED_OBJECTS, report.getFolder() );
+        String callStetment = String.format(CALL_CHANGE_TO_TRUE, TABLE_APPLY_FAILED_OBJECTS, report.getFolder() );
         return callStetment;
 
     }
@@ -128,7 +131,7 @@ public class Update_SQL_Query {
             String category = report.getFailedObjects().get(i).getCategory();
             String objectName = report.getFailedObjects().get(i).getName();
             String testlistNumber =String.valueOf(report.getFailedObjects().get(i).getTestListNumber());
-            String errorReport = report.getFailedObjects().get(i).getReport();
+            String errorReport = (report.getFailedObjects().get(i).getReport()).replaceAll("\"","");
             String [] values ={testlistNumber, category, objectName, String.valueOf(report.getBuildNumber()), report.getFolder(), report.getPair(), FALSE, errorReport};
             String valuesFaileObjects = String.format(VALUES_FAILED_OBJECTS, values);
 

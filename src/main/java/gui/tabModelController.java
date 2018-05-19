@@ -10,10 +10,12 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.MapValueFactory;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.GridPane;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
+import report.ObjectInfo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -45,14 +47,30 @@ public class tabModelController{
     private TabPane tabPane = new TabPane();
     @FXML
     private GridPane gridPane = new GridPane();
+    @FXML
+    private TableView<ObjectInfo> applyFailedObjects = new TableView<>();
+    @FXML
+    private GridPane gridPaneFailedObjects = new GridPane();
+    @FXML
+    private TableView<ObjectInfo> aiFailedObjects = new TableView<>();
+    @FXML
+    private TableView<ObjectInfo> errorFailedObjects = new TableView<>();
+    @FXML
+    private TableView<ObjectInfo> conversionFailedObjects = new TableView<>();
 
     public Node Refresh(String tabId) {
 
         ArrayList<Node> tablesList = new ArrayList<>(gridPane.getChildren().filtered((p) -> (p.getStyleClass().get(0).equalsIgnoreCase(TABLE_VIEW))));
+        ArrayList<Node> tablesFailedObjects = new ArrayList<>(gridPaneFailedObjects.getChildren().filtered((p) -> (p.getStyleClass().get(0).equalsIgnoreCase(TABLE_VIEW))));
 
         //Clear table data
         int i = 0;
         while (i < tablesList.size()) {
+            ((TableView) tablesList.get(i)).getItems().clear();
+            i++;
+        }
+       i = 0;
+        while (i <  tablesFailedObjects.size()) {
             ((TableView) tablesList.get(i)).getItems().clear();
             i++;
         }
@@ -86,6 +104,11 @@ public class tabModelController{
         getDataFormDB(TABLE_CONVERSION_BY_CATEGORIES, convPassTable, PASSED, tabId);
         getDataFormDB(TABLE_ERRORS_BY_CATEGORIES, errorTable, FAILED, tabId);
         getDataFormDB(TABLE_ACTION_ITEMS_GENERAL_STATISTIC, actionItemsTable, "", tabId);
+
+        getFailedObjectsFromDB(TABLE_APPLY_FAILED_OBJECTS, applyFailedObjects, tabId);
+        getFailedObjectsFromDB(TABLE_CONVERSION_FAILED_OBJECTS, conversionFailedObjects, tabId);
+        getFailedObjectsFromDB(TABLE_ERRORS_FAILED_OBJECTS, errorFailedObjects, tabId);
+        getFailedObjectsFromDB(TABLE_ACTION_ITEMS_FAILED_OBJECTS, aiFailedObjects, tabId);
 
         //Set height of table
         double hight;
@@ -162,7 +185,7 @@ public class tabModelController{
         }
     }
 
-    public void getDataFormDB(String dataBaseTable, TableView<Map> uiTable, String type, String tabId) {
+    public void getDataFormDB(String dataBaseTable, TableView uiTable, String type, String tabId) {
         Reload temp = new Reload();
         ArrayList<String> cagoriesList = new ArrayList<>(temp.getCategories(dataBaseTable, tabId));
         HashMap<String, String> tables = new HashMap<>();
@@ -170,16 +193,23 @@ public class tabModelController{
         while (i < cagoriesList.size()) {
             if (type.equalsIgnoreCase(PASSED) || type.equalsIgnoreCase(FAILED)) {
                 tables.putAll(temp.reload(dataBaseTable, cagoriesList.get(i), tabId, type));
-            } else
-                tables.putAll(temp.reload(dataBaseTable, cagoriesList.get(i), tabId));
-            initialize(tables, uiTable);
+            }
+            else{tables.putAll(temp.reload(dataBaseTable, cagoriesList.get(i), tabId));}
+
+            if (tables.size()>0){ initialize(tables, uiTable);}
+
             tables.clear();
             i++;
         }
     }
 
-    public void decorateTable(TableView table) {
+    public void  getFailedObjectsFromDB(String dataBaseTable, TableView uiTable, String tabId){
+        Reload temp = new Reload();
+        ObservableList<ObjectInfo> failedObjectList = FXCollections.observableArrayList(temp.reloadFailedObject(dataBaseTable, tabId));
+        fillFailedObjects(uiTable, failedObjectList);
+    }
 
+    public void decorateTable(TableView table) {
         if (table.getItems().size()>1) {
             TableColumn first = (TableColumn) table.getColumns().get(1);
 
@@ -226,4 +256,14 @@ public class tabModelController{
         return redIdSList;
     }
 
+    public void fillFailedObjects(TableView tableUI, ObservableList<ObjectInfo> failedObjects){
+        ArrayList<TableColumn<ObjectInfo, String>> columnsList = new ArrayList<>(tableUI.getColumns());
+        columnsList.get(0).setCellValueFactory(new PropertyValueFactory<>("Category"));
+        columnsList.get(1).setCellValueFactory(new PropertyValueFactory<>("Name"));
+        columnsList.get(2).setCellValueFactory(new PropertyValueFactory<>("Report"));
+        tableUI.setItems(failedObjects);
+
+        tableUI.setFixedCellSize(25);
+        tableUI.setPrefHeight(failedObjects.size()*25+26);
+    }
 }

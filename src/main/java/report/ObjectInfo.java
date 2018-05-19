@@ -5,12 +5,19 @@ public class ObjectInfo {
     private String category;
     private String name;
     private String report;
+    private boolean fixed;
 
     public ObjectInfo(int testListNumber, String category, String name, String report){
         this.testListNumber=testListNumber;
         this.category=category;
         this.name=name;
         this.report=report;
+    }
+    public ObjectInfo(int testListNumber, String category, String name, String report, boolean fixed){
+        this.testListNumber=testListNumber;
+        this.category=category;
+        this.name=name;
+        this.fixed = fixed;
     }
 
     public int getTestListNumber() {

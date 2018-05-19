@@ -1,5 +1,6 @@
 package actions;
 
+import report.ObjectInfo;
 import sqlquery.DataBaseConnection;
 import sqlquery.SelectSQLQuery;
 
@@ -93,6 +94,28 @@ public class Reload {
         }
 
         return builds;
+    }
+
+    public ArrayList<ObjectInfo> reloadFailedObject(String tableName, String tabId){
+        ArrayList <ObjectInfo> failedObjects = new ArrayList<>();
+        String args[] ={tableName, tabId};
+        String statement =String.format(  SELECT_ALL_FROM_FAILED_OBJECT, args);
+
+        DataBaseConnection dbc = new DataBaseConnection(BASE, BASE_LOGIN, BASE_PASSWORD);
+        Connection connection = dbc.connectToDatabase();
+
+        ResultSet resultSet = dbc.executeStatement(connection, statement);
+
+        try {
+            while (resultSet.next()) {
+                failedObjects.add(new ObjectInfo(0, resultSet.getString(1), resultSet.getString(2),
+                        resultSet.getString(3), Boolean.valueOf(resultSet.getString(4))));
+            }
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return failedObjects;
     }
 
 }

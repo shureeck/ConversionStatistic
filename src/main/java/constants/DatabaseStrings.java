@@ -12,7 +12,10 @@ public class DatabaseStrings {
     public static final String TABLE_CONVERSION_GENERAL_STATISTIC = " conversion_general_statistic ";
     public static final String TABLE_CONVERSION_BY_CATEGORIES = " conversion_by_categories ";
     public static final String TABLE_ERRORS_BY_CATEGORIES =  " errors_by_categories ";
-    public static final String APPLY_FAILED_OBJECTS = "apply_failed_objects";
+    public static final String TABLE_APPLY_FAILED_OBJECTS = "apply_failed_objects";
+    public static final String TABLE_ACTION_ITEMS_FAILED_OBJECTS = "actionitems_failed_objects";
+    public static final String TABLE_CONVERSION_FAILED_OBJECTS = "conversion_failed_objects";
+    public static final String TABLE_ERRORS_FAILED_OBJECTS = "error_failed_objects";
 
     public static final String VALUES_STATISTIC = "%s, \"%s\", %s,\"%s\",\"%s\"";
     public static final String VALUES_STATISTIC_BY_CATEGORIES = "%s, \"%s\", %s, %s , \"%s\",\"%s\"";
@@ -36,6 +39,9 @@ public class DatabaseStrings {
     public static final String SELECT_CATEGORIES = "SELECT DISTINCT category FROM %s WHERE tab = \"%s\"";
     public static final String SELECT_ALL_FROM_WHERE_AND = "SELECT * FROM %s WHERE category =\"%s\" AND tab =\"%s\" ";
     public static final String CALL_CHANGE_TO_TRUE = "CALL changeToTrue(\"%s\", \"%s\")";
+    public static final String SELECT_ALL_FROM_FAILED_OBJECT = "SELECT objecttype, objectname, comment, delete_object FROM %s WHERE tab =\"%s\"";
+
+
 
 
 }
