@@ -4,19 +4,22 @@ import actions.Reload;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.MapValueFactory;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 import report.ObjectInfo;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -133,6 +136,61 @@ public class tabModelController{
     private void initialize(HashMap<String, String> tables, TableView<Map> tableName) {
         tableName.getItems().addAll(initData(tables));
         fillData(tableName);
+
+        applyFailedObjects.setRowFactory(tv->{
+        TableRow<ObjectInfo> tableRow = new TableRow<>();
+        tableRow.setOnMouseClicked(event -> {
+            if (event. getClickCount()==2 && (!tableRow.isEmpty())){
+                try {
+                    loadObjectInfo(tableRow.getItem(), tableRow.getTableView().getId());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+            return tableRow;
+    });
+        conversionFailedObjects.setRowFactory(tv->{
+            TableRow<ObjectInfo> tableRow = new TableRow<>();
+            tableRow.setOnMouseClicked(event -> {
+                if (event. getClickCount()==2 && (!tableRow.isEmpty())){
+                    try {
+                        loadObjectInfo(tableRow.getItem(), tableRow.getTableView().getId());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            return tableRow;
+        });
+        aiFailedObjects.setRowFactory(tv->{
+            TableRow<ObjectInfo> tableRow = new TableRow<>();
+            tableRow.setOnMouseClicked(event -> {
+                if (event. getClickCount()==2 && (!tableRow.isEmpty())){
+                    try {
+                        loadObjectInfo(tableRow.getItem(), tableRow.getTableView().getId());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            return tableRow;
+        });
+        errorFailedObjects.setRowFactory(tv->{
+            TableRow<ObjectInfo> tableRow = new TableRow<>();
+            tableRow.setOnMouseClicked(event -> {
+                if (event. getClickCount()==2 && (!tableRow.isEmpty())){
+                    try {
+                        loadObjectInfo(tableRow.getItem(), tableRow.getTableView().getId());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            return tableRow;
+        });
+
+
 
     }
 
@@ -260,10 +318,25 @@ public class tabModelController{
         ArrayList<TableColumn<ObjectInfo, String>> columnsList = new ArrayList<>(tableUI.getColumns());
         columnsList.get(0).setCellValueFactory(new PropertyValueFactory<>("Category"));
         columnsList.get(1).setCellValueFactory(new PropertyValueFactory<>("Name"));
-        columnsList.get(2).setCellValueFactory(new PropertyValueFactory<>("Report"));
+        columnsList.get(2).setCellValueFactory(new PropertyValueFactory<>("Comment"));
         tableUI.setItems(failedObjects);
 
         tableUI.setFixedCellSize(25);
         tableUI.setPrefHeight(failedObjects.size()*25+26);
+    }
+    public void loadObjectInfo(ObjectInfo failedObject, String tableId) throws IOException{
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("objectinfogui.fxml"));
+        AnchorPane pane = loader.load();
+
+        ObjectInfoController objectinfoController = loader.getController();
+        objectinfoController.setData(failedObject, tableId);
+        Stage objectInfoStage = new Stage();
+        objectInfoStage.setResizable(false);
+        objectInfoStage.setTitle(OBJECT_INFO);
+        objectInfoStage.initModality(Modality.APPLICATION_MODAL);
+        Scene scene = new Scene(pane);
+        objectInfoStage.setScene(scene);
+        objectInfoStage.showAndWait();
     }
 }

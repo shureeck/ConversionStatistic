@@ -39,7 +39,10 @@ public class DatabaseStrings {
     public static final String SELECT_CATEGORIES = "SELECT DISTINCT category FROM %s WHERE tab = \"%s\"";
     public static final String SELECT_ALL_FROM_WHERE_AND = "SELECT * FROM %s WHERE category =\"%s\" AND tab =\"%s\" ";
     public static final String CALL_CHANGE_TO_TRUE = "CALL changeToTrue(\"%s\", \"%s\")";
-    public static final String SELECT_ALL_FROM_FAILED_OBJECT = "SELECT objecttype, objectname, comment, delete_object FROM %s WHERE tab =\"%s\"";
+    public static final String SELECT_ALL_FROM_FAILED_OBJECT = "SELECT * FROM %s WHERE tab =\"%s\"";
+    public static final String SELECT_OBJECT_INFO = "SELECT * FROM %s WHERE objectname = \"%s\" AND objecttype = \"%s\" AND tab = \"%s\";";
+    public static final String UPDATE_COMMENT = "UPDATE %s SET comment = \"%s\" WHERE objecttype =\"%s\" AND objectname=\"%s\" AND tab=\"%s\";";
+
 
 
 

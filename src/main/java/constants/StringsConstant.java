@@ -19,6 +19,7 @@ public class StringsConstant {
     public static final String CATEGORY = "category";
     public static final String CHOSE_REPORTS_FOLDER = "Chose reports folder";
     public static final String ADD_NEW_TAB = "Add New Tab";
+    public static final String OBJECT_INFO = "Object Info";
     public static final String CSV = ".csv";
     public static final String TAB = "tab";
     public static final String TABS = "Tabs";
@@ -38,6 +39,13 @@ public class StringsConstant {
     public static final String ANALYZE = "Analyze";
     public static final String EXAMPLE = "Example";
     public static final String FALSE = "false";
+
+    public static final String TESTLIST_NUMBER ="test_list_number";
+    public static final String OBJECTTYPE = "objecttype";
+    public static final String OBJECTNAME = "objectname";
+    public static final String REPORT ="report";
+    public static final String COMMENT = "comment";
+    public static final String DELETE_OBJECT = "delete_object";
 
 
 

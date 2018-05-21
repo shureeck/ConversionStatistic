@@ -1,5 +1,7 @@
 package sqlquery;
 
+import report.ObjectInfo;
+
 import static constants.DatabaseStrings.*;
 
 public class SelectSQLQuery {
@@ -14,4 +16,13 @@ public class SelectSQLQuery {
         String args[]={tableName, tabId};
         return  String.format(SELECT_CATEGORIES, args);
     }
+
+    public String selectObjectInfo(ObjectInfo objectInfo){
+        String query=null;
+        String objectType = objectInfo.getCategory();
+        String objectName = objectInfo.getName();
+
+        return query;
+    }
+
 }

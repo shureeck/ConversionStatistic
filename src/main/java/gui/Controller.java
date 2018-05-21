@@ -160,10 +160,7 @@ public class Controller {
             @Override
             public void run() {
                 TabModel tabModel = new TabModel();
-                targetTab.setContent(tabModel.getController().Refresh(targetTab.getId()));
-                ;
-
-            }
+                targetTab.setContent(tabModel.getController().Refresh(targetTab.getId()));            }
         });
 
     }

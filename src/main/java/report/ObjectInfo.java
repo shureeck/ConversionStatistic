@@ -6,6 +6,9 @@ public class ObjectInfo {
     private String name;
     private String report;
     private boolean fixed;
+    private int build;
+    private String tab;
+    private String comment;
 
     public ObjectInfo(int testListNumber, String category, String name, String report){
         this.testListNumber=testListNumber;
@@ -13,11 +16,15 @@ public class ObjectInfo {
         this.name=name;
         this.report=report;
     }
-    public ObjectInfo(int testListNumber, String category, String name, String report, boolean fixed){
+    public ObjectInfo(int testListNumber, String category, String name, String report, boolean fixed, int build, String tab, String comment){
         this.testListNumber=testListNumber;
         this.category=category;
         this.name=name;
         this.fixed = fixed;
+        this.report = report;
+        this.build = build;
+        this.tab = tab;
+        this.comment=comment;
     }
 
     public int getTestListNumber() {
@@ -42,7 +49,11 @@ public class ObjectInfo {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public void setName(String name) {this.name = name;}
+
+    public String getTab (){return tab;}
+
+    public int getBuild () {return build;}
+
+    public String getComment() { return comment; }
 }
