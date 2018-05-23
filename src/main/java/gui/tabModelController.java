@@ -142,7 +142,7 @@ public class tabModelController{
         tableRow.setOnMouseClicked(event -> {
             if (event. getClickCount()==2 && (!tableRow.isEmpty())){
                 try {
-                    loadObjectInfo(tableRow.getItem(), tableRow.getTableView().getId());
+                    loadObjectInfo(tableRow.getItem(), tableRow.getTableView());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -155,7 +155,7 @@ public class tabModelController{
             tableRow.setOnMouseClicked(event -> {
                 if (event. getClickCount()==2 && (!tableRow.isEmpty())){
                     try {
-                        loadObjectInfo(tableRow.getItem(), tableRow.getTableView().getId());
+                        loadObjectInfo(tableRow.getItem(), tableRow.getTableView());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -168,7 +168,7 @@ public class tabModelController{
             tableRow.setOnMouseClicked(event -> {
                 if (event. getClickCount()==2 && (!tableRow.isEmpty())){
                     try {
-                        loadObjectInfo(tableRow.getItem(), tableRow.getTableView().getId());
+                        loadObjectInfo(tableRow.getItem(), tableRow.getTableView());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -181,7 +181,7 @@ public class tabModelController{
             tableRow.setOnMouseClicked(event -> {
                 if (event. getClickCount()==2 && (!tableRow.isEmpty())){
                     try {
-                        loadObjectInfo(tableRow.getItem(), tableRow.getTableView().getId());
+                        loadObjectInfo(tableRow.getItem(), tableRow.getTableView());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -324,13 +324,13 @@ public class tabModelController{
         tableUI.setFixedCellSize(25);
         tableUI.setPrefHeight(failedObjects.size()*25+26);
     }
-    public void loadObjectInfo(ObjectInfo failedObject, String tableId) throws IOException{
+    public void loadObjectInfo(ObjectInfo failedObject, TableView table) throws IOException{
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("objectinfogui.fxml"));
         AnchorPane pane = loader.load();
 
         ObjectInfoController objectinfoController = loader.getController();
-        objectinfoController.setData(failedObject, tableId);
+        objectinfoController.setData(failedObject, table.getId());
         Stage objectInfoStage = new Stage();
         objectInfoStage.setResizable(false);
         objectInfoStage.setTitle(OBJECT_INFO);
@@ -338,5 +338,11 @@ public class tabModelController{
         Scene scene = new Scene(pane);
         objectInfoStage.setScene(scene);
         objectInfoStage.showAndWait();
+
+        if(objectinfoController.ifOkClocked()) {
+            ObjectInfo newObjectt = objectinfoController.getFailedObject();
+            int z = table.getItems().indexOf(newObjectt);
+            table.getItems().set(z, newObjectt);
+        }
     }
 }

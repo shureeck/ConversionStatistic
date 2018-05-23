@@ -56,4 +56,6 @@ public class ObjectInfo {
     public int getBuild () {return build;}
 
     public String getComment() { return comment; }
+
+    public void setComment (String comment){this.comment=comment;}
 }

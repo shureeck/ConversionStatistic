@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 import report.ObjectInfo;
 import sqlquery.DataBaseConnection;
 
-;import java.sql.Connection;
+import java.sql.Connection;
 
 import static constants.DatabaseStrings.*;
 import static constants.DatabaseStrings.UPDATE_COMMENT;
@@ -36,14 +36,16 @@ public class ObjectInfoController {
     private TextArea reprotTextArea = new TextArea();
 
     private String tableId;
+    private boolean ifOkCliked=false;
+    private String firstComment;
 
     @FXML
     public void initialize(){
-
         commentTxtEdit.textProperty().addListener(new ChangeListener<String>() {
+            String oldComment = commentTxtEdit.getText();
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (commentTxtEdit.getText().length()!=0){
+                if (!firstComment.equals(commentTxtEdit.getText())){
                     addCommentBtn.setDisable(false);
                 }
                 else {addCommentBtn.setDisable(true);}
@@ -61,13 +63,18 @@ public class ObjectInfoController {
 
     @FXML
     public void onAddReportClickMethod(){
-        String comment = commentTxtEdit.getText();
+        String comment;
+        if(commentTxtEdit.getText()==null){comment="";}
+        else {comment = commentTxtEdit.getText();}
         String table = getDBTable(tableId);
         String args[]= {table, comment, failedObject.getCategory(), failedObject.getName(), failedObject.getTab()};
         String query = String.format(UPDATE_COMMENT, args);
         DataBaseConnection dbc = new DataBaseConnection(BASE, BASE_LOGIN, BASE_PASSWORD);
         Connection connection = dbc.connectToDatabase();
         dbc.executeUpdateStatement(connection, query);
+        failedObject.setComment(comment);
+        ifOkCliked=true;
+        onCancelClickMethod();
     }
 
     private void initFields(ObjectInfo failedObject) {
@@ -80,6 +87,7 @@ public class ObjectInfoController {
             commentTxtEdit.setText(failedObject.getComment());
         }
         else commentTxtEdit.setText("");
+        firstComment = commentTxtEdit.getText();
     }
 
     public void setData(ObjectInfo failedObject, String tableId){
@@ -104,4 +112,10 @@ public class ObjectInfoController {
         return dbTable;
     }
 
+
+    public boolean ifOkClocked(){return ifOkCliked;}
+
+    public ObjectInfo getFailedObject() {
+        return failedObject;
+    }
 }
