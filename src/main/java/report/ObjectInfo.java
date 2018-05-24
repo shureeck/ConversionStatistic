@@ -58,4 +58,6 @@ public class ObjectInfo {
     public String getComment() { return comment; }
 
     public void setComment (String comment){this.comment=comment;}
+
+    public boolean isFixed() {return fixed;}
 }

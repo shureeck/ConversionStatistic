@@ -113,6 +113,7 @@ public class tabModelController{
         getFailedObjectsFromDB(TABLE_ERRORS_FAILED_OBJECTS, errorFailedObjects, tabId);
         getFailedObjectsFromDB(TABLE_ACTION_ITEMS_FAILED_OBJECTS, aiFailedObjects, tabId);
 
+
         //Set height of table
         double hight;
         i = 0;
@@ -122,12 +123,20 @@ public class tabModelController{
             ((TableView<Map>) tablesList.get(i)).setPrefHeight(hight);
             i++;
         }
+
         decorateTable(applyGenStatTable);
         decorateTable(applyFailedTable);
         decorateTable(convGenStatTable);
         decorateTable(convFailedTable);
         decorateTable(errorTable);
         decorateTable(actionItemsTable);
+
+        highlightFailedObjects(applyFailedObjects);
+        highlightFailedObjects(conversionFailedObjects);
+        highlightFailedObjects(errorFailedObjects);
+        highlightFailedObjects(aiFailedObjects);
+
+
 
         return tabPane.getTabs().get(0).getContent();
     }
@@ -136,59 +145,11 @@ public class tabModelController{
     private void initialize(HashMap<String, String> tables, TableView<Map> tableName) {
         tableName.getItems().addAll(initData(tables));
         fillData(tableName);
+        failedObjectsListener(applyFailedObjects);
+        failedObjectsListener(conversionFailedObjects);
+        failedObjectsListener(aiFailedObjects);
+        failedObjectsListener(errorFailedObjects);
 
-        applyFailedObjects.setRowFactory(tv->{
-        TableRow<ObjectInfo> tableRow = new TableRow<>();
-        tableRow.setOnMouseClicked(event -> {
-            if (event. getClickCount()==2 && (!tableRow.isEmpty())){
-                try {
-                    loadObjectInfo(tableRow.getItem(), tableRow.getTableView());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-            return tableRow;
-    });
-        conversionFailedObjects.setRowFactory(tv->{
-            TableRow<ObjectInfo> tableRow = new TableRow<>();
-            tableRow.setOnMouseClicked(event -> {
-                if (event. getClickCount()==2 && (!tableRow.isEmpty())){
-                    try {
-                        loadObjectInfo(tableRow.getItem(), tableRow.getTableView());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-            return tableRow;
-        });
-        aiFailedObjects.setRowFactory(tv->{
-            TableRow<ObjectInfo> tableRow = new TableRow<>();
-            tableRow.setOnMouseClicked(event -> {
-                if (event. getClickCount()==2 && (!tableRow.isEmpty())){
-                    try {
-                        loadObjectInfo(tableRow.getItem(), tableRow.getTableView());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-            return tableRow;
-        });
-        errorFailedObjects.setRowFactory(tv->{
-            TableRow<ObjectInfo> tableRow = new TableRow<>();
-            tableRow.setOnMouseClicked(event -> {
-                if (event. getClickCount()==2 && (!tableRow.isEmpty())){
-                    try {
-                        loadObjectInfo(tableRow.getItem(), tableRow.getTableView());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-            return tableRow;
-        });
 
 
 
@@ -291,6 +252,33 @@ public class tabModelController{
         }
     }
 
+    public void highlightFailedObjects(TableView table) {
+        if(table.getItems().size()>0) {
+
+            table.setRowFactory((Object column) -> {
+                return new TableRow<ObjectInfo>() {
+
+                    @Override
+                    protected void updateItem(ObjectInfo item, boolean empty) {
+                        int id = table.getItems().indexOf(item);
+                        super.updateItem(item, empty);
+                        if (item != null) {
+                            if (item.isFixed()) {
+                                if (id % 2 == 0) {
+                                setStyle("-fx-background-color: 91FF91;");}
+                                else setStyle("-fx-background-color: 74CC74;");
+                            } else if (item.getComment() == null || item.getComment().equals("")) {
+                                if (id % 2 == 0) {
+                                    setStyle("-fx-background-color: F78686;");
+                                } else setStyle("-fx-background-color: fc9797;");
+                            }
+                        }
+                    }
+                };
+            });
+        }
+    }
+
     private ArrayList<Integer> checkStyle(TableView table){
         boolean result=false;
         ArrayList<Integer> redIdSList=new ArrayList<>();
@@ -324,6 +312,24 @@ public class tabModelController{
         tableUI.setFixedCellSize(25);
         tableUI.setPrefHeight(failedObjects.size()*25+26);
     }
+
+    public void failedObjectsListener(TableView<ObjectInfo> table){
+       table.setRowFactory(tv->{
+            TableRow<ObjectInfo> tableRow = new TableRow<>();
+            tableRow.setOnMouseClicked(event -> {
+                if (event. getClickCount()==2 && (!tableRow.isEmpty())){
+                    try {
+                        loadObjectInfo(tableRow.getItem(), tableRow.getTableView());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+
+            return tableRow;
+        });
+    }
+
     public void loadObjectInfo(ObjectInfo failedObject, TableView table) throws IOException{
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("objectinfogui.fxml"));

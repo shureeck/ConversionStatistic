@@ -37,7 +37,7 @@ public class ObjectInfoController {
 
     private String tableId;
     private boolean ifOkCliked=false;
-    private String firstComment;
+    private String firstComment="";
 
     @FXML
     public void initialize(){
