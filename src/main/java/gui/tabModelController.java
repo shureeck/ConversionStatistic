@@ -145,14 +145,11 @@ public class tabModelController{
     private void initialize(HashMap<String, String> tables, TableView<Map> tableName) {
         tableName.getItems().addAll(initData(tables));
         fillData(tableName);
+
         failedObjectsListener(applyFailedObjects);
         failedObjectsListener(conversionFailedObjects);
         failedObjectsListener(aiFailedObjects);
         failedObjectsListener(errorFailedObjects);
-
-
-
-
     }
 
     private ObservableList<Map> initData(HashMap<String, String> tables) {
@@ -265,12 +262,12 @@ public class tabModelController{
                         if (item != null) {
                             if (item.isFixed()) {
                                 if (id % 2 == 0) {
-                                setStyle("-fx-background-color: 91FF91;");}
-                                else setStyle("-fx-background-color: 74CC74;");
+                                setStyle("-fx-background-color: rgba(221, 255, 221, 0.6);");}
+                                else setStyle("-fx-background-color: rgba(116, 204, 116, 0.5);");
                             } else if (item.getComment() == null || item.getComment().equals("")) {
                                 if (id % 2 == 0) {
-                                    setStyle("-fx-background-color: F78686;");
-                                } else setStyle("-fx-background-color: fc9797;");
+                                    setStyle("-fx-background-color: rgba(247, 134, 134, 0.6);");
+                                } else setStyle("-fx-background-color: rgba(252, 151, 151, 0.6);");
                             }
                         }
                     }
@@ -313,20 +310,16 @@ public class tabModelController{
         tableUI.setPrefHeight(failedObjects.size()*25+26);
     }
 
-    public void failedObjectsListener(TableView<ObjectInfo> table){
-       table.setRowFactory(tv->{
-            TableRow<ObjectInfo> tableRow = new TableRow<>();
-            tableRow.setOnMouseClicked(event -> {
-                if (event. getClickCount()==2 && (!tableRow.isEmpty())){
-                    try {
-                        loadObjectInfo(tableRow.getItem(), tableRow.getTableView());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+    public void failedObjectsListener(TableView table){
+        table.setOnMouseClicked(event -> {
+            if (event. getClickCount()==2 ){
+                try {
+                    ObjectInfo obj = (ObjectInfo) table.getSelectionModel().getSelectedItem();
+                    loadObjectInfo(obj, table);
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-            });
-
-            return tableRow;
+            }
         });
     }
 

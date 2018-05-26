@@ -19,6 +19,7 @@ public class StringsConstant {
     public static final String CATEGORY = "category";
     public static final String CHOSE_REPORTS_FOLDER = "Chose reports folder";
     public static final String ADD_NEW_TAB = "Add New Tab";
+    public static final String ADD_RELESE_BUILD = "Add Release Build";
     public static final String OBJECT_INFO = "Object Info";
     public static final String CSV = ".csv";
     public static final String TAB = "tab";

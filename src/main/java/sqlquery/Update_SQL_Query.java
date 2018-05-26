@@ -11,6 +11,8 @@ public class Update_SQL_Query {
     private ArrayList<String> sqlStatement = new ArrayList<>();
     private String type;
 
+    public Update_SQL_Query(){  }
+
     public Update_SQL_Query(Report report){
         sqlStatement.addAll(buildStatement(report));
     }
@@ -140,6 +142,12 @@ public class Update_SQL_Query {
             i++;
         }
         return failedObjects;
+    }
+
+    public String addReleaseBuildQuery(String table, String releaseBuild, String currentBuild){
+        String result;
+        result= String.format(ADD_RELEASE_BUILD, table, releaseBuild, currentBuild);
+        return result;
     }
 
     public ArrayList<String> getSqlStatement() {

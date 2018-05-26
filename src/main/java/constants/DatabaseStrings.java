@@ -42,9 +42,5 @@ public class DatabaseStrings {
     public static final String SELECT_ALL_FROM_FAILED_OBJECT = "SELECT * FROM %s WHERE tab =\"%s\"";
     public static final String SELECT_OBJECT_INFO = "SELECT * FROM %s WHERE objectname = \"%s\" AND objecttype = \"%s\" AND tab = \"%s\";";
     public static final String UPDATE_COMMENT = "UPDATE %s SET comment = \"%s\" WHERE objecttype =\"%s\" AND objectname=\"%s\" AND tab=\"%s\";";
-
-
-
-
-
+    public static final String ADD_RELEASE_BUILD = "UPDATE %s SET release_build = %s WHERE build = %s;";
 }

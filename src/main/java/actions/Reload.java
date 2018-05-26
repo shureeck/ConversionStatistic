@@ -109,7 +109,7 @@ public class Reload {
         try {
             while (resultSet.next()) {
                 failedObjects.add(new ObjectInfo(resultSet.getInt(TESTLIST_NUMBER), resultSet.getString(OBJECTTYPE), resultSet.getString(OBJECTNAME),
-                                                resultSet.getString(REPORT), Boolean.valueOf(resultSet.getString(DELETE_OBJECT)),
+                                                resultSet.getString(REPORT), resultSet.getBoolean(DELETE_OBJECT),
                                                resultSet.getInt(BUILD), resultSet.getString(TAB),  resultSet.getString(COMMENT)));
             }
             connection.close();

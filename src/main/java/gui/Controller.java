@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.IOException;
 
 import static constants.StringsConstant.ADD_NEW_TAB;
+import static constants.StringsConstant.ADD_RELESE_BUILD;
 import static constants.StringsConstant.CHOSE_REPORTS_FOLDER;
 
 
@@ -73,7 +74,26 @@ public class Controller {
 
        @FXML
        public void onSetReleseBuils(){
+           FXMLLoader loader =new FXMLLoader();
+           loader.setLocation(getClass().getResource("addreleasebuild.fxml"));
+           AddReleaseBuildController controller =  loader.getController();
+           AnchorPane pane = null;
+           try {
+               pane =  loader.load();
+           } catch (IOException e1) {
+               e1.printStackTrace();
+           }
+           Stage addTabStage = new Stage();
+           addTabStage.setResizable(false);
+           addTabStage.setTitle(ADD_RELESE_BUILD);
+           addTabStage.initModality(Modality.APPLICATION_MODAL);
+           Scene scene = new Scene(pane);
+           addTabStage.setScene(scene);
 
+           addTabStage.showAndWait();
+         //  ifOkPressed=controller.ifOkPressed();
+
+       // return ifOkPressed;
        }
 
     @FXML
@@ -163,5 +183,9 @@ public class Controller {
                 targetTab.setContent(tabModel.getController().Refresh(targetTab.getId()));            }
         });
 
+    }
+
+    public TabPane getTabPane() {
+        return tabPane;
     }
 }
