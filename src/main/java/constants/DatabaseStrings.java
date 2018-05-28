@@ -43,4 +43,6 @@ public class DatabaseStrings {
     public static final String SELECT_OBJECT_INFO = "SELECT * FROM %s WHERE objectname = \"%s\" AND objecttype = \"%s\" AND tab = \"%s\";";
     public static final String UPDATE_COMMENT = "UPDATE %s SET comment = \"%s\" WHERE objecttype =\"%s\" AND objectname=\"%s\" AND tab=\"%s\";";
     public static final String ADD_RELEASE_BUILD = "UPDATE %s SET release_build = %s WHERE build = %s;";
+    public static final String SELECT_RELEASE_BUILD = "SELECT DISTINCT release_build, build FROM %s WHERE tab =\"%s\"";
+
 }

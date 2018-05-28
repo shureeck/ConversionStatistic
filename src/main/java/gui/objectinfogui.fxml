@@ -60,7 +60,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <TextArea fx:id="reprotTextArea" editable="false" layoutX="24.0" layoutY="186.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="530.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="190.0">
+      <TextArea fx:id="reprotTextArea" editable="false" layoutX="24.0" layoutY="186.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="530.0" wrapText="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="190.0">
          <font>
             <Font size="14.0" />
          </font>

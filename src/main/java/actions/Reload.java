@@ -14,26 +14,32 @@ import static constants.DatabaseStrings.*;
 import static constants.StringsConstant.*;
 
 public class Reload {
-    public HashMap<String,String> reload( String tableName, String category, String tabID){
+    public HashMap<String,String> reload( String tableName, String category, String tabID) {
         String args[] = {tableName, category, tabID};
         String statement = String.format(SELECT_ALL_FROM_WHERE_AND, args);
         DataBaseConnection dbc = new DataBaseConnection(BASE, BASE_LOGIN, BASE_PASSWORD);
         Connection connection = dbc.connectToDatabase();
 
         ResultSet resultSet = dbc.executeStatement(connection, statement);
-       HashMap<String,String> result = new HashMap<>();
-        result.put("category",category);
+        HashMap<String, String> result = new HashMap<>();
+        result.put("category", category);
 
-        try {
-
-            while (resultSet.next()) {
-                result.put(resultSet.getString("build"),resultSet.getString("count"));
-            }}
-        catch (java.sql.SQLException e){
-            e.printStackTrace();
+        if (category.equalsIgnoreCase(RELEASE_BUILD)) {
+            result.putAll(getReleseBuild(dbc, connection, tableName, tabID));
         }
+        else{
+            try {
+
+                while (resultSet.next()) {
+                    result.put(resultSet.getString("build"), resultSet.getString("count"));
+                }
+            } catch (java.sql.SQLException e) {
+                e.printStackTrace();
+            }
+    }
         return result;
     }
+
     public HashMap<String,String> reload( String tableName, String category,String tabID, String targetColumn){
         String args[] ={tableName, category, tabID};
         String statement =String.format( SELECT_ALL_FROM_WHERE_AND, args);
@@ -44,18 +50,43 @@ public class Reload {
         HashMap<String,String> result = new HashMap<>();
         result.put(CATEGORY,category);
 
-        try {
 
-            while (resultSet.next()) {
-                result.put(resultSet.getString(BUILD),resultSet.getString(targetColumn));
-            }
-            connection.close();
+        if (category.equalsIgnoreCase(RELEASE_BUILD)) {
+            result.putAll(getReleseBuild(dbc, connection, tableName, tabID));
         }
-        catch (java.sql.SQLException e){
+        else {
+            try {
+
+                while (resultSet.next()) {
+                    result.put(resultSet.getString(BUILD), resultSet.getString(targetColumn));
+                }
+                connection.close();
+            } catch (java.sql.SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return result;
+    }
+
+    public  HashMap<String, String> getReleseBuild(DataBaseConnection dbc, Connection connection, String tableName, String tabID ){
+        HashMap<String, String> result = new HashMap<>();
+        String statement =  String.format(SELECT_RELEASE_BUILD, tableName, tabID);
+        ResultSet resultSet = dbc.executeStatement(connection, statement);
+
+        try {
+            while (resultSet.next()) {
+                String releaseBuild = resultSet.getString("release_build");
+                String build = resultSet.getString("build");
+                if (releaseBuild!=null){
+                    result.put(build, releaseBuild);
+                }
+                else {
+                    result.put(build, "");
+                }
+            }
+        } catch (java.sql.SQLException e) {
             e.printStackTrace();
         }
-
-
         return result;
     }
 
@@ -65,7 +96,7 @@ public class Reload {
         Connection connection = dbc.connectToDatabase();
         ResultSet rs = dbc.executeStatement(connection, selectQuery.selectCategories(tableName, tabId));
         ArrayList<String> categories = new ArrayList<>();
-        categories.add("Release Build");
+        categories.add(RELEASE_BUILD);
         try {
             while (rs.next()){
                 categories.add(rs.getString(CATEGORY));

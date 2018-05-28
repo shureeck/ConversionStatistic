@@ -124,9 +124,12 @@ public class tabModelController{
             i++;
         }
 
+        decorateTable(sorceStatistic);
+        decorateTable(applyPassTable);
         decorateTable(applyGenStatTable);
         decorateTable(applyFailedTable);
         decorateTable(convGenStatTable);
+        decorateTable(convPassTable);
         decorateTable(convFailedTable);
         decorateTable(errorTable);
         decorateTable(actionItemsTable);
@@ -135,8 +138,6 @@ public class tabModelController{
         highlightFailedObjects(conversionFailedObjects);
         highlightFailedObjects(errorFailedObjects);
         highlightFailedObjects(aiFailedObjects);
-
-
 
         return tabPane.getTabs().get(0).getContent();
     }
@@ -150,6 +151,8 @@ public class tabModelController{
         failedObjectsListener(conversionFailedObjects);
         failedObjectsListener(aiFailedObjects);
         failedObjectsListener(errorFailedObjects);
+
+
     }
 
     private ObservableList<Map> initData(HashMap<String, String> tables) {
@@ -236,7 +239,10 @@ public class tabModelController{
                     ArrayList<Integer> redId = new ArrayList<>(checkStyle(table));
                     if (redId.size() != 0) {
                         if (redId.contains(getIndex())) {
-                            setStyle("-fx-background-color: F78686;");
+                            if (getIndex() % 2 == 0) {
+                                setStyle("-fx-background-color: rgba(255, 165, 0, 0.5);");
+                            }
+                            else {setStyle("-fx-background-color: rgba(255, 140, 0, 0.5);");}
                             setText(item);
                         } else {
                             setText(item);
@@ -269,6 +275,7 @@ public class tabModelController{
                                     setStyle("-fx-background-color: rgba(247, 134, 134, 0.6);");
                                 } else setStyle("-fx-background-color: rgba(252, 151, 151, 0.6);");
                             }
+                            else setStyle(null);
                         }
                     }
                 };
@@ -277,7 +284,6 @@ public class tabModelController{
     }
 
     private ArrayList<Integer> checkStyle(TableView table){
-        boolean result=false;
         ArrayList<Integer> redIdSList=new ArrayList<>();
         if (table.getColumns().size()<3){
             return redIdSList;
@@ -285,12 +291,12 @@ public class tabModelController{
 
         TableColumn first = (TableColumn) table.getColumns().get(1);
         TableColumn second = (TableColumn) table.getColumns().get(2);
-        int i =0;
+        int i =1;
         while (first.getCellObservableValue(i)!=null){
             String valueFirst = (String) first.getCellObservableValue(i).getValue();
             String valueSecond =(String) second.getCellObservableValue(i).getValue();
             if (valueFirst!=null && valueSecond!=null) {
-                if (valueFirst.compareTo(valueSecond)>0){
+                if (valueFirst.compareTo(valueSecond)!=0){
                     redIdSList.add(i);
                 }
             }
@@ -320,6 +326,7 @@ public class tabModelController{
                     e.printStackTrace();
                 }
             }
+
         });
     }
 

@@ -69,8 +69,8 @@ public class Update_SQL_Query {
     return result;
     }
 
-    public String getCallStatement(Report report){
-        String callStetment = String.format(CALL_CHANGE_TO_TRUE, TABLE_APPLY_FAILED_OBJECTS, report.getFolder() );
+    public String getCallStatement(Report report, String tableName){
+        String callStetment = String.format(CALL_CHANGE_TO_TRUE, tableName, report.getFolder() );
         return callStetment;
 
     }
@@ -129,6 +129,7 @@ public class Update_SQL_Query {
         ArrayList<String> failedObjects = new ArrayList<>();
         int i =0;
         int size = report.getFailedObjects().size();
+        failedObjects.add(getCallStatement(report, tableName));
         while (size>i){
             String category = report.getFailedObjects().get(i).getCategory();
             String objectName = report.getFailedObjects().get(i).getName();
